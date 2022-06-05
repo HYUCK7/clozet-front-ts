@@ -1,25 +1,40 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {IRegister} from '@/types'
+import { write } from 'fs'
 
 type FormData = {
-    <T>(arr: T[]) : T
+    <T>(arr:T[]) : T
 }
 
 type Props = {
-    reg : (e:React.FormEvent, formData: FormData) => void
+    reg : (e:React.FormEvent, formdata: FormData) => void
 }
 
 const Register: React.FC<Props> = ({reg}) => {
+    const initUser = {userName: "", name : "", email: "", password: ""}
+    const [formData, setFormData] = useState<IRegister>(initUser)
+    const info = (e: React.FormEvent<HTMLInputElement>): void =>{
+        
+        setFormData(formData)
+    }
+
   return (
     <div>
         <title>Clozet 회원가입</title>
-        <form>
+        <form onSubmit={ e => reg(e, formData)}>
             <div className='register-form'> 
                 <h5>계정 아이디</h5>
-                <input name='regId' placeholder='ID' type='text' maxLength={20} onChange = {onchange}/>
+                <input value ={formData.userName} name='userName' placeholder='ID' onChange = {info} type='text' maxLength={20} />
                 <h5>비밀번호</h5>
-                <input/>
+                <input name='password' placeholder='PW' onChange={info} type='text' maxLength={20} />
+                <h5>이름</h5>
+                <input name='name' placeholder='name' onChange={info} type = 'text' maxLength={20}/>
+                <h5>이메일</h5>
+                <input name='email' placeholder='email' onChange={info} type = 'text' maxLength={20}/>
+                <button disabled = {formData === undefined ? true:false}>등록</button>
             </div>
         </form>
     </div>
   )
 }
+export default Register

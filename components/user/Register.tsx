@@ -1,15 +1,23 @@
 import React, {useState} from 'react'
 import {IRegister} from '@/types'
 
+type FormData = {
+    //<T>(arr:T[]) : T
+    userName: string
+    password: string
+    name: string
+    email: string
+}
+
+
 type Props = {
-    reg : (e:React.FormEvent, formdata: IRegister) => void
+    reg : (e:React.FormEvent, formdata: FormData) => void
 }
 
 const Register: React.FC<Props> = ({reg}) => {
     const initUser = {userName: "", name : "", email: "", password: ""}
     const [formData, setFormData] = useState<IRegister>(initUser)
     const info = (e: React.FormEvent<HTMLInputElement>): void =>{
-        
         setFormData(formData)
     }
 

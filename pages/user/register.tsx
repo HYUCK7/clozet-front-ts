@@ -21,12 +21,12 @@ export default function RegisterPage({newUser}: InferGetStaticPropsType<typeof g
     return <>
     <Register reg = {register}/>
     </>
-
+}
 export async function getStaticProps() {
     const res = await fetch(BASE_URL)
-    const newUser: IRegister = await res.json()
+    const newUser: IRegister[] = await res.json()
     return { props: {newUser}}
 }
 const BASE_URL : string = "http://localhost:8080"
-}
+
 

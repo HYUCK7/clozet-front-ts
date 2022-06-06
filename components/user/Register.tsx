@@ -1,13 +1,8 @@
 import React, {useState} from 'react'
 import {IRegister} from '@/types'
-import { write } from 'fs'
-
-type FormData = {
-    <T>(arr:T[]) : T
-}
 
 type Props = {
-    reg : (e:React.FormEvent, formdata: FormData) => void
+    reg : (e:React.FormEvent, formdata: IRegister) => void
 }
 
 const Register: React.FC<Props> = ({reg}) => {

@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import { IRegister } from "@/types";
 import Register from '@/components/user/Register'
 import { InferGetStaticPropsType } from "next";
+import { userActions } from "@/modules/user/userSlice";
+import { useAppDispatch } from "@/hooks";
 
 
 
@@ -17,6 +19,7 @@ export default function RegisterPage({newUser}: InferGetStaticPropsType<typeof g
             email: formData.email
         }
         setJoin([register, ...join])
+       // useAppDispatch(userActions.joinRequest(newUser))
     }
     return <>
     <Register reg = {register}/>

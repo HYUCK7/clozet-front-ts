@@ -1,9 +1,7 @@
 //기본적인 document의 형태
 import Footer from "@/components/Footer";
 import { Nav } from "@/components/Nav";
-import Register from "@/components/user/Register";
 import Document, {Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps} from "next/document";
-import RegisterPage from "./user/register";
 
 class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {

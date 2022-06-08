@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {IRegister} from '@/types'
+import { useAppDispatch } from '@/hooks'
 
 type FormData = { //
     // 타입은 상태가 있다고 생각했으나, 무상태. Member m = null; 이라고 헀을 때
@@ -16,7 +17,7 @@ type Props = {
 
 const Register: React.FC<Props> = ({reg}) => {
     const initUser = {userName: "", password: "", name : "", email: "", nickname: "",  }
-    const [formData, setFormData] = useState<IRegister>(initUser)
+    const [formData, setFormData] = useState(initUser)
     const info = (e: React.FormEvent<HTMLInputElement>): void =>{
         setFormData(formData)
     }
@@ -38,7 +39,7 @@ const Register: React.FC<Props> = ({reg}) => {
                 <input name='nickname' placeholder='nickname' onChange={info} type = 'text' maxLength={10}/>
                 <h5>이메일</h5>
                 <input name='email' placeholder='email' onChange={info} type = 'text' maxLength={20}/>
-                <button disabled = {formData === undefined ? true:false}>등록</button>
+                <button type='submit' disabled = {formData === undefined ? true:false}>등록</button>
             </div>
         </form>
     </div>

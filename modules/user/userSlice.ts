@@ -18,18 +18,23 @@ const initialState: UserState = {
 //export declare function createSlice<State, CaseReducers extends SliceCaseReducers<State>
 //, Name extends string = string>(options: CreateSliceOptions<State, CaseReducers, Name>): 
 //Slice<State, CaseReducers, Name>;
+
 export const registerSlice = createSlice({
     name: 'userRegister',
     initialState,
     reducers:{
-        joinRequest(state: UserState, payload){
+        joinRequest(state: UserState, _payload){
             state.status = 'loading';
+            
         },
         joinSuccess(state: UserState, {payload}){
             state.status = 'idle'
+            state.data = [...state.data, payload]
+            alert(`진행 : 회원가입 데이터 ${state.data}`)
         },
         joinFailure(state: UserState, {payload}){
             state.status = 'failed'
+            state.data = payload
         }
     }
 })

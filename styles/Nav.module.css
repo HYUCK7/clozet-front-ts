@@ -1,0 +1,54 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    position: relative;
+}
+.mainmenu,
+.submenu
+{
+    margin: 0;
+    padding: 100;
+    list-style-type: none;
+}
+.mainmenu>li {
+    float: left;
+    border: 1px solid rgb(247, 243, 243);
+}
+.mainmenu > li > a {
+    display: block;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    border-left: 3px solid rgba(0, 0, 0, 0.3)
+}
+
+.mainmenu > li:nth-child(1) > a{
+    border-left: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.submenu{
+    position: absolute;
+    background: white;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.15s ease-in;
+}
+.submenu > li{
+    padding: 16px 28px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+.submenu > li > a{
+    text-decoration: none;
+}
+.mainmenu > li:hover .submenu{
+    opacity: 1;
+    visibility: visible;
+    cursor: pointer;
+    overflow: auto;
+}
+.img {
+    margin-left: 850px;
+    object-fit: contain;
+}

@@ -1,12 +1,9 @@
-import Register from "@/components/user/Register";
+import Home from "@/components/Home";
 import type { NextPage } from "next";
-import { FormEvent } from "react";
 
-const Home: NextPage = () => {
+const HomePage: NextPage = () => {
   return(
-    <Register reg={function (e: FormEvent<Element>, formData: any): void {
-      throw new Error("Function not implemented.");
-    } }/>
+    <Home/>
   )
 }
-export default Home
+export default HomePage

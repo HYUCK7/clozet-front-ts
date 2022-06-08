@@ -19,7 +19,7 @@ export default function RegisterPage({newUser}: InferGetStaticPropsType<typeof g
             email: formData.email
         }
         setJoin([register, ...join])
-       // useAppDispatch(userActions.joinRequest(newUser))
+        alert(`페이지로 데이터 전송 ${JSON.stringify(formData)}`)
     }
     return <>
     <Register reg = {register}/>

@@ -1,0 +1,36 @@
+.table {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 15px;
+    width: 900px;
+    border: 1px solid black;
+    }
+    .table thead th {
+      background-color: white;
+      color: black;
+      text-align: center;
+      font-weight: bold;
+      height: 20px;
+      border: 1px solid black;
+    }
+  
+    .table td {
+      padding: 12px 15px;
+      border: 1px solid black;
+      text-align: center;
+    }
+    .table tbody tr {
+      border: 1px solid black;
+    }
+    .table tbody tr:last-of-type {
+      border: 1px solid black;
+    }
+
+.h1 {text-align: center;}
+
+.button {margin: auto;
+        display: block;
+      width: 100px;}
+
+.buttons {margin-left: 80px;
+margin-right: 110px;}

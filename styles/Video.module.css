@@ -1,0 +1,6 @@
+.video { 
+    overflow: hidden;
+    margin-bottom: 4em;
+    object-fit: none;
+    background-size: cover;
+}

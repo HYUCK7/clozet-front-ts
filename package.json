@@ -67,6 +67,7 @@
     "mobile-detect": "^1.4.5",
     "moment": "^2.29.3",
     "next": "12.1.6",
+    "next-auth": "^4.3.4",
     "next-redux-wrapper": "^7.0.5",
     "node-sass": "^7.0.1",
     "notistack": "^2.0.5",

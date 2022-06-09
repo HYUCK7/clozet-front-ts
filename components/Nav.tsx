@@ -1,4 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css'
+import Login from './user/Login'
+import LoginPage from '@/pages/user/login'
+import React, {useState} from 'react'
+import RegisterPage from '@/pages/user/register'
 export function Nav() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -69,11 +73,37 @@ export function Nav() {
     </ul>
     </li>
         </ul>
-        <form className='d-flex'>
-            <a href='/user/login'><button type = 'button' className='btn btn-dark '>SIGN-UP</button></a> &nbsp;
-            <a href="/user/register"><button type="button" className="btn btn-outline-dark">SIGN-IN</button></a>
-        </form>
+
+            <button  type = 'button' className='btn btn-dark' data-bs-toggle="modal" data-bs-target="#modal">로그인</button>
+            <div className="modal fade" id="modal"tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                    <div className="modal-header">
+                     <h5 className="modal-title" id="exampleModalLabel">LOGIN</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+                 <div className="modal-body">
+                     <LoginPage/>
+                 </div>
+                </div>
             </div>
+            </div>
+            &nbsp;
+            <button  type = 'button' className='ml-5 btn btn-outline-dark' data-bs-toggle="modal1" data-bs-target="#modal1">회원가입</button>
+                <div className="modal fade" id="modal"tabIndex={-1} aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">JOIN</h5>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div className='modal-body'>
+                    <RegisterPage newUser={[]}/>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     </nav>
     )

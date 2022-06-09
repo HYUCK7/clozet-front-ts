@@ -2,6 +2,7 @@
 import Footer from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import Document, {Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps} from "next/document";
+import type {AppProps} from 'next/app'
 
 class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
@@ -14,6 +15,7 @@ class MyDocument extends Document {
                 <Head/>
                 <title>Closet</title>
                 <meta charSet="utf-8"></meta>
+                
                 <meta
               name="viewport"
               content="width=device-width, user-scalable=no,

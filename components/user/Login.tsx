@@ -1,12 +1,6 @@
-import { Session } from 'next-auth'
-import { signIn, signOut, useSession } from 'next-auth/react'
-import { any } from 'prop-types'
 import React from 'react'
-
-
-
 const Login : React.FC =  () => {
-  const {data, status} = useSession()
+  
   return (
     <form>
     <h4 className="h4 mb-3 fw-normal">로그인 후 이용 가능합니다.</h4>
@@ -39,16 +33,6 @@ const Login : React.FC =  () => {
       <button className='btn btn-secondary'>Sign Up</button>
     </div>
     </div>
-
-    <div>
-    <p>status: {status}</p>
-    <p>{data?.user?.name}</p>
-    {data?.user?(
-      <button type='button' onClick={()=> signOut()}>구글 로그아웃</button>
-    ):(
-    <button type='button' onClick={()=> signIn('google')}>구글 로그인</button>)}
-    </div>
-
     <p className="mt-5 mb-3 text-muted">&copy; clozet 2022</p>
   </form>
   )

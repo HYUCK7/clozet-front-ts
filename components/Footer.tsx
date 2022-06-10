@@ -53,6 +53,8 @@ const Footer: React.FC = () => {
           <QA />
         </Container>
       </Box>
+
+      
     );
   }
 export default Footer

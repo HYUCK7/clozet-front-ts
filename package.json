@@ -36,6 +36,7 @@
     "@nivo/pie": "^0.79.1",
     "@reduxjs/toolkit": "^1.8.2",
     "@tailwindcss/postcss7-compat": "^2.2.17",
+    "@types/google.accounts": "^0.0.2",
     "@types/styled-components": "^5.1.25",
     "aos": "^2.3.4",
     "apexcharts": "^3.35.3",

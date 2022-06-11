@@ -15,7 +15,7 @@ class MyDocument extends Document {
                 <Head/>
                 <title>Closet</title>
                 <meta charSet="utf-8"></meta>
-                <meta name="google-signin-client_id" content="44815761184-9k90jdnp4r85uo4mcrsh4mqbabbeu7l5.apps.googleusercontent.com" />
+                <script src="https://accounts.google.com/gsi/client" async defer></script>
                 <meta
               name="viewport"
               content="width=device-width, user-scalable=no,
@@ -34,7 +34,7 @@ class MyDocument extends Document {
                     <NextScript/>
                     <Footer/>
                 </body>
-                <script src="https://apis.google.com/js/platform.js" async defer></script>
+                
             </Html>
         )
     }

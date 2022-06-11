@@ -1,26 +1,21 @@
-import React, { useCallback } from 'react'
-import GoogleLogin, { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login'
+import { useScript } from '@/hooks'
+import React, { useRef } from 'react'
 
-type Props = {
-  setUserInfo: any
-  setIsLogin: any
-}
+declare const google : any
 
-type IGoogleSuccess = GoogleLoginResponse | GoogleLoginResponseOffline
-
-const Login : React.FC<Props> =  ({setUserInfo, setIsLogin}) => {
-  const clientId = '44815761184-9k90jdnp4r85uo4mcrsh4mqbabbeu7l5.apps.googleusercontent.com'
-  const googleLogin = useCallback ((response: IGoogleSuccess) =>{
-    if("profileObj" in response){
-      const userInfo = {
-      email: response.profileObj.email,
-      name : response.profileObj.name
-    }
-    setUserInfo(userInfo)
-    setIsLogin(true)
-  }
-  }, [])
-
+const Login : React.FC =  ( onGoogleSignin = () => {}, text = 'signin_with') => {
+  const googleSignInButton = useRef(null)
+  useScript('https://accounts.google.com/gsi/client', ()=>{
+            // 원래, window.google로 진행해야함.
+      google.accounts.id.initialize({
+      clientId:'44815761184-9k90jdnp4r85uo4mcrsh4mqbabbeu7l5.apps.googleusercontent.com',
+      callback: onGoogleSignin,
+  })
+    google.accounts.id.renderButton(
+      googleSignInButton.current,
+      {theme: 'filled_blue', size:'large',text },
+  )
+  })
   return (
     <><form>
       <h4 className="h4 mb-3 fw-normal">로그인 후 이용 가능합니다.</h4>
@@ -53,19 +48,21 @@ const Login : React.FC<Props> =  ({setUserInfo, setIsLogin}) => {
           <button className='btn btn-secondary'>Sign Up</button>
         </div>
       </div>
-          <GoogleLogin theme='dark'
-            clientId= {clientId}
-            buttonText='Sign in with Google'
-            onSuccess={googleLogin}
-            onFailure={(res) => console.log(res)}
-            cookiePolicy={'http://localhost:3000'} 
-            />
             <p className="mt-5 mb-3 text-muted">&copy; clozet 2022</p>
-    </form>
-            
+    </form> 
+    <div id="g_id_onload"
+         data-client_id="44815761184-9k90jdnp4r85uo4mcrsh4mqbabbeu7l5.apps.googleusercontent.com"
+         data-login_uri="http://localhost:3000"
+         data-auto_prompt="false">
+      </div>
+      <div className="g_id_signin"
+         data-type="standard"
+         data-size="large"
+         data-theme="outline"
+         data-text="sign_in_with"
+         data-shape="rectangular"
+         data-logo_alignment="left"></div>
       </>
-    
-    
   )
 }
 

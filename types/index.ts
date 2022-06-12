@@ -1,3 +1,5 @@
+import { RefObject } from "react";
+
 export interface IRegister{
     userName:  string
     password:  string
@@ -6,5 +8,7 @@ export interface IRegister{
     //regDate: string
     //token: string
     //roles: string[]
-
 }
+export interface IDivPosition {
+    divRef: RefObject<HTMLDivElement>;
+  }

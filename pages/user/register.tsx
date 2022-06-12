@@ -5,8 +5,6 @@ import { InferGetStaticPropsType } from "next";
 import { userActions } from "@/modules/user/userSlice";
 import { useAppDispatch } from "@/hooks";
 
-
-
 export default function RegisterPage({newUser}: InferGetStaticPropsType<typeof getStaticProps>) {
     const[join, setJoin] = useState(newUser)
 

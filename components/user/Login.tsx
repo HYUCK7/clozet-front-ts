@@ -1,29 +1,30 @@
+import { useScript } from '@/hooks'
 import React, { useEffect, useRef } from 'react'
-
-
-
+/** 
 function handleCredentialResponse  (response : any)  {
   console.log("ENCODED JWT ID TOKEN" + response.credential)
-} 
+}
 
+React.useEffect(() => {
   window.onload = function () {
     google.accounts.id.initialize({
       client_id: "44815761184-9k90jdnp4r85uo4mcrsh4mqbabbeu7l5.apps.googleusercontent.com",
       callback: handleCredentialResponse
     })
-  
 
   google.accounts.id.renderButton(
-    document.getElementById( "#buttonDiv" )!,
+    
+    googleSignIbutton.current,
     {
       theme: "outline", size: "large",
       type: 'standard'
-    }
-    
-  );
+    });
 }
-  
-  
+
+},[])
+*/
+
+
 
 const Login : React.FC =  () => {  
   return (
@@ -60,7 +61,7 @@ const Login : React.FC =  () => {
       </div>
             <p className="mt-5 mb-3 text-muted">&copy; clozet 2022</p>
     </form> 
-    <div id = "buttonDiv"></div>
+    
       </>
   )
 }

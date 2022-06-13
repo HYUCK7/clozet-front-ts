@@ -4,7 +4,7 @@ const Home: React.FC = () => {
     <>
     <div id="Fade" className="carousel slide carousel-fade" data-bs-ride="carousel">
   <div className="carousel-inner">
-    <div className="carousel-item active" data-bs-interval="4000">
+    <div className="carousel-item active" data-bs-interval="3000">
       <img src="colorful.jpg" height = {630} className="d-block w-100" />
       <div className = "carousel-caption text-start d-none d-md-block">
       <h2>First slide label</h2>
@@ -12,14 +12,14 @@ const Home: React.FC = () => {
       </div>
     </div>
     
-    <div className="carousel-item" data-bs-interval="4000">
+    <div className="carousel-item" data-bs-interval="3000">
       <img src="stores.jpg" height = {630} className="d-block w-100"/>
       <div className = "carousel-caption text-end d-none d-md-block">
       <h1>오늘도 어떤 옷을 입을 지 고민이신가요?</h1>
         <p>100만 건의 의류 데이터를 통해 최적의 분석 데이터로 추천해드릴게요</p>
       </div>
     </div>
-    <div className="carousel-item" data-bs-interval="4000">
+    <div className="carousel-item" data-bs-interval="3000">
       <img src="shirts2.jpg" height = {630} className="d-block w-100"/>
       <div className = "carousel-caption d-none d-md-block">
       <h2>First slide label</h2>

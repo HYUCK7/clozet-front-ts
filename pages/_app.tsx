@@ -4,7 +4,10 @@ import LoginTestPage from './user/loginTest'
 
 function MyApp({ Component, pageProps: {...pageProps} }: AppProps) {
   return ( 
-    <><Component {...pageProps} /><LoginTestPage /></>
+    <>
+    <Component {...pageProps} />
+    <LoginTestPage />
+    </>
   )
 }
 

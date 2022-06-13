@@ -3,13 +3,16 @@ import Login from './user/Login'
 import LoginPage from '@/pages/user/login'
 import React, {useState} from 'react'
 import RegisterPage from '@/pages/user/register'
+import Link from 'next/link'
 export function Nav() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
-            <a className="navbar-brand col" href="/">
+            <Link href="/">
+            <a className="navbar-brand col" >
                 <img src="clozet-black.svg" style={{width:90+"px"}}/>
             </a>
+            </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
         </button>

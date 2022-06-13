@@ -56,19 +56,7 @@ const Login : React.FC =  () => {
       </div>
             <p className="mt-5 mb-3 text-muted">&copy; clozet 2022</p>
     </form> 
-    <div id="g_id_onload"
-         data-client_id="44815761184-9k90jdnp4r85uo4mcrsh4mqbabbeu7l5.apps.googleusercontent.com"
-         data-login_uri="http://localhost:3000/"
-         data-auto_prompt="false">
-      </div>
-      <div className="g_id_signin"
-         data-type="standard"
-         data-size="large"
-         data-theme="outline"
-         data-text="sign_in_with"
-         data-shape="rectangular"
-         data-logo_alignment="left">
-      </div>
+    
       </>
   )
 }

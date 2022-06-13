@@ -1,22 +1,15 @@
 import { useScript } from "@/hooks";
-import { RefObject, useRef } from "react";
-
-interface Idiv {
-    divRef : RefObject<HTMLDivElement>
-}
+import { RefObject, useRef, useState } from "react";
 
 export default function GoogleLogin({
     handleCredentialResponse = (response : any) =>{
     console.log("ENCODED JWT ID TOKEN" + response.credential)
     }
-}) {
+}) 
+{  const googleSignInButton = useRef(document.getElementById("#buttonDiv")!)
 
-    interface Idiv {
-        googleSignInButton : RefObject<HTMLDivElement>
-    }
-    const isBrowser = typeof window !== "undefined";
-    const googleSignInButton = useRef(document.getElementById("#buttonDiv")!)
     useScript('https://accounts.google.com/gsi/client',() => {
+        
     window.google.accounts.id.initialize({
       client_id: "44815761184-9k90jdnp4r85uo4mcrsh4mqbabbeu7l5.apps.googleusercontent.com",
       callback: handleCredentialResponse
@@ -30,6 +23,5 @@ export default function GoogleLogin({
       }
     )
   });
-  return (isBrowser? <div ref={googleSignInButton as React.RefObject<HTMLDivElement>}></div> : null)
+  return (<div ref={googleSignInButton as React.RefObject<HTMLDivElement>}></div>)
 }
-

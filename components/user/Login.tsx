@@ -1,34 +1,29 @@
 import { useScript } from '@/hooks'
 import React, { useEffect, useRef } from 'react'
+
 /** 
 function handleCredentialResponse  (response : any)  {
   console.log("ENCODED JWT ID TOKEN" + response.credential)
 }
-
-React.useEffect(() => {
+  if(typeof window !== "undefined"){
   window.onload = function () {
     google.accounts.id.initialize({
       client_id: "44815761184-9k90jdnp4r85uo4mcrsh4mqbabbeu7l5.apps.googleusercontent.com",
       callback: handleCredentialResponse
     })
-
-  google.accounts.id.renderButton(
-    
-    googleSignIbutton.current,
+    google.accounts.id.renderButton(
+    document.getElementById("#buttonDiv")!,
     {
       theme: "outline", size: "large",
       type: 'standard'
     });
-}
-
-},[])
+  }
 */
-
-
 
 const Login : React.FC =  () => {  
   return (
-    <><form>
+    <>
+    <form>
       <h4 className="h4 mb-3 fw-normal">로그인 후 이용 가능합니다.</h4>
 
       <div className="form-floating">
@@ -61,7 +56,19 @@ const Login : React.FC =  () => {
       </div>
             <p className="mt-5 mb-3 text-muted">&copy; clozet 2022</p>
     </form> 
-    
+    <div id="g_id_onload"
+         data-client_id="44815761184-9k90jdnp4r85uo4mcrsh4mqbabbeu7l5.apps.googleusercontent.com"
+         data-login_uri="http://localhost:3000/"
+         data-auto_prompt="false">
+      </div>
+      <div className="g_id_signin"
+         data-type="standard"
+         data-size="large"
+         data-theme="outline"
+         data-text="sign_in_with"
+         data-shape="rectangular"
+         data-logo_alignment="left">
+      </div>
       </>
   )
 }

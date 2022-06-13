@@ -2,10 +2,9 @@
 import Footer from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import Document, {Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps} from "next/document";
-import type {AppProps} from 'next/app'
 
 class MyDocument extends Document {
-    static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
+    static async getInitialProps(ctx: DocumentContext) {
         const initialProps = await Document.getInitialProps(ctx)
         return{ ... initialProps}
     }

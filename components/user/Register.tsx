@@ -21,7 +21,6 @@ const Register: React.FC<Props> = ({reg}) => {
     const info = (e: React.FormEvent<HTMLInputElement>): void =>{
         setFormData(formData)
     }
-
   return (
     <div>
         <title>Clozet 회원가입</title>

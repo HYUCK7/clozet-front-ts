@@ -22,19 +22,12 @@ const Home: React.FC = () => {
     <div className="carousel-item" data-bs-interval="3000">
       <img src="shirts2.jpg" height = {630} className="d-block w-100"/>
       <div className = "carousel-caption d-none d-md-block">
-      <h2>First slide label</h2>
+      <h1>Design Your Mind , Enjoy Your Life</h1>
         <p>Some representative placeholder content for the first slide.</p>
       </div>
     </div>
   </div>
-  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Previous</span>
-  </button>
-  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Next</span>
-  </button>
+
 </div>
 <div className="container marketing m-auto mt-5 bg-success ">
     <div className="row m-auto p-auto">

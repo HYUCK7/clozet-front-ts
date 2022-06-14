@@ -77,7 +77,9 @@ export function Nav() {
     </li>
         </ul>
 
-            <button  type = 'button' className='btn btn-dark' data-bs-toggle="modal" data-bs-target="#modal">로그인</button>
+            <button  type = 'button' className='btn btn-dark' data-bs-toggle="modal" data-bs-target="#modal">
+                <h5>Login</h5>
+                </button>
             <div className="modal fade" id="modal"tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
@@ -92,7 +94,9 @@ export function Nav() {
             </div>
             </div>
             &nbsp;
-            <button  type = 'button' className='ml-5 btn btn-outline-dark' data-bs-toggle="modal1" data-bs-target="#modal1">회원가입</button>
+            <button  type = 'button' className='ml-5 btn btn-outline-dark' data-bs-toggle="modal1" data-bs-target="#modal1">
+                <h5>Register</h5>
+                </button>
                 <div className="modal fade" id="modal"tabIndex={-1} aria-labelledby="exampleModalLabel1" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">

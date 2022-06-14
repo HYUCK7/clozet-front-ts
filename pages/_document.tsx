@@ -14,9 +14,9 @@ class MyDocument extends Document {
                 <Head/>
                 <title>Closet</title>
                 <meta charSet="utf-8"></meta>
-                <link rel="preconnect" href="https://fonts.googleapis.com"></link>
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin = "anonymous"></link>
-                <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital@1&display=swap" rel="stylesheet"></link>
+                <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin = 'anonymous'/>
+                <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet"/>
                 <script src="https://accounts.google.com/gsi/client" async defer></script>
                 <meta
               name="viewport"

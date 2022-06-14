@@ -17,7 +17,7 @@ const Ootd = (props: Props) => {
         <div className = "row row-cols-1 row-cols-md-3 g-4">
         <div className="col">
           <div className="card h-100">
-            <img src="..." className="card-img-top" alt="..."></img>
+            <img src="https://cdnweb01.wikitree.co.kr/webdata/editor/202005/20/img_20200520104404_7911aad7.webp" className="card-img-top" alt="..."></img>
             <div className="card-body">
               <h5 className="card-title">Card title</h5>
               <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -29,7 +29,7 @@ const Ootd = (props: Props) => {
         </div>
         <div className="col">
           <div className="card h-100">
-            <img src="..." className="card-img-top" alt="..."></img>
+            <img src="https://www.elandrs.com/upload/prd/img/666/600/1905492666_0000001.jpg" className="card-img-top" alt="..."></img>
             <div className="card-body">
               <h5 className="card-title">Card title</h5>
               <p className="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
@@ -41,7 +41,7 @@ const Ootd = (props: Props) => {
         </div>
         <div className="col">
           <div className="card h-100">
-            <img src= "https://cdnweb01.wikitree.co.kr/webdata/editor/202005/20/img_20200520104404_7911aad7.webp" width="400" height="400" alt="My Image"/>
+            <img src= "https://image.msscdn.net/images/goods_img/20190401/1000343/1000343_3_500.jpg?t=20200414185127" className="card-img-top" width="300" height="400" alt="My Image"/>
             <div className="card-body">
               <h5 className="card-title">Card title</h5>
               <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>

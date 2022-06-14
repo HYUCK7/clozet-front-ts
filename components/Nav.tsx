@@ -105,7 +105,7 @@ export function Nav() {
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className='modal-body'>
-                    <RegisterPage newUser={[]}/>
+                    <RegisterPage />
                 </div>
                     </div>
                 </div>

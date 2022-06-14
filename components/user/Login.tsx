@@ -27,7 +27,7 @@ const Login : React.FC =  () => {
       <h4 className="h4 mb-3 fw-normal">로그인 후 이용 가능합니다.</h4>
 
       <div className="form-floating">
-        <input type="userName" className="form-control" id="floatingInput" placeholder='UserID' minLength={4} maxLength={20} />
+        <input type="username" className="form-control" id="floatingInput" placeholder='UserID' minLength={4} maxLength={20} />
         <label htmlFor="floatingInput"><h5>User ID</h5></label>
       </div>
       <div className="form-floating">

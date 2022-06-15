@@ -1,4 +1,4 @@
-import FindPw from '@/components/user/FindPw'
+import FindPw from '@/components/users/FindPw'
 import { NextPage } from 'next'
 import React from 'react'
 

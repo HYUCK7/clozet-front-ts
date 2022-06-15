@@ -1,5 +1,5 @@
 import React from 'react'
-import  Best  from '@/components/closet/Best'
+import  Best  from '@/components/closets/Best'
 
 export default function BestPage  ()  {
   return (

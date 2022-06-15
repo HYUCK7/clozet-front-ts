@@ -1,4 +1,4 @@
-import FindId from '@/components/user/FindId'
+import FindId from '@/components/users/FindId'
 import { NextPage } from 'next'
 import React from 'react'
 

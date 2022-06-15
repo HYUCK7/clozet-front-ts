@@ -1,4 +1,4 @@
-import Update from '@/components/user/Update'
+import Update from '@/components/users/Update'
 import { NextPage } from 'next'
 import React from 'react'
 

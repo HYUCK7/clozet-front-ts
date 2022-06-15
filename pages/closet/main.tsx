@@ -1,5 +1,5 @@
 import React from 'react'
-import Main from '@/components/closet/Main'
+import Main from '@/components/closets/Main'
 
 export default function MainPage() {
   return (

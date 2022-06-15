@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import Register from '@/components/user/Register'
+import Register from '@/components/users/Register'
 import { NextPage } from "next";
 import { IRegister } from "@/types";
 /** 

@@ -1,5 +1,5 @@
 import React from 'react'
-import Bottom from '@/components/closet/Bottom'
+import Bottom from '@/components/closets/Bottom'
 
 export default function BottomPage  ()  {
   return (

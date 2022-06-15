@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import Login from './user/Login'
+import Login from './users/Login'
 import LoginPage from '@/pages/user/login'
 import React, {useState} from 'react'
 import RegisterPage from '@/pages/user/register'

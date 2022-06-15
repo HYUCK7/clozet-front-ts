@@ -1,4 +1,4 @@
-import Remove from '@/components/user/Remove'
+import Remove from '@/components/users/Remove'
 import { NextPage } from 'next'
 import React from 'react'
 

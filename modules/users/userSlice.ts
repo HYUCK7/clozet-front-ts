@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import { string } from 'prop-types';
 import { AppState } from '../store'
-
+/**
 export interface UserType {
     userName: string, name: string, password: string, email: string
 }
@@ -41,3 +41,4 @@ export const registerSlice = createSlice({
 const {reducer, actions} = registerSlice
 export const userActions = actions
 export default reducer
+ */

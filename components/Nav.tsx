@@ -94,21 +94,21 @@ export function Nav() {
             </div>
             </div>
             &nbsp;
-            <button  type = 'button' className='ml-5 btn btn-outline-dark' data-bs-toggle="modal1" data-bs-target="#modal1">
+            <button  type = 'button' className='btn btn-dark' data-bs-toggle="modal" data-bs-target="#modal1">
                 <h5>Register</h5>
-                </button>
-                <div className="modal fade" id="modal"tabIndex={-1} aria-labelledby="exampleModalLabel1" aria-hidden="true">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">JOIN</h5>
-                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </button>
+                <div className="modal fade" id="modal1"tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                    <div className="modal-header">
+                     <h5 className="modal-title" id="exampleModalLabel">JOIN</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+                 <div className="modal-body">
+                     <RegisterPage/>
+                 </div>
                 </div>
-                <div className='modal-body'>
-                    <RegisterPage />
-                </div>
-                    </div>
-                </div>
+            </div>
             </div>
         </div>
     </div>

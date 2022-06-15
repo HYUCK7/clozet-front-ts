@@ -27,6 +27,8 @@ const Register: React.FC = () => {
         setFormData(formData)
     }
     */
+
+    /** 
   return (
     <div>
         <title>Clozet 회원가입</title>
@@ -51,5 +53,45 @@ const Register: React.FC = () => {
         </form>
     </div>
   )
+  */
+    return(
+    <>
+    <form>
+        <h4 className="h4 mb-3 fw-normal">Clozet의 회원이 되어주세요!</h4>
+
+      <div className="form-floating">
+        <input type="text" className="form-control" id="username" name = "username" placeholder='UserID' minLength={4} maxLength={20} />
+        <label htmlFor="floatingUserName"><h5>User ID</h5></label>
+      </div>
+      <div className="form-floating">
+        <input type="text" className="form-control" id="password" name = "password" placeholder="Password" />
+        <label htmlFor="floatingPassword"><h5>Password</h5></label>
+      </div>
+      <div className="form-floating">
+        <input type="text" className="form-control" id="birth" name = "birth" placeholder="생년월일" />
+        <label htmlFor="floatingBirth"><h5>birth</h5></label>
+      </div>
+      <div className="form-floating">
+        <input type="text" className="form-control" id="name" name = "name" placeholder="Name" />
+        <label htmlFor="floatingName"><h5>Name</h5></label>
+      </div>
+      <div className="form-floating">
+        <input type="text" className="form-control" id="nickname" name='nickname' placeholder="NickName" />
+        <label htmlFor="floatingNickName"><h5>NickName</h5></label>
+      </div>
+      <div className="form-floating">
+        <input type="text" className="form-control" id="email" name='email' placeholder="E-mail" />
+        <label htmlFor="floatingPassword"><h5>E-Mail</h5></label>
+      </div>
+      <div className="form-floating">
+        <input type="text" className="form-control" id="phone" name='phone' placeholder="Phone Number" />
+        <label htmlFor="floatingPhone"><h5>Phone Number</h5></label>
+      </div>
+      <button className="w-100 btn btn-lg btn-secondary" type="submit">
+        <h4>Sign Up</h4>
+        </button>
+            <p className="mt-5 mb-3 text-muted">&copy; clozet 2022</p>
+    </form>    
+    </>)
 }
 export default Register

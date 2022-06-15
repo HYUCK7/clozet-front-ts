@@ -58,7 +58,7 @@ const Register: React.FC = () => {
     <>
     <form>
         <h4 className="h4 mb-3 fw-normal">Clozet의 회원이 되어주세요!</h4>
-
+    <div className = 'd-grid gap-2'>
       <div className="form-floating">
         <input type="text" className="form-control" id="username" name = "username" placeholder='UserID' minLength={4} maxLength={20} />
         <label htmlFor="floatingUserName"><h5>User ID</h5></label>
@@ -66,6 +66,10 @@ const Register: React.FC = () => {
       <div className="form-floating">
         <input type="text" className="form-control" id="password" name = "password" placeholder="Password" />
         <label htmlFor="floatingPassword"><h5>Password</h5></label>
+      </div>
+      <div className="form-floating">
+        <input disabled type="text" className="form-control" id="passwordCheck" name = "passwordCheck" placeholder="Password Check" />
+        <label htmlFor="floatingPassword"><h5>Password Check</h5></label>
       </div>
       <div className="form-floating">
         <input type="text" className="form-control" id="birth" name = "birth" placeholder="생년월일" />
@@ -87,9 +91,10 @@ const Register: React.FC = () => {
         <input type="text" className="form-control" id="phone" name='phone' placeholder="Phone Number" />
         <label htmlFor="floatingPhone"><h5>Phone Number</h5></label>
       </div>
-      <button className="w-100 btn btn-lg btn-secondary" type="submit">
+      <button className="w-100 btn btn-lg btn-outline-secondary" type="submit">
         <h4>Sign Up</h4>
         </button>
+        </div>  
             <p className="mt-5 mb-3 text-muted">&copy; clozet 2022</p>
     </form>    
     </>)

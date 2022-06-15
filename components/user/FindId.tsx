@@ -2,8 +2,33 @@ import React from 'react'
 
 type Props = {}
 
-const FindId = (props: Props) => {
+const FindId: React.FC = (props: Props) => {
   return (
+    <form>
+      <h4 className="h4 mb-3 fw-normal">내 계정 ID 찾기</h4>
+    <div className='container row align-items-center'>
+
+      <div className = 'd-grid gap-2 col-md-3 auto'>
+        
+      <div className="form-floating">
+        <input type="username" className="form-control" id="floatingInput" placeholder='UserID' minLength={4} maxLength={20} />
+        <label htmlFor="floatingInput"><h5>가입한 E-mail</h5></label>
+      </div>
+
+      <div className="form-floating">
+        <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
+        <label htmlFor="floatingPassword"><h5>Phone Number</h5></label>
+      </div>
+
+    </div>
+
+      <button className="w-100 btn btn-lg btn-outline-secondary" type="submit">
+        <h4>다음</h4>
+        </button>
+
+      </div>
+    </form> 
+    /** 
     <div text-align = "middle">
             <h3   id='signup_title'>CLOZET 아이디 찾기</h3>
         <div>
@@ -43,7 +68,7 @@ const FindId = (props: Props) => {
           <input type='button' value='가입하기' name='sigunup_submit'/>
         </div>
       </div>
-  )
+  */)
 }
 
 export default FindId

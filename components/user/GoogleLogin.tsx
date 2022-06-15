@@ -7,8 +7,7 @@ export default function GoogleLogin({
     console.log("ENCODED JWT ID TOKEN" + response.credential)
     }
     */
-    handleCredentialResponse = () => {},
-    text = 'signin_with'
+    handleCredentialResponse = (response : any) => { console.log ("ENCODED JWT ID TOKEN: " + response.credential)},
 }) 
 {  //const googleSignInButton = useRef(document.getElementById("#buttonDiv")!)
     useScript('https://accounts.google.com/gsi/client',() => {

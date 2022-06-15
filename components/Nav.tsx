@@ -57,10 +57,10 @@ export function Nav() {
         UserPage
         </a>
     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a className="dropdown-item" href="#">Account Remove</a></li>
-        <li><a className="dropdown-item" href="#">Account Update</a></li>
-        <li><a className="dropdown-item" href="#">Find ID</a></li>
-        <li><a className="dropdown-item" href="#">Find PW</a></li>
+        <li><a className="dropdown-item" href="/user/remove">Account Remove</a></li>
+        <li><a className="dropdown-item" href="/user/update">Account Update</a></li>
+        <li><a className="dropdown-item" href="/user/findId">Find ID</a></li>
+        <li><a className="dropdown-item" href="/user/findPw">Find PW</a></li>
     </ul>
     </li>
 
@@ -94,7 +94,7 @@ export function Nav() {
             </div>
             </div>
             &nbsp;
-            <button  type = 'button' className='btn btn-dark' data-bs-toggle="modal" data-bs-target="#modal1">
+            <button  type = 'button' className='btn btn-outline-dark' data-bs-toggle="modal" data-bs-target="#modal1">
                 <h5>Register</h5>
             </button>
                 <div className="modal fade" id="modal1"tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">

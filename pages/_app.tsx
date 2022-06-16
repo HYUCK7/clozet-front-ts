@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps: {...pageProps} }: AppProps) {
     <LoginTestPage />
     <style jsx>{`
         a{
-            text-decoration: none;
+            textDecoration: none;
         }
     `}</style>
     </>

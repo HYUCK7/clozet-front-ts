@@ -39,7 +39,7 @@ export function Nav() {
     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
         <li><a className="dropdown-item" href="/closets/thisWeek">This Week</a></li>
         <li><a className="dropdown-item" href="/closets/lastWeek">Last Week</a></li>
-        <li><a className="dropdown-item" href="/clothes/optionRecommand">My OOTD</a></li>
+        <li><a className="dropdown-item" href="/clothes/optionRecommand">Special</a></li>
     </ul>
     </li>
 
@@ -69,7 +69,7 @@ export function Nav() {
         </ul>
                 <Link href='/clothes/recommand'>
                 <button className='btn btn-datk'>
-                    <a text-decoration = "none">Clozet 이용하기</a>
+                    <a>Clozet 이용하기</a>
                 </button>
                 </Link>
 

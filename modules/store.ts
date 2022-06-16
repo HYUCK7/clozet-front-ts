@@ -11,7 +11,10 @@ import { IEventState } from './events';
 import { IStyleState } from './styles';
 import { IWeatherState } from './weathers';
 import eventReducer from './events'
+import rootSaga from '@/sagas';
+import createSagaMiddleware from '@redux-saga/core'
 const isDev = process.env.NODE_ENV ==='development'
+const sagaMiddleware = createSagaMiddleware()
 
 interface RootStates {
 	article: IArticleState;
@@ -38,19 +41,21 @@ const rootReducer = (
     })(state,action)
 }
 
-const makeStore = () =>
-    configureStore({
+const makeStore = () =>{
+    const store = configureStore({
         reducer:{ rootReducer },
         middleware: (getDefaultMiddleware) =>
-        isDev? getDefaultMiddleware().concat(logger) : getDefaultMiddleware(),
+        isDev? getDefaultMiddleware().concat(logger, sagaMiddleware) : getDefaultMiddleware(),
         devTools :isDev
     });
-
+    sagaMiddleware.run(rootSaga)
+    return store
+}
 export const wrapper = createWrapper(makeStore, {
     debug: isDev})
 
 const store = makeStore();
-
+export type RootState = ReturnType<typeof rootReducer>
 export type AppState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 

@@ -36,7 +36,7 @@ const Home: React.FC = () => {
         </svg>
         <h2>Clozet</h2>
         <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-        <p><a className="btn btn-secondary" href="#">View details &raquo;</a></p>
+        <p><a className="btn btn-secondary" href="/clothes/addCloth">내 Closet 만들러가기 &raquo;</a></p>
       </div>
 
       <div className="col-lg-4">

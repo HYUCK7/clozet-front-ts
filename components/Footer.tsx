@@ -19,15 +19,15 @@ const Copyright: React.FC = () => {
 const QA: React.FC = () => {
   return(
   <Typography variant='body2' color = "text.secondary" align = "center">
-  <Link color = "#009688"href = "/QA/addQa" align-right={100}>
+  <Link color = "#009688"href = "/articles/addQna" align-right={100}>
     문의하기       
     </Link>
     &nbsp; &nbsp;
-  <Link color = "#009688"href = "/QA/qaList">
+  <Link color = "#009688"href = "/boards/allQnaList">
     전체 문의내역 
   </Link>
   &nbsp; &nbsp;
-  <Link color = "#009688"href = "/QA/myQalist">
+  <Link color = "#009688"href = "/boards/myQnaList">
     나의 문의내역 
   </Link>
   &nbsp;&nbsp;

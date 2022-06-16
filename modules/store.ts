@@ -40,7 +40,7 @@ const rootReducer = (
 
 const makeStore = () =>
     configureStore({
-        rootReducer,
+        reducer:{ rootReducer },
         middleware: (getDefaultMiddleware) =>
         isDev? getDefaultMiddleware().concat(logger) : getDefaultMiddleware(),
         devTools :isDev

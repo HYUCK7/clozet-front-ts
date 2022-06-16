@@ -1,9 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import Login from './users/Login'
-import LoginPage from '@/pages/user/login'
+import LoginPage from '@/pages/users/login'
 import React, {useState} from 'react'
-import RegisterPage from '@/pages/user/register'
+import RegisterPage from '@/pages/users/join'
 import Link from 'next/link'
+import JoinPage from '@/pages/users/join'
 export function Nav() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,23 +22,13 @@ export function Nav() {
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
     <li className="nav-item dropdown">
         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"  aria-expanded="false">
-        AI
-        </a>
-    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a className="dropdown-item" href="/ai/addCloset">로그인 전</a></li>
-        <li><a className="dropdown-item" href="/ai/ootd">로그인 후</a></li>
-    </ul>
-    </li>
-
-    <li className="nav-item dropdown">
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"  aria-expanded="false">
         Closet
         </a>
     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a className="dropdown-item" href="/closet/main">MAIN</a></li>
-        <li><a className="dropdown-item" href="/closet/top">TOP</a></li>
-        <li><a className="dropdown-item" href="/closet/bottom">BOTTOM</a></li>
-        <li><a className="dropdown-item" href="/closet/best">BEST</a></li>
+        <li><a className="dropdown-item" href="/closets/main">MAIN</a></li>
+        <li><a className="dropdown-item" href="/closets/top">TOP</a></li>
+        <li><a className="dropdown-item" href="/closets/bottom">BOTTOM</a></li>
+        <li><a className="dropdown-item" href="/closets/best">BEST</a></li>
     </ul>
     </li>
 
@@ -46,9 +37,9 @@ export function Nav() {
         MyWeek
         </a>
     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a className="dropdown-item" href="/mypage/thisWeek">This Week</a></li>
-        <li><a className="dropdown-item" href="/mypage/lastWeek">Last Week</a></li>
-        <li><a className="dropdown-item" href="/mypage/myOotd">My OOTD</a></li>
+        <li><a className="dropdown-item" href="/closets/thisWeek">This Week</a></li>
+        <li><a className="dropdown-item" href="/closets/lastWeek">Last Week</a></li>
+        <li><a className="dropdown-item" href="/clothes/optionRecommand">My OOTD</a></li>
     </ul>
     </li>
 
@@ -57,10 +48,10 @@ export function Nav() {
         UserPage
         </a>
     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a className="dropdown-item" href="/user/remove">Account Remove</a></li>
-        <li><a className="dropdown-item" href="/user/update">Account Update</a></li>
-        <li><a className="dropdown-item" href="/user/findId">Find ID</a></li>
-        <li><a className="dropdown-item" href="/user/findPw">Find PW</a></li>
+        <li><a className="dropdown-item" href="/users/remove">Account Remove</a></li>
+        <li><a className="dropdown-item" href="/users/update">Account Update</a></li>
+        <li><a className="dropdown-item" href="/users/findUserName">Find ID</a></li>
+        <li><a className="dropdown-item" href="/users/findPassword">Find PW</a></li>
     </ul>
     </li>
 
@@ -69,13 +60,18 @@ export function Nav() {
         People
         </a>
     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a className="dropdown-item" href="/people/addBoard">UPLOAD</a></li>
-        <li><a className="dropdown-item" href="/people/boardList">MY UPLOAD</a></li>
-        <li><a className="dropdown-item" href="/people/likeList">Clozet People</a></li>
-        <li><a className="dropdown-item" href="/people/trend">Trend</a></li>
+        <li><a className="dropdown-item" href="/articles/addBoard">UPLOAD</a></li>
+        <li><a className="dropdown-item" href="/boards/myBoardList">MY UPLOAD</a></li>
+        <li><a className="dropdown-item" href="/boards/allBoardList">Clozet People</a></li>
+        <li><a className="dropdown-item" href="/boards/trend">Trend</a></li>
     </ul>
     </li>
         </ul>
+                <Link href='/clothes/recommand'>
+                <button className='btn btn-datk'>
+                    <a text-decoration = "none">Clozet 이용하기</a>
+                </button>
+                </Link>
 
             <button  type = 'button' className='btn btn-dark' data-bs-toggle="modal" data-bs-target="#modal">
                 <h5>Login</h5>
@@ -105,13 +101,15 @@ export function Nav() {
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                  </div>
                  <div className="modal-body">
-                     <RegisterPage/>
+                     <JoinPage/>
                  </div>
                 </div>
             </div>
             </div>
         </div>
     </div>
+    
+    
     </nav>
     )
 }

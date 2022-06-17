@@ -1,3 +1,4 @@
+
 import { useScript } from '@/hooks'
 import React, { useEffect, useRef } from 'react'
 
@@ -20,7 +21,7 @@ function handleCredentialResponse  (response : any)  {
   }
 */
 
-const Login : React.FC =  () => {  
+const Login : React.FC =  () => {
   return (
     <>
     <form>

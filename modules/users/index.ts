@@ -2,16 +2,16 @@ import { createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import { string } from 'prop-types';
 import { AppState } from '../store'
 
-export interface IUserType {
-    userName: string, name: string, password: string, email: string
+export interface User {
+    username:string, password:string, email:string, name:string, phone:string, birth:string, nickname:string
 }
 
-export interface IUserState{
-    data: IUserType[]
+export interface UserState{
+    data: User[]
     status: 'idle' | 'loading' | 'failed'
 }
 
-const initialState: IUserState = {
+const initialState: UserState = {
     data: [],
     status: 'idle'
 }
@@ -24,29 +24,30 @@ export const userSlice = createSlice({
     name: 'userSlice',
     initialState,
     reducers:{
-        joinRequest(state: IUserState, _payload){
+        joinRequest(state: UserState, _payload){
             state.status = 'loading';
+            alert(`얍`)
             
         },
-        joinSuccess(state: IUserState, {payload}){
+        joinSuccess(state: UserState, {payload}){
             state.status = 'idle'
             state.data = [...state.data, payload]
             alert(`진행 : 회원가입 데이터 ${state.data}`)
         },
-        joinFailure(state: IUserState, {payload}){
+        joinFailure(state: UserState, {payload}){
             state.status = 'failed'
             state.data = payload
         },
-        loginRequest(state: IUserState, _payload){
+        loginRequest(state: UserState, _payload){
             state.status = 'loading';
             
         },
-        loginSuccess(state: IUserState, {payload}){
+        loginSuccess(state: UserState, {payload}){
             state.status = 'idle'
             state.data = [...state.data, payload]
             alert(`진행 : 회원가입 데이터 ${state.data}`)
         },
-        loginFailure(state: IUserState, {payload}){
+        loginFailure(state: UserState, {payload}){
             state.status = 'failed'
             state.data = payload
         }

@@ -26,9 +26,9 @@ const Join: React.FC = () => {
     username:'', password:'', email:'', name:'', phone:'', birth:'', nickname:''
 })
 const dispatch = useDispatch()
-const handleChange = (e:any) =>{
+const handleChange = (e: { preventDefault: () => void; target: { name: string; value: string } }) =>{
     e.preventDefault()
-    const{name, value} = e.target;
+    const {name, value} = e.target;
     setUser({...user,[name]: value})
 }
 

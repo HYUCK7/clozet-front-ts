@@ -3,6 +3,11 @@ import Register from '@/components/users/Join'
 import { NextPage } from "next";
 import { IRegister } from "@/types";
 import Join from "@/components/users/Join";
+
+const JoinPage: NextPage = () => {
+    return(<Join/>)
+}
+export default JoinPage
 /** 
 export default function RegisterPage({newUser}: InferGetStaticPropsType<typeof getStaticProps>) {
     const[join, setJoin] = useState(newUser)
@@ -22,12 +27,7 @@ export default function RegisterPage({newUser}: InferGetStaticPropsType<typeof g
     </>
 }
 */
-const JoinPage: NextPage = () => {
-    return(
-    <Join/>
-    )
-}
-export default JoinPage
+
 
 /** 
 export async function getStaticProps() {

@@ -26,7 +26,6 @@ export const userSlice = createSlice({
     reducers:{
         joinRequest(state: UserState, _payload){
             state.status = 'loading';
-            alert(`얍`)
             
         },
         joinSuccess(state: UserState, {payload}){

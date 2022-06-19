@@ -8,14 +8,15 @@ import { userJoinApi, userLoginApi,userUpdateApi, userDeleteApi, userFindAllApi,
 interface UserJoinType{
     type: string;
     payload: {
-        userid:string, password:string, email:string, 
-        name:string, phone:string, birth:string, address:string
+        username:string, password:string, email:string, 
+        name:string, phone:string, birth:string, nickname:string
     }
 }
 interface UserJoinSuccessType{
     type: string;
     payload: {
-        userid: string
+        username:string, password:string, email:string, 
+        name:string, phone:string, birth:string, nickname:string
     }
 }
 
@@ -34,11 +35,11 @@ interface UserLoginSuccessType{
 }
 function* join(user: UserJoinType){
     try{
-        alert(' 진행 3: saga내부 join 성공  '+ JSON.stringify(user))
+        console.log(' saga내부 join 성공  '+ JSON.stringify(user))
         const response: UserJoinSuccessType = yield userJoinApi(user.payload)
         yield put(userActions.joinSuccess(response))
     }catch(error){
-         alert('진행 3: saga내부 join 실패  ') 
+         console.log(' saga내부 join 실패  ') 
          yield put(userActions.joinFailure(error))
     }
 }

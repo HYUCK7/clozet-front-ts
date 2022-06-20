@@ -29,8 +29,7 @@ interface UserLoginType{
 interface UserLoginSuccessType{
     type: string;
     payload: {
-        userid:string,  email:string, 
-        name:string, phone:string, birth:string, address:string
+        userid:string, password: string
     }
 }
 function* join(user: UserJoinType){

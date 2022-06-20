@@ -5,7 +5,7 @@ import { IRegister } from "@/types";
 import Join from "@/components/users/Join";
 
 const JoinPage: NextPage = () => {
-    return(<Join/>)
+    return <Join/>
 }
 export default JoinPage
 /** 

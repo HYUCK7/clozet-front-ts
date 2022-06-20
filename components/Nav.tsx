@@ -2,9 +2,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import Login from './users/Login'
 import LoginPage from '@/pages/users/login'
 import React, {useState} from 'react'
-import RegisterPage from '@/pages/users/join'
 import Link from 'next/link'
 import JoinPage from '@/pages/users/join'
+import Join from './users/Join'
 export function Nav() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -101,7 +101,7 @@ export function Nav() {
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                  </div>
                  <div className="modal-body">
-                     <JoinPage/>
+                     <Join/>
                  </div>
                 </div>
             </div>

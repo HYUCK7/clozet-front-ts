@@ -1,5 +1,65 @@
 import Style from '@/styles/Video.module.css'
+import css from "styled-jsx/css"
 const Home: React.FC = () => {
+  const styled = css`
+    .contents {
+        height: 100%;
+        margin: 10% 15%;
+    }
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .wrapper h1 {
+        font-size: 40px;
+    }
+    .wrapper p {
+        font-size: 20px;
+    }
+    .product0, .product1, .product2, .product3, .product4 {
+        height: 500px;
+        width: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .product0 {
+        background-image;
+        background-size: 600px;
+        background-position: 80% center;
+        text-align: 40%;
+    }
+    .product1 p, .product3 p{
+        text-align: right;
+    }
+    .product5 {
+        text-align: center;
+        margin: auto;
+        margin-bottom: 10%;
+    }
+    .divButton {
+        align-items: center;
+    }
+    .btn {
+        font-size: 20px;
+        padding: 15px 30px;
+        background-color: white;
+        color: rgb(51, 18, 110);
+        border: 1px solid rgb(121, 91, 177);
+        border-radius: 10px;
+        letter-spacing: 4px;
+        font-family: sans-serif;
+        transition: all 0.4s;
+    }
+    .btn:focus {
+        outline: none;
+    }
+    .btn:hover {
+        border: rgb(121, 91, 177);
+        background-color: rgb(121, 91, 177);
+        color: white;
+    }
+`
     return(
     <>
     <div id="Fade" className="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -27,34 +87,38 @@ const Home: React.FC = () => {
       </div>
     </div>
   </div>
-
 </div>
-<div className="container marketing m-auto mt-5 bg-success ">
-    <div className="row m-auto p-auto">
-      <div className="col-lg-4">
-        <svg className="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/>
-        </svg>
-        <h2>Clozet</h2>
-        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+<div className='contents'>
+  <section className='wrapper'>
+
+      <article className='product0'>
+        <p>Use Closet
+        클로젯을 이용하세요 제발 좀</p>
         <p><a className="btn btn-secondary" href="/clothes/addCloth">내 Closet 만들러가기 &raquo;</a></p>
-      </div>
+      </article>
 
-      <div className="col-lg-4">
-        <svg className="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-        <h2>Heading</h2>
-        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-        <p><a className="btn btn-secondary" href="#">View details &raquo;</a></p>
-      </div>
+      <article className='product1'>
+        <p>Use Closet
+        클로젯을 사용하세요 제발 좀</p>
+        <p><a className="btn btn-secondary" href="/clothes/addCloth">내 Closet 만들러가기 &raquo;</a></p>
+      </article>
 
-      <div className="col-lg-4">
-        <svg className="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-        <h2>Heading</h2>
-        <p>And lastly this, the third column of representative placeholder content.</p>
-        <p><a className="btn btn-secondary" href="#">View details &raquo;</a></p>
-      </div>
-    </div>
-    </div>
-        </>)
+      <article className='product2'>
+        <p>Use Closet
+        클로젯을 사용하세요 제발 좀</p>
+        <p><a className="btn btn-secondary" href="/clothes/addCloth">내 Closet 만들러가기 &raquo;</a></p>
+      </article>
+
+      <article className='product5'>
+        <p>Use Closet
+        클로젯을 사용하세요 제발 좀</p>
+        <p><a className="btn btn-secondary" href="/clothes/addCloth">Clozet 회원가입</a></p>
+      </article>
+
+  </section>
+  <style jsx>{styled}</style>
+</div>
+</>)
         
 }
 export default Home

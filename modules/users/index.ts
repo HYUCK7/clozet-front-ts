@@ -24,7 +24,7 @@ export const userSlice = createSlice({
     name: 'userSlice',
     initialState,
     reducers:{
-        joinRequest(state: UserState, _payload){
+        joinRequest(state: UserState, {payload}){
             state.status = 'loading';
             
         },

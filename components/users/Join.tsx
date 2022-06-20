@@ -25,7 +25,9 @@ const Join: React.FC = () => {
   const [user, setUser] =useState<User>({
     username:'', password:'', email:'', name:'', phone:'', birth:'', nickname:''
 })
+
 const dispatch = useDispatch()
+
 const handleChange = (e: { preventDefault: () => void; target: { name: string; value: string } }) =>{
     e.preventDefault()
     const {name, value} = e.target;
@@ -35,7 +37,7 @@ const handleChange = (e: { preventDefault: () => void; target: { name: string; v
     return(
     <>
     <form onSubmit={
-      e=> {
+      e => {
         e.preventDefault()
         dispatch(userActions.joinRequest(user))
         setUser({

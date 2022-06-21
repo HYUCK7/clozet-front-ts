@@ -1,6 +1,4 @@
 import { createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit'
-import { string } from 'prop-types';
-import { AppState } from '../store'
 
 export interface User {
     username:string, password:string, email:string, name:string, phone:string, birth:string, nickname:string
@@ -39,6 +37,7 @@ export const userSlice = createSlice({
         joinFailure(state: UserState, {payload}){
             state.status = 'failed'
             state.data = payload
+            
         }
         
     }

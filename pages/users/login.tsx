@@ -7,6 +7,7 @@ import { any } from 'prop-types'
 import { useSelector } from 'react-redux'
 import { loginRequest } from '@/modules/users/login'
 import { RootState, RootStates } from '@/modules/store'
+import reducer from '@/modules/users/login'
 /* global google */
 
 const LoginPage: NextPage = () => {
@@ -20,7 +21,7 @@ const LoginPage: NextPage = () => {
       ...loginUser, [name]: value
     })
   }
-  const {isLoggined, loginedUser} = useSelector((state: RootStates) => state.login)
+  const {isLoggined, loginedUser} = useSelector((state: RootStates) => state.login || {})
 
   const onSubmit = (e: any) => {
     e.preventDefault()
@@ -31,7 +32,7 @@ const LoginPage: NextPage = () => {
   
   return (
     <>
-    isLoggined ? {"/"} : <Login handleChange = {onChange} handleSubmit = {onSubmit}/>
+    <Login handleChange = {onChange} handleSubmit = {onSubmit}/>
     <GoogleLogin/>
     </>
   )

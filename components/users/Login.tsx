@@ -32,11 +32,11 @@ const Login : React.FC<Props> =  ({handleChange, handleSubmit}) => {
       <h4 className="h4 mb-3 fw-normal">로그인 후 이용 가능합니다.</h4>
       <div className = 'd-grid gap-2'>
       <div className="form-floating">
-        <input onChange={handleChange} type="username" className="form-control" id="floatingInput" placeholder='UserID' minLength={4} maxLength={20} />
+        <input onChange={handleChange} type="username" className="form-control" id="loginUsername" placeholder='UserID' minLength={4} maxLength={20} />
         <label htmlFor="floatingInput"><h5>User ID</h5></label>
       </div>
       <div className="form-floating">
-        <input onChange={handleChange} type="password" className="form-control" id="floatingPassword" placeholder="Password" />
+        <input onChange={handleChange} type="password" className="form-control" id="loginPassword" placeholder="Password" />
         <label htmlFor="floatingPassword"><h5>Password</h5></label>
       </div>
 
@@ -50,10 +50,6 @@ const Login : React.FC<Props> =  ({handleChange, handleSubmit}) => {
       <div className = 'd-grid gap-2'>
       <button onSubmit={handleSubmit} className="w-100 btn btn-lg btn-outline-secondary" type="submit">
         <h4>Sign in</h4>
-        </button>
-        <button className="w-100 btn btn-sm btn-outline-primary" type="button" data-bs-target="modal1">
-          <a href='modal1'></a>
-        <h4>Join</h4>
         </button>
       </div>
             <p className="mt-5 mb-3 text-muted">&copy; clozet 2022</p>

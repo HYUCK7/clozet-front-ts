@@ -14,7 +14,11 @@ export interface UserType{
     email: string,
     phone: string
 } 
-
+export interface LoginType{
+    userId?: number,
+    username: string,
+    password: string
+}
 export const userJoinApi = async (
     payload: {username: string,
         password: string,
@@ -35,9 +39,9 @@ export const userJoinApi = async (
     }
 /** */
     export const userLoginApi = async (
-        payload: {userid:string, password:string}) => {
+        payload: {username:string, password:string}) => {
             try{
-                const response : AxiosResponse<unknown, UserType[]>=
+                const response : AxiosResponse<unknown, LoginType[]>=
                 await axios.post(`${SERVER}/users/login`, payload, { headers })
                 alert(`진행5 : 응답 성공 + ${JSON.stringify(response.data)}`)
                 return response.data
@@ -45,6 +49,7 @@ export const userJoinApi = async (
                 return err;
             }
         }
+        /** 
     export const userUpdateApi = async (
             payload: {userid:string, password:string}) => {
                 try{
@@ -129,4 +134,5 @@ export const userJoinApi = async (
                 }catch(err){
                     return err;
                 }
-        }
+                
+        }*/

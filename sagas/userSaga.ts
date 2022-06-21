@@ -1,10 +1,9 @@
 import { PayloadAction } from '@reduxjs/toolkit'
 import { call, delay, put, takeLatest } from 'redux-saga/effects'
 // yarn add @redux-saga/is --dev , yarn add @types/redux, yarn add redux-saga
-import { userActions } from '@/modules/users/join';
-import { loginActions, loginSuccess } from '@/modules/users/login';
-import { userJoinApi, userLoginApi,userUpdateApi, userDeleteApi, userFindAllApi,
-     userFindAllSortApi, userFindAllPageableApi, userCountApi, userFindByIdApi } from '@/apis/userApi'
+import { joinSuccess, userActions } from '@/modules/users/join';
+import { loginActions, loginFailure, loginSuccess } from '@/modules/users/login';
+import { userJoinApi, userLoginApi  } from '@/apis/userApi'
 
 interface UserJoinType{
     type: string;
@@ -14,24 +13,23 @@ interface UserJoinType{
     }
 }
 
-
 interface UserLoginType{
     type: string;
     payload: {
-        userid:string, password:string
+        username:string, password:string
     }
 }
 interface UserLoginSuccessType {
     type: string;
     payload: {
-        userid:string, password: string
+        username:string, password: string
     }
 }
 function* join(user: UserJoinType){
     try{
         console.log(' saga내부 join 성공  '+ JSON.stringify(user))
         const response: UserJoinType = yield userJoinApi(user.payload)
-        yield put(userActions.joinSuccess(response))
+        yield put(joinSuccess(response.payload))
     }catch(error){
          console.log(' saga내부 join 실패  ') 
          yield put(userActions.joinFailure(error))
@@ -44,7 +42,7 @@ function* login(login: UserLoginType){
         yield put(loginSuccess(response.payload)) //들어갈 값 슬라이스랑 비교
     }catch(error){
          alert('진행 3: saga내부 join 실패  ') 
-         yield put(loginActions.loginFailure(error))
+         yield put(loginFailure(error))
     }
 }
 export function* watchJoin(){

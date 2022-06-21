@@ -14,7 +14,7 @@ import eventReducer from './events'
 import userReducer, { UserState } from './users/join'
 import rootSaga from '@/sagas';
 import createSagaMiddleware from '@redux-saga/core'
-import loginReducer, { LoginState } from './users/login';
+import loginReducer, { loginSlice, LoginState } from './users/login';
 const isDev = process.env.NODE_ENV ==='development'
 const sagaMiddleware = createSagaMiddleware()
 

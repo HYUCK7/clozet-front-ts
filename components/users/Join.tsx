@@ -1,32 +1,14 @@
 import React, {useState} from 'react'
-import {IRegister} from '@/types'
 import { useAppDispatch } from '@/hooks'
 import { useDispatch } from 'react-redux'
-import {  User, userActions } from '@/modules/users'
-/*
-interface FormData { //
-    // 타입은 상태가 있다고 생각했으나, 무상태. Member m = null; 이라고 헀을 때
-    // 상태가 존재한다고 할 수 없음. '이렇게 써라' 를 의미하는 것이지. 메모리에 할당된 상태가 아니라는 것.
-    username: string
-    password: string
-    birth: string,
-    name: string,
-    nickname: string,
-    email: string,
-    phone: string
-}
-
-type Props = {
-    reg : (e:React.FormEvent, formdata: FormData) => void
-}
-*/
+import {  User, userActions } from '@/modules/users/join'
 const Join: React.FC = () => {
     
   const [user, setUser] =useState<User>({
     username:'', password:'', email:'', name:'', phone:'', birth:'', nickname:''
 })
 
-const dispatch = useDispatch()
+const dispatch = useAppDispatch();
 
 const handleChange = (e: { preventDefault: () => void; target: { name: string; value: string } }) =>{
     e.preventDefault()
@@ -40,6 +22,7 @@ const handleChange = (e: { preventDefault: () => void; target: { name: string; v
       e => {
         e.preventDefault()
         dispatch(userActions.joinRequest(user))
+        console.log(JSON.stringify(user))
         setUser({
           username:'', password:'', email:'', name:'', phone:'', birth:'', nickname:''
         })
@@ -48,7 +31,7 @@ const handleChange = (e: { preventDefault: () => void; target: { name: string; v
         <h4 className="h4 mb-3 fw-normal">Clozet의 회원이 되어주세요!</h4>
     <div className = 'd-grid gap-2'>
       <div className="form-floating">
-        <input onChange = {handleChange} type="text" className="form-control" id="username" name = "username" placeholder='UserID' minLength={4} maxLength={20} />
+        <input onChange = {handleChange} type="text" className="form-control" id="username" name = "username" placeholder='UserID'  />
         <label htmlFor="floatingUserName"><h5>User ID</h5></label>
       </div>
       <div className="form-floating">
@@ -79,7 +62,7 @@ const handleChange = (e: { preventDefault: () => void; target: { name: string; v
         <input onChange = {handleChange} type="text" className="form-control" id="phone" name='phone' placeholder="Phone Number" />
         <label htmlFor="floatingPhone"><h5>Phone Number</h5></label>
       </div>
-      <button className="w-100 btn btn-lg btn-outline-secondary" type="submit">
+      <button className="w-100 btn btn-lg btn-outline-secondary" >
         <h4>Sign Up</h4>
         </button>
         </div>  

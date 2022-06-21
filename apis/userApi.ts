@@ -39,7 +39,6 @@ export const userJoinApi = async (
             try{
                 const response : AxiosResponse<unknown, UserType[]>=
                 await axios.post(`${SERVER}/users/login`, payload, { headers })
-                const loginUser = JSON.stringify(response.data)
                 alert(`진행5 : 응답 성공 + ${JSON.stringify(response.data)}`)
                 return response.data
             }catch(err){

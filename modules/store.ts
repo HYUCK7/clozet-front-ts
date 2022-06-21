@@ -11,12 +11,14 @@ import { IEventState } from './events';
 import { IStyleState } from './styles';
 import { IWeatherState } from './weathers';
 import eventReducer from './events'
+import userReducer, { UserState } from './users/join'
 import rootSaga from '@/sagas';
 import createSagaMiddleware from '@redux-saga/core'
+import loginReducer, { LoginState } from './users/login';
 const isDev = process.env.NODE_ENV ==='development'
 const sagaMiddleware = createSagaMiddleware()
 
-interface RootStates {
+export interface RootStates {
 	article: IArticleState;
     board: IBoardState
     closet: IClosetState
@@ -25,6 +27,8 @@ interface RootStates {
     event: IEventState
     style: IStyleState
     weather: IWeatherState
+    user: UserState
+    login: LoginState
 }
 const rootReducer = (
 	state: RootStates,
@@ -36,7 +40,9 @@ const rootReducer = (
         }
     }
     return combineReducers({
-        event: eventReducer
+        event: eventReducer,
+        user : userReducer,
+        login : loginReducer
         
     })(state,action)
 }

@@ -37,9 +37,7 @@ export const userSlice = createSlice({
         joinFailure(state: UserState, {payload}){
             state.status = 'failed'
             state.data = payload
-            
         }
-        
     }
 })
 

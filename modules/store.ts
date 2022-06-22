@@ -49,7 +49,14 @@ const rootReducer = (
 
 const makeStore = () =>{
     const store = configureStore({
-        reducer:{ rootReducer },
+        reducer:{ 
+
+            event: eventReducer,
+            user : userReducer,
+            login : loginReducer 
+        
+        },
+
         middleware: (getDefaultMiddleware) =>
         isDev? getDefaultMiddleware().concat(logger, sagaMiddleware) : getDefaultMiddleware(),
         devTools :isDev
@@ -61,8 +68,8 @@ export const wrapper = createWrapper(makeStore, {
     debug: isDev})
 
 const store = makeStore();
-export type RootState = ReturnType<typeof rootReducer>
-export type AppState = ReturnType<typeof store.getState>;
+// 루트 스테이트는 리듀서 결합 시 이렇게, 스토어에 리듀서 하나씩 넣어주는 건 다르게.
+export type AppState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
 
 export default store;

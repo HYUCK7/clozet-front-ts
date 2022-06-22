@@ -30,6 +30,7 @@ function* join(user: UserJoinType){
         console.log(' saga내부 join 성공  '+ JSON.stringify(user))
         const response: UserJoinType = yield userJoinApi(user.payload)
         yield put(joinSuccess(response.payload))
+        
     }catch(error){
          console.log(' saga내부 join 실패  ') 
          yield put(userActions.joinFailure(error))
@@ -40,6 +41,7 @@ function* login(login: UserLoginType){
         alert(' 진행 3: saga내부 성공  '+ JSON.stringify(login))
         const response: UserLoginSuccessType = yield userLoginApi(login.payload)
         yield put(loginSuccess(response.payload)) //들어갈 값 슬라이스랑 비교
+        
     }catch(error){
          alert('진행 3: saga내부 join 실패  ') 
          yield put(loginFailure(error))

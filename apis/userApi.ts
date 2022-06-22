@@ -29,7 +29,7 @@ export const userJoinApi = async (
         phone: string}) => {
         try{
             alert(`API 시도`)   
-            const response : AxiosResponse<unknown, UserType[]> =
+            const response : AxiosResponse<any, UserType[]> =
             await axios.post(`${SERVER}/users/join`, payload, { headers })
             alert(`진행5 : 응답 성공 + ${JSON.stringify(response.data)}`)
             return response.data
@@ -42,9 +42,11 @@ export const userJoinApi = async (
         payload: { username:string, password:string }) => {
             try{
                 alert(`Login API TRY`)
-                const response : AxiosResponse<unknown, LoginType[]>=
+                const response : AxiosResponse<any, LoginType[]>=
                 await axios.post(`${SERVER}/users/login`, payload, { headers })
                 alert(`진행5 : 응답 성공 + ${JSON.stringify(response.data)}`)
+                const loginSuccessUser = JSON.stringify(response.data)
+                localStorage.setItem("loginSuccessUser", loginSuccessUser)
                 return response.data
             }catch(err){
                 return err;

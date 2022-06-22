@@ -12,7 +12,6 @@ export type LoginState = {
         loginedUser: null,
         token: string,
         isLoggined: boolean,
-        loginError: null
         status: 'idle' | 'loading' | 'failed'
     }
 
@@ -21,7 +20,6 @@ const initialState: LoginState = {
     loginedUser: null,
     token: '',
     isLoggined: false,
-    loginError: null,
     status: 'idle'
 }
 
@@ -29,13 +27,13 @@ export const loginSlice = createSlice({
     name: 'loginSlice',
     initialState,
     reducers: {
-        loginRequest(state: LoginState, action: PayloadAction<LoginUser>){
+        loginRequest(state: LoginState, action: PayloadAction<{username: string, password: string}>){
             console.log(`진행 : 로그인 데이터 ${state.status, state.data, action.payload}`)
             state.status = 'loading';
         },
 
-        loginSuccess(state: LoginState, action: PayloadAction<LoginUser>){
-            console.log(`진행 : 로그인 데이터 ${state.status, state.data, action.payload}`)
+        loginSuccess(state: LoginState, action: PayloadAction<{username: string, password: string}>){
+            console.log(`진행 : 로그인 데이터 ${JSON.stringify(state.status), JSON.stringify(state.data), JSON.stringify(action.payload)}`)
             state.status = 'idle'
             state.data = [...state.data, action.payload]
         },

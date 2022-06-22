@@ -47,6 +47,7 @@ export const userJoinApi = async (
                 alert(`진행5 : 응답 성공 + ${JSON.stringify(response.data)}`)
                 const loginSuccessUser = JSON.stringify(response.data)
                 localStorage.setItem("loginSuccessUser", loginSuccessUser)
+                
                 return response.data
             }catch(err){
                 return err;

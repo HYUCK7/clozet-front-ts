@@ -25,7 +25,8 @@ interface UserLoginSuccessType {
         username:string, password: string
     }
 }
-function* join(user: UserJoinType){
+// 제너레이터 함수이기 때문에, 값이 안 넘어오는 것으로 생각
+function* join(user: UserJoinType ){
     try{
         console.log(' saga내부 join 성공  '+ JSON.stringify(user))
         const response: UserJoinType = yield userJoinApi(user.payload)
@@ -40,6 +41,8 @@ function* login(login: UserLoginType){
     try{
         alert(' 진행 3: saga내부 성공  '+ JSON.stringify(login))
         const response: UserLoginSuccessType = yield userLoginApi(login.payload)
+        console.log("서버 다녀온 로그인 데이터" + response.payload)
+
         yield put(loginSuccess(response.payload)) //들어갈 값 슬라이스랑 비교
         
     }catch(error){

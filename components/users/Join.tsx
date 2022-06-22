@@ -35,7 +35,7 @@ const handleChange = (e: { preventDefault: () => void; target: { name: string; v
         <label htmlFor="floatingUserName"><h5>User ID</h5></label>
       </div>
       <div className="form-floating">
-        <input onChange = {handleChange} type="text" className="form-control" id="password" name = "password" placeholder="Password" />
+        <input onChange = {handleChange} type="password" className="form-control" id="password" name = "password" placeholder="Password" />
         <label htmlFor="floatingPassword"><h5>Password</h5></label>
       </div>
       <div className="form-floating">

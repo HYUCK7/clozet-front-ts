@@ -5,25 +5,25 @@ import GoogleLogin from '@/components/users/GoogleLogin'
 import { useAppDispatch } from '@/hooks'
 import { any } from 'prop-types'
 import { useSelector } from 'react-redux'
-import { loginRequest } from '@/modules/users/login'
+import { loginRequest, LoginUser } from '@/modules/users/login'
 import { RootState, RootStates } from '@/modules/store'
 import reducer from '@/modules/users/login'
 /* global google */
 
 const LoginPage: NextPage = () => {
-  const [loginUser, setLoginUser] = useState({username : '', password: ''})
+  const [loginUser, setLoginUser] = useState<LoginUser>({username : '', password: ''})
   const dispatch = useAppDispatch()
 
-  const onChange = (e: { preventDefault: () => void; target: { name: any; value: any } } ) => {
+  const onChange = (e: React.FormEvent<HTMLInputElement> ) => {
     e.preventDefault()
-    const {name, value} = e.target;
+    const { name ,value } = e.currentTarget
     setLoginUser({
       ...loginUser, [name]: value
     })
   }
   const {isLoggined, loginedUser} = useSelector((state: RootStates) => state.login || {})
 
-  const onSubmit = (e: any) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(`로그인 정보 ${JSON.stringify(loginUser)}`)
     dispatch(loginRequest(loginUser))

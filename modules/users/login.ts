@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit'
-import { AppState } from '../store'
+import { LoginType } from '@/apis/userApi'
+import { createSlice, PayloadAction} from '@reduxjs/toolkit'
 
 export interface LoginUser{
     username : string, 
@@ -30,12 +30,14 @@ export const loginSlice = createSlice({
         loginRequest(state: LoginState, action: PayloadAction<{username: string, password: string}>){
             console.log(`진행 : 로그인 데이터 ${state.status, state.data, action.payload}`)
             state.status = 'loading';
+            state.data = [...state.data, action.payload]
         },
 
-        loginSuccess(state: LoginState, action: PayloadAction<{username: string, password: string}>){
-            console.log(`진행 : 로그인 데이터 ${JSON.stringify(state.status), JSON.stringify(state.data), JSON.stringify(action.payload)}`)
+        loginSuccess(state: LoginState, action: PayloadAction<LoginType>){
+            console.log(`진행 : 로그인 데이터 ${state.status, state.data, action.payload}`)
             state.status = 'idle'
             state.data = [...state.data, action.payload]
+            state.isLoggined = true
         },
         loginFailure(state: LoginState, {payload}){
             state.status = 'failed'
@@ -50,3 +52,4 @@ export const {loginRequest, loginSuccess, loginFailure
 const {reducer, actions} = loginSlice
 export const loginActions = actions
 export default loginSlice.reducer
+

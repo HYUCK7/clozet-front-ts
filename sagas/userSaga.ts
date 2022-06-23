@@ -3,7 +3,8 @@ import { call, delay, put, takeLatest } from 'redux-saga/effects'
 // yarn add @redux-saga/is --dev , yarn add @types/redux, yarn add redux-saga
 import { joinSuccess, userActions } from '@/modules/users/join';
 import { loginActions, loginFailure, loginSuccess } from '@/modules/users/login';
-import { userJoinApi, userLoginApi  } from '@/apis/userApi'
+import { LoginType, userJoinApi, userLoginApi  } from '@/apis/userApi'
+import { AxiosResponse } from 'axios';
 
 interface UserJoinType{
     type: string;
@@ -37,15 +38,14 @@ function* join(user: UserJoinType ){
          yield put(userActions.joinFailure(error))
     }
 }
-function* login(login: UserLoginType){
+function* login(login: UserLoginType) {
     try{
+
         alert(' 진행 3: saga내부 성공  '+ JSON.stringify(login))
         const response: UserLoginSuccessType = yield userLoginApi(login.payload)
-        console.log("서버 다녀온 로그인 데이터" + response.payload)
-
         yield put(loginSuccess(response.payload)) //들어갈 값 슬라이스랑 비교
-        
-    }catch(error){
+    }
+    catch(error){
          alert('진행 3: saga내부 join 실패  ') 
          yield put(loginFailure(error))
     }

@@ -1,4 +1,4 @@
-import { useAppDispatch } from "@/hooks";
+ import { useAppDispatch } from "@/hooks";
 import { loginSuccess } from "@/modules/users/login";
 import axios, {AxiosResponse} from "axios";
 const SERVER = 'http://127.0.0.1:8080'
@@ -19,7 +19,12 @@ export interface UserType{
 export interface LoginType{
     userId?: number,
     username: string,
-    password: string
+    password: string,
+    name: string,
+    birth: string,
+    nickname: string,
+    email: string,
+    phone: string
 }
 //
 export const userJoinApi = async (
@@ -42,15 +47,14 @@ export const userJoinApi = async (
     }
 /** */
     export const userLoginApi = async (
-        payload: { username:string, password:string }) => {
+        userLoginData: { username:string, password:string }) => {
             try{
                 alert(`Login API TRY`)
                 const response : AxiosResponse<any, LoginType[]>=
-                await axios.post(`${SERVER}/users/login`, payload, { headers })
+                await axios.post(`${SERVER}/users/login`, userLoginData, { headers })
                 alert(`진행5 : 응답 성공 + ${JSON.stringify(response.data)}`)
                 const loginSuccessUser = JSON.stringify(response.data)
                 localStorage.setItem("loginSuccessUser", loginSuccessUser)
-                loginSuccess(response.data)
                 return response.data
             }catch(err){
                 return err;

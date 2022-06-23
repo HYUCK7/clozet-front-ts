@@ -11,7 +11,7 @@ import { IEventState } from './events';
 import { IStyleState } from './styles';
 import { IWeatherState } from './weathers';
 import eventReducer from './events'
-import userReducer, { UserState } from './users/join'
+import userReducer, { userSlice, UserState } from './users/join'
 import rootSaga from '@/sagas';
 import createSagaMiddleware from '@redux-saga/core'
 import loginReducer, { loginSlice, LoginState } from './users/login';
@@ -52,7 +52,7 @@ const makeStore = () =>{
         reducer:{ 
 
             event: eventReducer,
-            user : userReducer,
+            user : userSlice.reducer,
             login : loginReducer 
         
         },

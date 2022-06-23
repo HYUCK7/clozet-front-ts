@@ -3,12 +3,12 @@ import Login from '@/components/users/Login'
 import { NextPage } from 'next'
 import GoogleLogin from '@/components/users/GoogleLogin'
 import { useAppDispatch, useAppSelector } from '@/hooks'
-import { loginRequest, LoginState, LoginUser } from '@/modules/users/login'
+import { loginRequest, LoginState, LoginUser, UserLoginInput } from '@/modules/users/login'
 import {  AppState, RootStates } from '@/modules/store'
 /* global google */
 
 const LoginPage: NextPage = () => {
-  const [loginUser, setLoginUser] = useState<LoginUser>({username : '', password: ''})
+  const [loginUser, setLoginUser] = useState<UserLoginInput>({username:'', password:''})
   const dispatch = useAppDispatch()
 
   const {isLoggined, loginedUser} = useAppSelector((state: AppState) => state.login || {})

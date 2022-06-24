@@ -10,24 +10,22 @@ import {  AppState, RootStates } from '@/modules/store'
 const LoginPage: NextPage = () => {
   const [loginUser, setLoginUser] = useState<UserLoginInput>({username:'', password:''})
   const dispatch = useAppDispatch()
-
-  const {isLoggined, loginedUser} = useAppSelector((state: AppState) => state.login || {})
+  
   const onChange = (e: React.FormEvent<HTMLInputElement> ) => {
     e.preventDefault()
     const { name ,value } = e.currentTarget
-    setLoginUser({
-      ...loginUser, [name]: value
-    })
+    setLoginUser({ ...loginUser, [name]: value })
   }
-  //const {isLoggined, loginedUser} = useSelector((state: RootStates) => state.login || {})
-  
+
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(`로그인 정보 ${JSON.stringify(loginUser)}`)
     dispatch(loginRequest(loginUser))
-    console.log(' 모듈에 저장된 로그인값: '+JSON.stringify(loginedUser))
+    //console.log(' 모듈에 저장된 로그인 상태: '+JSON.stringify(loginedUser))
+    
   }
-  
+  const {isLoggined, loginedUser} = useAppSelector((state) => state.login || {})
+  console.log('store 저장 상태  ' + isLoggined)
   return (
     <>
     <Login handleChange = {onChange} handleSubmit = {onSubmit}/>

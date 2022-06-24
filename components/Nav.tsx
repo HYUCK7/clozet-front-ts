@@ -52,8 +52,7 @@ export function Nav() {
     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
         <li><a className="dropdown-item" href="/users/remove">Account Remove</a></li>
         <li><a className="dropdown-item" href="/users/update">Account Update</a></li>
-        <li><a className="dropdown-item" href="/users/findUserName">Find ID</a></li>
-        <li><a className="dropdown-item" href="/users/findPassword">Find PW</a></li>
+        <li><a className="dropdown-item" href="/users/findAccount">Find Account</a></li>
     </ul>
     </li>
 

@@ -40,12 +40,13 @@ export const loginSlice = createSlice({
         },
 
         loginSuccess(state, action: PayloadAction<LoginUser>){
-            state.status = 'idle'
-            state.isLoggined = true
             //state.data = [...state.data, action.payload]
             const newState = state.data.concat(action.payload)
             state.data = newState;
             console.log(`진행 : 로그인 데이터 ${JSON.stringify( state.data )}`)
+            state.status = 'idle'
+            state.isLoggined = true
+            //state.loginedUser = state.data
 
         },
         loginFailure(state, {payload : error}){

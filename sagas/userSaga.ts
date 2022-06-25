@@ -3,8 +3,11 @@ import { call, delay, put, takeLatest } from 'redux-saga/effects'
 // yarn add @redux-saga/is --dev , yarn add @types/redux, yarn add redux-saga
 import { joinSuccess, userActions } from '@/modules/users/join';
 import { loginActions, loginFailure, loginSuccess } from '@/modules/users/login';
-import { LoginType, userJoinApi, userLoginApi  } from '@/apis/userApi'
+import { findUserNameApi, findUserPwApi, LoginType, userJoinApi, userLoginApi  } from '@/apis/userApi'
 import { AxiosResponse } from 'axios';
+import { findUserNameActions, findUserNameRequest, ResultFindUserName } from '@/modules/users/findUserName';
+import { UserFindIdInput, UserFindPwInput } from '@/pages/users/findAccount';
+import { findUserPwActions, findUserPwRequest, ResultFindPw } from '@/modules/users/findPw';
 
 interface UserJoinType{
     type: string;
@@ -38,7 +41,7 @@ export interface UserLoginInput {
     password: string
 }
 
-// 제너레이터 함수이기 때문에, 값이 안 넘어오는 것으로 생각
+//Get Saga
 function* join(user: UserJoinType ){
     try{
         console.log(' saga내부 join 성공  '+ JSON.stringify(user))
@@ -50,7 +53,7 @@ function* join(user: UserJoinType ){
          yield put(userActions.joinFailure(error))
     }
 }
-//Get Saga
+
 function* login(action : {payload: UserLoginInput}) {
     const {loginSuccess, loginFailure} = loginActions;
     const param = action.payload
@@ -66,12 +69,47 @@ function* login(action : {payload: UserLoginInput}) {
          yield put(loginFailure(error))
     }
 }
+
+function* findUserName(action : {payload: UserFindIdInput}){
+    const { findUserNameSuccess, findUserNameFailure } = findUserNameActions
+    const param = action.payload
+    try {
+        alert (' 아이디 찾기 ' + JSON.stringify(findUserName))
+        const response: ResultFindUserName = yield call(findUserNameApi, param)
+        yield put(findUserNameSuccess(response))
+    }
+    catch(error){
+        alert(' 아이디 찾기 실패 ')
+        yield put(findUserNameFailure(error))
+    }
+}
+function* findUserPw(action : {payload: UserFindPwInput}){
+    const { findUserPwSuccess, findUserPwFailure } = findUserPwActions
+    const param = action.payload
+    try {
+        alert (' 패스워드 찾기 ' + JSON.stringify(findUserPw))
+        const response: ResultFindPw = yield call(findUserPwApi, param)
+        yield put(findUserPwSuccess(response))
+    }
+    catch(error){
+        alert(' 패스워드 찾기 실패 ')
+        yield put(findUserPwFailure(error))
+    }
+}
+
+
+//main Saga
 export function* watchJoin(){
     yield takeLatest(userActions.joinRequest, join)
 }
-//main Saga
 export function* watchLogin(){
     const {loginRequest} = loginActions;
     yield takeLatest(loginRequest, login)
+}
+export function* watchFindUserName(){
+    yield takeLatest(findUserNameRequest, findUserName )
+}
+export function* watchFindPw(){
+    yield takeLatest(findUserPwRequest, findUserPw)
 }
 

@@ -1,15 +1,17 @@
 import FindAccount from '@/components/users/FindAccount'
 import FindUserName from '@/components/users/FindAccount'
 import { useAppDispatch } from '@/hooks'
+import { findUserPwRequest } from '@/modules/users/findPw'
+import { findUserNameRequest } from '@/modules/users/findUserName'
 import { NextPage } from 'next'
 import React, { useState } from 'react'
 
-type UserFindIdInput = {
+export type UserFindIdInput = {
   name: string,
   email: string
   phone: string,
 }
-type UserFindPwInput = {
+export type UserFindPwInput = {
   username: string,
   email : string,
   phone: string
@@ -32,7 +34,7 @@ const findAccountPage: NextPage = () => {
   const onSubmitFindId = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(`회원 정보 ${JSON.stringify(findUserName)}`)
-    //dispatch()
+    dispatch(findUserNameRequest(findUserName))
   }
 
   const onChangeFindPw = (e: React.FormEvent<HTMLInputElement>) => {
@@ -44,7 +46,7 @@ const findAccountPage: NextPage = () => {
   const onSubmitFindPw = (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(`비밀번호 찾기 회원 정보 ${JSON.stringify(findPw)}`)
-    //dispatch
+    dispatch(findUserPwRequest(findPw))
   }
   return (
     <FindAccount handleFindId={onChangeFindId} submitFindId = {onSubmitFindId}

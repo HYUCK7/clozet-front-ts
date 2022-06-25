@@ -2,33 +2,23 @@ import { AnyAction, CombinedState, combineReducers,  configureStore } from '@red
 import { createWrapper } from 'next-redux-wrapper'
 import logger from 'redux-logger'
 import { HYDRATE } from 'next-redux-wrapper';
-import { IArticleState } from './articles';
-import { IBoardState } from './boards';
-import { IClosetState } from './closets';
-import { IClothState } from './clothes';
-import { IColorState } from './colors';
-import { IEventState } from './events';
-import { IStyleState } from './styles';
-import { IWeatherState } from './weathers';
 import eventReducer from './events'
 import userReducer, { userSlice, UserState } from './users/join'
+import loginReducer, { loginSlice, LoginState } from './users/login';
+import findUserNameReducer, {findUserNameSlice, FindUserNameState } from './users/findUserName'
+import findUserPwReducer, {findUserPwSlice, FindUserPwState} from './users/findPw'
 import rootSaga from '@/sagas';
 import createSagaMiddleware from '@redux-saga/core'
-import loginReducer, { loginSlice, LoginState } from './users/login';
 const isDev = process.env.NODE_ENV ==='development'
 const sagaMiddleware = createSagaMiddleware()
 
 export interface RootStates {
-	article: IArticleState;
-    board: IBoardState
-    closet: IClosetState
-    clothes: IClothState
-    color: IColorState
-    event: IEventState
-    style: IStyleState
-    weather: IWeatherState
+
     user: UserState
     login: LoginState
+    findUserName: FindUserNameState
+    findUserPw: FindUserPwState
+
 }
 const rootReducer = (
 	state: RootStates,
@@ -40,9 +30,11 @@ const rootReducer = (
         }
     }
     return combineReducers({
-        event: eventReducer,
+        
         user : userReducer,
-        login : loginReducer
+        login : loginReducer,
+        findUserName : findUserNameReducer,
+        findUserPw : findUserPwReducer
         
     })(state,action)
 }
@@ -53,8 +45,10 @@ const makeStore = () =>{
 
             event: eventReducer,
             user : userSlice.reducer,
-            login : loginReducer 
-        
+            login : loginReducer ,
+            findUserName : findUserNameReducer,
+            findUserPw : findUserPwReducer
+
         },
 
         middleware: (getDefaultMiddleware) =>

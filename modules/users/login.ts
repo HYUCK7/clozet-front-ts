@@ -33,7 +33,6 @@ export const loginSlice = createSlice({
     name: 'loginSlice',
     initialState,
     reducers: {
-        /** */
         loginRequest(state, action: PayloadAction<UserLoginInput>){
             state.status = 'loading';
             console.log(`진행 : 로그인 데이터 ${JSON.stringify(state.data)}`)

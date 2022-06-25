@@ -1,4 +1,6 @@
  import { useAppDispatch } from "@/hooks";
+import { ResultFindPw } from "@/modules/users/findPw";
+import { ResultFindUserName } from "@/modules/users/findUserName";
 import { loginSuccess } from "@/modules/users/login";
 import axios, {AxiosResponse} from "axios";
 const SERVER = 'http://127.0.0.1:8080'
@@ -26,6 +28,7 @@ export interface LoginType{
     email: string,
     phone: string
 }
+
 //
 export const userJoinApi = async (
     payload: {username: string,
@@ -55,6 +58,33 @@ export const userJoinApi = async (
                 alert(`진행5 : 응답 성공 + ${JSON.stringify(response.data)}`)
                 const loginSuccessUser = JSON.stringify(response.data)
                 localStorage.setItem("loginSuccessUser", loginSuccessUser)
+                return response.data
+            }catch(err){
+                return err;
+            }
+        }
+    
+    export const findUserNameApi = async(
+        findUserNameData : {name: string, email: string, phone: string}) => {
+            try{
+                alert(`Find ID API TRY`)
+                const response: AxiosResponse<any, ResultFindUserName[]> =
+                await axios.post(`${SERVER}/users/NOTURL`, findUserNameData, { headers })
+                alert(`서버 응답 + ${JSON.stringify(response.data)}`) 
+                return response.data
+            }catch(err){
+                return err;
+            }
+        }
+        // 값 보내야 정보를 주는거니까 post
+        //2022-06-25 dispatch 넣기
+    export const findUserPwApi = async(
+        findUserPwData : {username: string, email: string, phone: string}) => {
+            try{
+                alert(`Find PASSWORD API TRY`)
+                const response: AxiosResponse<any, ResultFindPw[]> =
+                await axios.post(`${SERVER}/users/NOTURL`, findUserPwData, { headers })
+                alert(`서버 응답 + ${JSON.stringify(response.data)}`) 
                 return response.data
             }catch(err){
                 return err;

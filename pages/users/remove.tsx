@@ -5,8 +5,9 @@ import React from 'react'
 type Props = {}
 
 const removePage: NextPage = (props: Props) => {
+  //const onClickeDelete = (e: React.FormEvent<HTMLFormElement)
   return (
-    <Remove/>
+    <Remove />
   )
 }
 

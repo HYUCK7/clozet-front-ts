@@ -18,6 +18,7 @@ export type LoginState = { // state type
         isLoggined: boolean,
         status: 'idle' | 'loading' | 'failed'
         error : null;
+        
     }
 
 const initialState: LoginState = {
@@ -26,7 +27,8 @@ const initialState: LoginState = {
     token: null,
     isLoggined: false,
     status: 'idle',
-    error: null
+    error: null,
+    
 }
 
 export const loginSlice = createSlice({
@@ -45,6 +47,7 @@ export const loginSlice = createSlice({
             console.log(`진행 : 로그인 데이터 ${JSON.stringify( state.data )}`)
             state.status = 'idle'
             state.isLoggined = true
+            
             //state.loginedUser = state.data
 
         },

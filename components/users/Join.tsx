@@ -65,6 +65,10 @@ const handleChange = (e: { preventDefault: () => void; target: { name: string; v
       <button className="w-100 btn btn-lg btn-outline-secondary" >
         <h4>Sign Up</h4>
         </button>
+        <div className="custom-control custom-checkbox">
+            <input type="checkbox" className="custom-control-input" id="aggrement" required/>
+            <label className="custom-control-label" htmlFor="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+          </div>
         </div>  
             <p className="mt-5 mb-3 text-muted">&copy; clozet 2022</p>
     </form>    

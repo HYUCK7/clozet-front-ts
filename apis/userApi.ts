@@ -65,7 +65,7 @@ export const userJoinApi = async (
         }
     
     export const findUserNameApi = async(
-        findUserNameData : {name: string, email: string, phone: string}) => {
+        findUserNameData : {name: string, email: string}) => {
             try{
                 alert(`Find ID API TRY`)
                 const response: AxiosResponse<any, ResultFindUserName[]> =
@@ -79,7 +79,7 @@ export const userJoinApi = async (
         // 값 보내야 정보를 주는거니까 post
         //2022-06-25 dispatch 넣기
     export const findUserPwApi = async(
-        findUserPwData : {username: string, email: string, phone: string}) => {
+        findUserPwData : {username: string, email: string}) => {
             try{
                 alert(`Find PASSWORD API TRY`)
                 const response: AxiosResponse<any, ResultFindPw[]> =

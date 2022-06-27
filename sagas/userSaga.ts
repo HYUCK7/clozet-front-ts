@@ -107,9 +107,11 @@ export function* watchLogin(){
     yield takeLatest(loginRequest, login)
 }
 export function* watchFindUserName(){
+    const { findUserNameRequest } = findUserNameActions
     yield takeLatest(findUserNameRequest, findUserName )
 }
 export function* watchFindPw(){
+    const { findUserPwRequest } = findUserPwActions
     yield takeLatest(findUserPwRequest, findUserPw)
 }
 

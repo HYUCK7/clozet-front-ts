@@ -9,19 +9,19 @@ import React, { useState } from 'react'
 export type UserFindIdInput = {
   name: string,
   email: string
-  phone: string,
+  
 }
 export type UserFindPwInput = {
   username: string,
   email : string,
-  phone: string
+ 
 }
 
 const findAccountPage: NextPage = () => {
   const [findUserName, setFindUserName] = useState<UserFindIdInput>
-  ({name: '', email :'', phone: ''});
+  ({name: '', email :''});
   const [findPw, setFindPw] = useState<UserFindPwInput>({
-    username: '', email: '', phone: ''
+    username: '', email: ''
   })
   const dispatch = useAppDispatch()
 

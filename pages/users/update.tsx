@@ -15,7 +15,7 @@ const updatePage : NextPage = (props: Props) => {
     dispatch()
   })
 
-  const { userInfo } = useAppSelector(state => state.data);
+  const { userInfo } = useAppSelector(state => state.login);
   console.log(JSON.stringify(userInfo))
 
   useEffect(() => {setData(userInfo)})

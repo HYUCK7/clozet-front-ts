@@ -37,18 +37,17 @@ export const loginSlice = createSlice({
     reducers: {
         loginRequest(state, action: PayloadAction<UserLoginInput>){
             state.status = 'loading';
+            alert(`2. dispatch로 인한 로그인 액션 리퀘스트 ${JSON.stringify(state.data)}`)
             console.log(`진행 : 로그인 데이터 ${JSON.stringify(state.data)}`)
         },
 
         loginSuccess(state, action: PayloadAction<LoginUser>){
-            //state.data = [...state.data, action.payload]
+            alert(`7. 리듀서 액션 성공`)
             const newState = state.data.concat(action.payload)
             state.data = newState;
             console.log(`진행 : 로그인 데이터 ${JSON.stringify( state.data )}`)
             state.status = 'idle'
             state.isLoggined = true
-            
-            //state.loginedUser = state.data
 
         },
         loginFailure(state, {payload : error}){

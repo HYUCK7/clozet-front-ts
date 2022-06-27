@@ -20,12 +20,13 @@ const LoginPage: NextPage = () => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(`로그인 정보 ${JSON.stringify(loginUser)}`)
+    alert(`1. 로그인 버튼 클릭 ${JSON.stringify(loginUser)}`)
     dispatch(loginRequest(loginUser))
     //console.log(' 모듈에 저장된 로그인 상태: '+JSON.stringify(loginedUser))
     
   }
   const {isLoggined, loginedUser} = useAppSelector((state) => state.login || {})
-  console.log('store 저장 상태  ' + isLoggined)
+  //console.log('store 저장 상태  ' + isLoggined)
   return (
     <>
     <Login handleChange = {onChange} handleSubmit = {onSubmit}/>

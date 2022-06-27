@@ -44,6 +44,7 @@ export interface UserLoginInput {
 //Get Saga
 function* join(user: UserJoinType ){
     try{
+        alert(`3. saga내부 join 성공  + ${JSON.stringify(user)}`)
         console.log(' saga내부 join 성공  '+ JSON.stringify(user))
         const response: UserJoinType = yield userJoinApi(user.payload)
         yield put(joinSuccess(response.payload))
@@ -58,8 +59,9 @@ function* login(action : {payload: UserLoginInput}) {
     const {loginSuccess, loginFailure} = loginActions;
     const param = action.payload
     try{
-        alert(' 진행 3: saga내부 성공  '+ JSON.stringify(login))
+        alert(`3. saga내부 join 성공  + ${JSON.stringify(login)}`)
         const response: LoginUser = yield call(userLoginApi, param)
+        alert('6. api 호출 후, 성공 액션에 API Data put')
         // call은 미들웨어에게 함수와 인자들을 실행하라는 명령
         // = yield userLoginApi(login.payload)
         yield put(loginSuccess(response)) 

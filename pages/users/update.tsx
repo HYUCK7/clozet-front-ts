@@ -12,8 +12,10 @@ const updatePage : NextPage = (props: Props) => {
   const dispatch = useAppDispatch
 
   useEffect(() => {
-    dispatch()
+    //dispatch(fetchUserRequest())
   })
+
+
 
   const { userInfo } = useAppSelector(state => state.login);
   console.log(JSON.stringify(userInfo))

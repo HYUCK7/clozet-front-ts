@@ -31,13 +31,15 @@ export interface LoginType{
 
 //
 export const userJoinApi = async (
-    payload: {username: string,
+    payload: {
+        username: string,
         password: string,
         name: string,
         birth: string,
         nickname: string,
         email: string,
-        phone: string}) => {
+        phone: string
+    }) => {
         try{
             alert(`진행4. API 시도`)   
             const response : AxiosResponse<any, UserType[]> =
@@ -67,9 +69,9 @@ export const userJoinApi = async (
     export const findUserNameApi = async(
         findUserNameData : {name: string, email: string}) => {
             try{
-                alert(`Find ID API TRY`)
+                alert(`Find ID API TRY + ${JSON.stringify(findUserNameData)}`)
                 const response: AxiosResponse<any, ResultFindUserName[]> =
-                await axios.post(`${SERVER}/users/NOTURL`, findUserNameData, { headers })
+                await axios.post(`${SERVER}/users/findUsername`, findUserNameData, { headers })
                 alert(`서버 응답 + ${JSON.stringify(response.data)}`) 
                 return response.data
             }catch(err){

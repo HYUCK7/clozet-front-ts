@@ -1,9 +1,18 @@
 import React, { useState } from 'react'
 import css from 'styled-jsx/css'
-type Props = {}
-
-const Update: React.FC = (props: Props) => {
+type Props ={
+  data:{
+    username : string,
+    email: string,
+    name: string,
+    nickname: string,
+    phone: string,
+    birth: string,
+  }
   
+}
+
+const Update: React.FC<Props> = ({data}) => {
   return (<div>
     <div className="container">
     <div className="input-form-backgroud row">
@@ -17,7 +26,7 @@ const Update: React.FC = (props: Props) => {
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingOne">
                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        내 아이디 : iqeq1219
+        내 아이디 : {data.username}
                     </button>
                   </h2>
                     <div id="collapseOne" className="accordion-collapse collapse " aria-labelledby="headingOne" >
@@ -68,7 +77,7 @@ const Update: React.FC = (props: Props) => {
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingThree">
                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-        내 이메일 : iqeq1219@naver.com
+        내 이메일 : {data.email}
                     </button>
                   </h2>
                     <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
@@ -93,7 +102,7 @@ const Update: React.FC = (props: Props) => {
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingOne">
                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsefour" aria-expanded="true" aria-controls="collapsefour">
-        내 이름 : 유재혁
+        내 이름 : {data.name}
                     </button>
                   </h2>
                     <div id="collapsefour" className="accordion-collapse collapse " aria-labelledby="headingOne" >
@@ -117,7 +126,7 @@ const Update: React.FC = (props: Props) => {
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingTwo">
                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsefive" aria-expanded="true" aria-controls="collapsefive">
-        내 닉네임 : yoyoyoyo
+        내 닉네임 : {data.nickname}
                     </button>
                   </h2>
                     <div id="collapsefive" className="accordion-collapse collapse " aria-labelledby="headingOne" >
@@ -142,7 +151,7 @@ const Update: React.FC = (props: Props) => {
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingThree">
                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">
-        +82 01082831292
+        {data.phone}
                     </button>
                   </h2>
                     <div id="collapsesix" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">

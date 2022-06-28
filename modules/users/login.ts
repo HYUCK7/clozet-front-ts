@@ -18,7 +18,6 @@ export type LoginState = { // state type
         isLoggined: boolean,
         status: 'idle' | 'loading' | 'failed'
         error : null;
-        
     }
 
 const initialState: LoginState = {

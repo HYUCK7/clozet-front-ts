@@ -52,7 +52,7 @@ const makeStore = () =>{
         },
 
         middleware: (getDefaultMiddleware) =>
-        isDev? getDefaultMiddleware().concat(logger, sagaMiddleware) : getDefaultMiddleware(),
+        isDev? getDefaultMiddleware({serializableCheck: false}).concat(logger, sagaMiddleware) : getDefaultMiddleware(),
         devTools :isDev
     });
     sagaMiddleware.run(rootSaga)

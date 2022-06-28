@@ -1,40 +1,65 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const boardSliceType = "slice/board";
+//const boardSliceType = "slice/board";
 
-export interface UserBoardWrite {
+export interface Article{
     title: string,
     content: string,
     picture?: any | undefined,
     height : string,
     weight: string
 }
-
-export interface WriteBoardState{
-    status: 'success' | 'loading' | 'fail'
+export interface ArticleState{
+    data: Article[],
+    status: 'successed' | 'loading' | 'failed'
+    error: null
+}
+const initialState: ArticleState = {
+    data: [],
+    status: 'loading',
+    error: null
 }
 
-const initialState: WriteBoardState = {
-    status: 'loading'
-}
-
-const writeBoardSlice = createSlice({
-	initialState,
-    name: 'boardSliceType',
+const ArticleSlice = createSlice({
+	name: 'articleSlice',
+    //initialState : [] as BoardState[],
+    initialState,
     reducers: {
-        writeRequest(_state, _action: PayloadAction<UserBoardWrite>){
-            alert(`액션 요청`)
+        writeBoard: (state, action: PayloadAction<Article>) => {
+            alert(`게시글 작성 액션 요청`)
+            const newArticle = state.data.concat(action.payload)
+            state.data = newArticle
+            state.status = 'loading'
+            console.log(`게시글 작성 성공 - 리듀서 ${JSON.stringify( state.data )}`)
+            //state.push({data: action.payload, status: 'loading', error: null})
         },
-        writeSuccess(_state, _action: PayloadAction){
-            alert(`게시 성공`)
+        writeBoardSuccess: (state, action: PayloadAction) => {
+            state.status = 'successed'
         },
-        writeFailure(_state, _action: PayloadAction){
-            alert(`게시 실패`)
+        writeBoardFailure: (state, action: PayloadAction) => {
+            alert(`게시글 작성 실패`)
+            state.status = 'failed'
+        },
+        saveBoard (state, action: PayloadAction){
+            alert(`게시글 불러오기 - 리듀서`)
+            /** 
+            const {value, article} = action.payload;
+            return state.map((item) => {
+                if(item.id === article.id) {
+                    return{
+                        ...article, value: value
+                    }
+                }
+                return item
+            })*/
+        },
+        deleteBoard(state, action: PayloadAction){
+            alert(`게시글 삭제하기 - 리듀서`)
         }
     }
 })
 
-export const { writeRequest, writeSuccess, writeFailure } = writeBoardSlice.actions;
-const {reducer, actions} = writeBoardSlice
-export const writeBoardActions = actions
+export const { writeBoard, writeBoardSuccess, writeBoardFailure, saveBoard, deleteBoard } = ArticleSlice.actions;
+const {reducer, actions} = ArticleSlice
+export const ArticleActions = actions
 export default reducer;

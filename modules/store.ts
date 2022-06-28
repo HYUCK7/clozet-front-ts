@@ -9,7 +9,7 @@ import findUserNameReducer, {findUserNameSlice, FindUserNameState } from './user
 import findUserPwReducer, {findUserPwSlice, FindUserPwState} from './users/findPw'
 import rootSaga from '@/sagas';
 import createSagaMiddleware from '@redux-saga/core'
-import writeBoardReducer, { WriteBoardState } from './boards';
+import articleReducer, { ArticleState } from './boards';
 const isDev = process.env.NODE_ENV ==='development'
 const sagaMiddleware = createSagaMiddleware()
 
@@ -19,7 +19,7 @@ export interface RootStates {
     login: LoginState
     findUserName: FindUserNameState
     findUserPw: FindUserPwState
-    writeBoard: WriteBoardState
+    Article: ArticleState
 
 }
 const rootReducer = (
@@ -37,7 +37,7 @@ const rootReducer = (
         login : loginReducer,
         findUserName : findUserNameReducer,
         findUserPw : findUserPwReducer,
-        writeBoard: writeBoardReducer
+        Article: articleReducer
         
     })(state,action)
 }
@@ -53,7 +53,6 @@ const makeStore = () =>{
             findUserPw : findUserPwReducer
             */
         },
-
         middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({serializableCheck: false}).concat(logger, sagaMiddleware) ,
         devTools :isDev

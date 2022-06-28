@@ -2,26 +2,39 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const boardSliceType = "slice/board";
 
-export interface IBoardState {
-	value: number;
+export interface UserBoardWrite {
+    title: string,
+    content: string,
+    picture?: any | undefined,
+    height : string,
+    weight: string
 }
 
-const initialState: IBoardState = {
-	value: 0
+export interface WriteBoardState{
+    status: 'success' | 'loading' | 'fail'
 }
 
-const boardSlice = createSlice({
+const initialState: WriteBoardState = {
+    status: 'loading'
+}
+
+const writeBoardSlice = createSlice({
 	initialState,
-    name: boardSliceType,
+    name: 'boardSliceType',
     reducers: {
-    	increase: (state) => {
-        	state.value += 1;
+        writeRequest(_state, _action: PayloadAction<UserBoardWrite>){
+            alert(`액션 요청`)
         },
-        increaseByAmount: (state, action: PayloadAction<number>) => {
-        	state.value += action.payload;
+        writeSuccess(_state, _action: PayloadAction){
+            alert(`게시 성공`)
+        },
+        writeFailure(_state, _action: PayloadAction){
+            alert(`게시 실패`)
         }
     }
 })
 
-export const { increase, increaseByAmount } = boardSlice.actions;
-export default boardSlice;
+export const { writeRequest, writeSuccess, writeFailure } = writeBoardSlice.actions;
+const {reducer, actions} = writeBoardSlice
+export const writeBoardActions = actions
+export default reducer;

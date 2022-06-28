@@ -1,7 +1,7 @@
 import React from 'react'
 
 type Props = {
-  handleChange : (e : React.FormEvent<HTMLInputElement>) => void;
+  handleChange : (e : React.FormEvent<HTMLInputElement> ) => void;
   handleSubmit : (e : React.FormEvent<HTMLFormElement>) => void;
 }
 

@@ -22,6 +22,7 @@ const LoginPage: NextPage = () => {
     console.log(`로그인 정보 ${JSON.stringify(loginUser)}`)
     alert(`1. 로그인 버튼 클릭 ${JSON.stringify(loginUser)}`)
     dispatch(loginRequest(loginUser))
+    alert(`1-2 로그인 액션 요청 ${JSON.stringify(loginUser)}`)
     //console.log(' 모듈에 저장된 로그인 상태: '+JSON.stringify(loginedUser))
     
   }

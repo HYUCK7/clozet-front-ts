@@ -1,5 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit'
-import { call, delay, put, takeLatest } from 'redux-saga/effects'
+import { call, delay, put, takeLatest, throttle } from 'redux-saga/effects'
 // yarn add @redux-saga/is --dev , yarn add @types/redux, yarn add redux-saga
 import { joinSuccess, userActions } from '@/modules/users/join';
 import { loginActions, loginFailure, loginSuccess } from '@/modules/users/login';
@@ -16,20 +16,7 @@ interface UserJoinType{
         name:string, phone:string, birth:string, nickname:string
     }
 }
-/** 
-interface UserLoginType{
-    type: string;
-    payload: {
-        username:string, password:string, token: string
-    }
-}
-interface UserLoginSuccessType {
-    type: string;
-    payload: {
-        username:string, password: string
-    }
-}
-*/
+
 export interface LoginUser{ // api data type
     username:string, password:string, email:string, name:string,
      phone:string, birth:string, nickname:string, userId? : number,
@@ -45,7 +32,7 @@ export interface UserLoginInput {
 function* join(user: UserJoinType ){
     try{
         alert(`3. saga내부 join 성공  + ${JSON.stringify(user)}`)
-        console.log(' saga내부 join 성공  '+ JSON.stringify(user))
+        //console.log(' saga내부 join 성공  '+ JSON.stringify(user))
         const response: UserJoinType = yield userJoinApi(user.payload)
         yield put(joinSuccess(response.payload))
         
@@ -59,7 +46,7 @@ function* login(action : {payload: UserLoginInput}) {
     const {loginSuccess, loginFailure} = loginActions;
     const param = action.payload
     try{
-        alert(`3. saga내부 join 성공  + ${JSON.stringify(login)}`)
+        alert(`3. saga내부 login 성공  + ${JSON.stringify(param)}`)
         const response: LoginUser = yield call(userLoginApi, param)
         alert('6. api 호출 후, 성공 액션에 API Data put')
         // call은 미들웨어에게 함수와 인자들을 실행하라는 명령
@@ -102,11 +89,11 @@ function* findUserPw(action : {payload: UserFindPwInput}){
 
 //main Saga
 export function* watchJoin(){
-    yield takeLatest(userActions.joinRequest, join)
+    yield throttle(500, userActions.joinRequest, join)
 }
 export function* watchLogin(){
-    const {loginRequest} = loginActions;
-    yield takeLatest(loginRequest, login)
+    const { loginRequest } = loginActions;
+    yield throttle(500, loginRequest, login)
 }
 export function* watchFindUserName(){
     const { findUserNameRequest } = findUserNameActions

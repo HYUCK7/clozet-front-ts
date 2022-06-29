@@ -11,7 +11,7 @@ function* writeArticleSaga(action : {payload: Article}) {
     const param = action.payload
     try{
         alert(`3. saga 내부 Write 성공 + ${JSON.stringify(param)}`)
-        const response: Article = yield call(writeArticleApi, param)
+        yield call(writeArticleApi, param)
         yield put(writeBoardSuccess())
     } catch (error) {
         yield put(writeBoardFailure())

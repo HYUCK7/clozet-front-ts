@@ -8,7 +8,7 @@ const headers = {
 export const writeArticleApi = async (
     writeData: Article) => {
         try {
-            alert('API 진입')
+            console.log(`API 진입 + ${JSON.stringify(writeData)}`)
             await axios.post(`${SERVER}/articles/join`, writeData, {headers})            
         } catch (err) {
             return err;

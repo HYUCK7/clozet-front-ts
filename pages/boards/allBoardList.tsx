@@ -25,13 +25,14 @@ const AllBoardListPage: NextPage = () => {
     dispatch(fetchBoards())
   }, [])
 
-  const {fetchBoardState} = useAppSelector(state => state.board)
+  const {fetchArticle} = useAppSelector((state) => state.board || {})
 
-  console.log(JSON.stringify(fetchBoardState))
+  console.log(JSON.stringify(fetchArticle))
 
-  useEffect(() => {setData(fetchBoardState)})
+  useEffect(() => {setData(fetchArticle)})
 
   return (
     <AllBoardList data = {data}/>
   )
 }
+export default AllBoardListPage

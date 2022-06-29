@@ -1,65 +1,50 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 
-type Props = {}
+type Props = {
+  data:{
+    title : string,
+    content: string,
+    height: string,
+    weight: string,    
+  }
+}
+/** 
+const RecStyle: CSSProperties = {
+  width: "80%",
+  height: "300px",
+  borderRadius: "21px 21px 0 0"
+}
+*/
 
-const AllBoardList = (props: Props) => {
+const AllBoardList: React.FC<Props> = ({data}) => {
   return (
+    <div className='container'>
     <div text-align = "center">
-    <h1>Clozet 사람들</h1>
-    <h3>인플루언서 김윤섭님의 게시글 - 좋아요가 많다면, 이름 색 또는 뱃지 제공</h3>
-    <table>
-            <td>
-                <img src="https://img.gqkorea.co.kr/gq/2015/12/style_566644d1e72a9.jpg" width="200" height="200"></img>
-            </td>
-     </table>
-     <table>
-            <td>
-            <img src="https://image.msscdn.net/images/goods_img/20190226/965917/965917_6_500.jpg" width="150" height="150"></img>
-            <img src="https://image.msscdn.net/images/prd_img/20210908/2116434/detail_2116434_38_500.jpg" width="150" height="150"></img>
-            <img src="https://image.msscdn.net/images/goods_img/20220211/2356342/2356342_1_500.jpg?t=20220224180520" width="150" height="150"></img>
-            </td>
-    </table>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdoQ4zDHMFxI1p1hNdmfcdouoQBi6148461w&usqp=CAU" width={50} height={50}></img>
-    <label htmlFor="">x120 &nbsp;&nbsp;&nbsp;&nbsp;</label>
-    <button>댓글 달기</button>
-    <button>다른 옷 구경하기</button>
-    
-    <h3>유재혁님의 게시글</h3>
-    <table>
-            <td>
-                <img src="https://t1.daumcdn.net/cfile/tistory/2117C03E55DFE3241F" width="200" height="200"></img>
-            </td>
-     </table>
-     <table>
-            <td>
-            <img src="https://www.siminilbo.co.kr/news/data/20151211/p179552994522588_213.jpg" width="150" height="150"></img>
-            <img src="http://ccimg.hellomarket.com/images/2018/item/s9/02/03/12/3154_2767656_1.jpg?size=s6" width="150" height="150"></img>
-            <img src="https://www.elandrs.com/upload/prd/img/666/600/1905492666_0000001.jpg" width="150" height="150"></img>
-            </td>
-    </table>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdoQ4zDHMFxI1p1hNdmfcdouoQBi6148461w&usqp=CAU" width={50} height={50}></img>
-    <label htmlFor="">x33 &nbsp;&nbsp;&nbsp;&nbsp;</label>
-    <button>댓글 달기</button>
-    <button>다른 옷 구경하기</button>
+      <h1>Clozet 사람들</h1>
+    </div>
 
-
-    <h3>김승현님의 게시물</h3>
-    <table>
-            <td>
-                <img src="https://image.msscdn.net/data/estimate/2497229_0/gallery_6289d91103849.jpg.view" width="200" height="200"></img>
-            </td>
-     </table>
-     <table>
-            <td>
-            <img src="https://image.msscdn.net/images/goods_img/20220418/2497229/2497229_1_500.jpg?t=20220422131035" width="150" height="150"></img>
-            <img src="https://image.msscdn.net/images/goods_img/20220310/2408345/2408345_1_500.jpg?t=20220311173929" width="150" height="150"></img>
-            <img src="https://image.msscdn.net/images/goods_img/20190401/1000343/1000343_3_500.jpg?t=20200414185127" width="150" height="150"></img>
-            </td>
-    </table>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdoQ4zDHMFxI1p1hNdmfcdouoQBi6148461w&usqp=CAU" width={50} height={50}></img>
-    <label htmlFor=""> x100 &nbsp;&nbsp;&nbsp;&nbsp;</label>
-    <button>댓글 달기</button>
-    <button>다른 옷 구경하기</button>
+    <div className="row mb-2">
+    <div className="col-md-6">
+      <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div className="col p-4 d-flex flex-column position-static">
+          <strong className="d-inline-block mb-2 text-primary">
+            <h5>iqeq1219</h5>
+            </strong>
+          <h3 className="mb-0">
+            {data.title}
+          </h3>
+          <div className="mb-1 text-muted">
+          <h5> Nov 12 </h5>
+          </div>
+          <p className="card-text mb-auto">{data.content}</p>
+          <p className="card-text mb-auto">{data.height} , {data.weight}</p>
+        </div>
+        <div className="col-auto d-none d-lg-block">
+          <svg className="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="5%" y="50%" fill="#eceeef" dy=".3em">사진 데이터 들어갈 예정</text></svg>
+        </div>
+      </div>
+      </div>
+      </div>
     </div>
   )
 }

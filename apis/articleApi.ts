@@ -1,5 +1,5 @@
 import { Article } from "@/modules/boards";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 const SERVER = 'http://127.0.0.1:8080'
 const headers = {
     "Content-Type" : "application/json",
@@ -14,3 +14,14 @@ export const writeArticleApi = async (
             return err;
         }
     }
+
+export const fetchArticleAPI = async () => {
+    try{
+        console.log(`API 진입`)
+        const response : AxiosResponse = await axios.get(`${SERVER}/articles/findAll`, {headers})
+        console.log(`서버 응답 + ${JSON.stringify(response)}`)
+        return response
+    } catch(err) {
+        return err;
+    }
+}

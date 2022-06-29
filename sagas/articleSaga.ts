@@ -1,7 +1,8 @@
-import { writeArticleApi } from "@/apis/articleApi";
+import { fetchArticleAPI, writeArticleApi } from "@/apis/articleApi";
 import { Article, ArticleActions, writeBoard, writeBoardFailure, writeBoardSuccess } from "@/modules/boards";
 import { userActions } from "@/modules/users/join";
 import { loginFailure, loginSuccess } from "@/modules/users/login";
+import { AxiosResponse } from "axios";
 import { call, put, take, takeLatest, throttle } from "redux-saga/effects";
 
 
@@ -18,6 +19,20 @@ function* writeArticleSaga(action : {payload: Article}) {
     }
 }
 
+function* fetchArticleSaga() {
+    const {fetchBoardSuccess, fetchBoardFailure} = ArticleActions
+    try{
+        const response: AxiosResponse = yield call(fetchArticleAPI)
+        const result = response.data
+        yield put(fetchBoardSuccess(result))
+    } catch(error) {
+        yield put(fetchBoardFailure(error))
+    }
+}
+
 export function* watchWriteArticle(){
     yield takeLatest(ArticleActions.writeBoard, writeArticleSaga)
+}
+export function* watchFetchArticle(){
+    yield takeLatest(ArticleActions.fetchBoards, fetchArticleSaga)
 }

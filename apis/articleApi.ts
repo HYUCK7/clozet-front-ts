@@ -19,8 +19,8 @@ export const fetchArticleAPI = async () => {
     try{
         console.log(`API 진입`)
         const response : AxiosResponse = await axios.get(`${SERVER}/articles/findAll`, {headers})
-        console.log(`서버 응답 + ${JSON.stringify(response)}`)
-        return response
+        console.log(`서버 응답 + ${JSON.stringify(response.data)}`)
+        return response.data
     } catch(err) {
         return err;
     }

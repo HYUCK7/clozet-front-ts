@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import AllBoardList from '@/components/boards/AllBoardList'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { NextPage } from 'next'
-import { fetchBoards } from '@/modules/boards'
+import { fetchBoards, fetchBoardSuccess } from '@/modules/boards'
 import { useDispatch } from 'react-redux'
 
 export interface fetchBoardData {
@@ -20,17 +20,21 @@ const AllBoardListPage: NextPage = () => {
   })
 
   const dispatch = useDispatch()
-
   useEffect(() => {
-    dispatch(fetchBoards())
+    dispatch(fetchBoards()) 
   }, [])
 
-  const {fetchArticle} = useAppSelector((state) => state.board || {})
+  const {title, content, height, weight} = useAppSelector((state) => state.article || {})
 
-  console.log(JSON.stringify(fetchArticle))
+  console.log(JSON.stringify({title, content, height, weight}))
 
-  useEffect(() => {setData(fetchArticle)})
+  const fetchAllArticle = useCallback(() => {
+    setData({title, content, height, weight})
+  }, [])
 
+  useEffect(() => {fetchAllArticle();}, [fetchAllArticle])
+  
+  // 무한 loop 생성 https://typeofnan.dev/fix-the-maximum-update-depth-exceeded-error-in-react/
   return (
     <AllBoardList data = {data}/>
   )

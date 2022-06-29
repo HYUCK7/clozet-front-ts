@@ -9,6 +9,9 @@ export interface Article{
     height : string,
     weight: string
 }
+export interface GetArticle{
+
+}
 export interface ArticleState{
     data: Article[],
     status: 'successed' | 'loading' | 'failed'
@@ -44,16 +47,18 @@ const ArticleSlice = createSlice({
         },
         
         fetchBoards : (state) => {
-            alert(`게시글 불러오기 - 리듀서`)
+            console.log(`게시글 불러오기 - 리듀서`)
             state.status = 'loading'
         },
+        
         fetchBoardSuccess: (state, {payload}) => {
-            alert(`게시글 불러오기 성공 - 리듀서 ${JSON.stringify( state.data )}`)
             const fetchArticle = state.data.concat(payload)
             state.data = fetchArticle
             state.status = "successed"
+            console.log(`게시글 불러오기 성공 - 리듀서 ${JSON.stringify( state.data )}`)
         },
         fetchBoardFailure: (state, {payload}) => {
+            console.log(`게시글 불러오기 실패 - 리듀서`)
             state.error = payload;
             state.status = 'failed'
         },

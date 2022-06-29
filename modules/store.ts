@@ -19,7 +19,7 @@ export interface RootStates {
     login: LoginState
     findUserName: FindUserNameState
     findUserPw: FindUserPwState
-    Article: ArticleState
+    article: ArticleState
 
 }
 const rootReducer = (
@@ -37,7 +37,7 @@ const rootReducer = (
         login : loginReducer,
         findUserName : findUserNameReducer,
         findUserPw : findUserPwReducer,
-        Article: articleReducer
+        article: articleReducer
         
     })(state,action)
 }

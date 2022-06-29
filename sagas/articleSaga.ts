@@ -6,7 +6,6 @@ import { AxiosResponse } from "axios";
 import { call, put, take, takeLatest, throttle } from "redux-saga/effects";
 
 
-
 //get Saga
 function* writeArticleSaga(action : {payload: Article}) {
     const param = action.payload
@@ -21,10 +20,10 @@ function* writeArticleSaga(action : {payload: Article}) {
 
 function* fetchArticleSaga() {
     const {fetchBoardSuccess, fetchBoardFailure} = ArticleActions
+    //const param = action.payload
     try{
         const response: AxiosResponse = yield call(fetchArticleAPI)
-        const result = response.data
-        yield put(fetchBoardSuccess(result))
+        yield put(fetchBoardSuccess(response))
     } catch(error) {
         yield put(fetchBoardFailure(error))
     }

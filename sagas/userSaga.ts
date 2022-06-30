@@ -1,5 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit'
-import { call, delay, put, takeLatest, throttle } from 'redux-saga/effects'
+import { call, delay, put, takeLatest, takeLeading, throttle } from 'redux-saga/effects'
 // yarn add @redux-saga/is --dev , yarn add @types/redux, yarn add redux-saga
 import { joinSuccess, userActions } from '@/modules/users/join';
 import { loginActions, loginFailure, loginSuccess } from '@/modules/users/login';
@@ -93,7 +93,7 @@ export function* watchJoin(){
 }
 export function* watchLogin(){
     const { loginRequest } = loginActions;
-    yield throttle(500, loginRequest, login)
+    yield takeLeading(loginRequest, login)
 }
 export function* watchFindUserName(){
     const { findUserNameRequest } = findUserNameActions

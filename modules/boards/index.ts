@@ -9,9 +9,7 @@ export interface Article{
     height : string,
     weight: string
 }
-export interface GetArticle{
 
-}
 export interface ArticleState{
     data: Article[],
     status: 'successed' | 'loading' | 'failed'
@@ -62,21 +60,6 @@ const ArticleSlice = createSlice({
             state.error = payload;
             state.status = 'failed'
         },
-            /** 
-        saveBoard (state, action: PayloadAction){
-            alert(`게시글 불러오기 - 리듀서`)
-            
-            const {value, article} = action.payload;
-            return state.map((item) => {
-                if(item.id === article.id) {
-                    return{
-                        ...article, value: value
-                    }
-                }
-                return item
-            })
-        },
-            */
         deleteBoard(state, action: PayloadAction){
             alert(`게시글 삭제하기 - 리듀서`)
         }

@@ -87,9 +87,20 @@ function* findUserPw(action : {payload: UserFindPwInput}){
 }
 
 
-//main Saga
+//main Saga + get Saga -> Lambda try
 export function* watchJoin(){
-    yield throttle(500, userActions.joinRequest, join)
+    yield throttle(500, userActions.joinRequest, (user: UserJoinType ) => {
+        try{
+            alert(`3. saga내부 join 성공  + ${JSON.stringify(user)}`)
+            //console.log(' saga내부 join 성공  '+ JSON.stringify(user))
+            const response: any =  userJoinApi(user.payload)
+            put(joinSuccess(response.payload))
+            
+        }catch(error){
+             console.log(' saga내부 join 실패  ') 
+            put(userActions.joinFailure(error))
+        }
+    })
 }
 export function* watchLogin(){
     const { loginRequest } = loginActions;

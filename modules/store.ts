@@ -43,7 +43,8 @@ const makeStore = () =>{
     configureStore({
         reducer:{ rootReducer },
         middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({serializableCheck: false})
+        getDefaultMiddleware()
+        //직렬화 문제 발생 시 {serializableCheck: false} 파라미터로 전달
             .prepend(sagaMiddleware)
             .concat(logger),
         devTools :isDev

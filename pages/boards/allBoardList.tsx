@@ -27,9 +27,10 @@ const AllBoardListPage: NextPage = () => {
   useEffect(() => {
     dispatch(fetchBoards()) 
   }, [])
+
    // selector
-  const {data} = useAppSelector((state) => state.article.title)
-  console.log(JSON.stringify({data}))
+  const data = useAppSelector((state) => state.article)
+  console.log(JSON.stringify(data && 1))
 
   // setdata에 대한 무한루프 방지
   const fetchAllArticle = useCallback(() => {
@@ -43,8 +44,10 @@ const AllBoardListPage: NextPage = () => {
     <AllBoardList data = {data}/>
   )
 }
-
-AllBoardListPage.getInitialProps = () => ({})
-
+/** 
+AllBoardListPage.getInitialProps = (store) => ({
+  
+})
+*/
 
 export default AllBoardListPage

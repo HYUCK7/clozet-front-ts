@@ -21,8 +21,8 @@ const handleChange = (e: { preventDefault: () => void; target: { name: string; v
     <form onSubmit={
       e => {
         e.preventDefault()
-        dispatch(userActions.joinRequest(user))
-        console.log(JSON.stringify(user))
+        dispatch(userActions.joinRequest(user)) // 리퀘스트 객체를 생성해라 요청 시 객체이름은 request, 또는 response
+        console.log(JSON.stringify(user))       // 타입이 {} JSON
         setUser({
           username:'', password:'', email:'', name:'', phone:'', birth:'', nickname:''
         })

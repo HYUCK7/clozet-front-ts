@@ -6,7 +6,6 @@ import {
   watchLogin,
 } from './userSaga';
 import {
-  watchFetchArticle,
   watchWriteArticle
 } from './articleSaga'
 
@@ -18,6 +17,6 @@ export default function* rootSaga() {
     fork(watchFindUserName),
     fork(watchFindPw),
     fork(watchWriteArticle),
-    fork(watchFetchArticle)
+    //fork(watchFetchArticle)
   ]);
 }

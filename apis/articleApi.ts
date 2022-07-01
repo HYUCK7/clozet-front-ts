@@ -25,3 +25,4 @@ export const fetchArticleAPI = async () => {
         return err;
     }
 }
+

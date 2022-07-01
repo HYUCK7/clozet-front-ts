@@ -19,6 +19,7 @@ export interface fetchBoardData {
 
 
 const AllBoardListPage: NextPage = () => {
+  /** 
   const [info, setInfo] = useState<fetchBoardData>({
     title: '', content: '', height: '', weight:''})
 
@@ -38,10 +39,10 @@ const AllBoardListPage: NextPage = () => {
   }, [])
 
   useEffect(() => {fetchAllArticle();}, [])
-  
+  */
   // 무한 loop 생성 https://typeofnan.dev/fix-the-maximum-update-depth-exceeded-error-in-react/
   return (
-    <AllBoardList data = {data}/>
+    <AllBoardList />
   )
 }
 /** 

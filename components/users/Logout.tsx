@@ -1,10 +1,16 @@
 import React from 'react'
 
-type Props = {}
+type Props = {
+  props : (e :React.FormEvent<HTMLFormElement>) => void;
+}
 
-const Logout = (props: Props) => {
+const Logout : React.FC<Props> = ({props}: Props) => {
   return (
-    <div>Logout</div>
+    <form onSubmit={props}>
+      <button className= "w-100 btn btn-lg btn-outline-secondary" type="submit">
+        <h5>Logout</h5>
+      </button>
+    </form>
   )
 }
 

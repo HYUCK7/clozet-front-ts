@@ -4,7 +4,7 @@ import { NextPage } from 'next'
 import GoogleLogin from '@/components/users/GoogleLogin'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { loginRequest, LoginState, LoginUser, UserLoginInput } from '@/modules/users/login'
-import {  AppState, RootStates } from '@/modules/store'
+import {  AppState,  } from '@/modules/store'
 /* global google */
 
 const LoginPage: NextPage = () => {
@@ -25,6 +25,11 @@ const LoginPage: NextPage = () => {
     alert(`1-2 로그인 액션 요청 ${JSON.stringify(loginUser)}`)
     //console.log(' 모듈에 저장된 로그인 상태: '+JSON.stringify(loginedUser))
     
+    const handleCredentialResponse = async(response: any) => {
+      const { credential } = response;
+      console.log("ENCODED JWT ID TOKEN" + response.credential)
+    }
+
   }
   const {isLoggined, loginedUser} = useAppSelector((state) => state.login || {})
   //console.log('store 저장 상태  ' + isLoggined)

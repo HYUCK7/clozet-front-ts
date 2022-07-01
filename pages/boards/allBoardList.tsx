@@ -37,7 +37,7 @@ const AllBoardListPage: NextPage = () => {
     setInfo(data)
   }, [])
 
-  useEffect(() => {fetchAllArticle();}, [fetchAllArticle])
+  useEffect(() => {fetchAllArticle();}, [])
   
   // 무한 loop 생성 https://typeofnan.dev/fix-the-maximum-update-depth-exceeded-error-in-react/
   return (

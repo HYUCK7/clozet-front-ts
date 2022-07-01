@@ -29,6 +29,7 @@ export interface UserLoginInput {
 }
 
 //Get Saga
+
 function* join(user: UserJoinType ){
     try{
         alert(`3. saga내부 join 성공  + ${JSON.stringify(user)}`)
@@ -42,16 +43,18 @@ function* join(user: UserJoinType ){
     }
 }
 
+
 function* login(action : {payload: UserLoginInput}) {
     const {loginSuccess, loginFailure} = loginActions;
-    const param = action.payload
+    const param = action.payload // 입력된 action에 대한 payload
     try{
         alert(`3. saga내부 login 성공  + ${JSON.stringify(param)}`)
         const response: LoginUser = yield call(userLoginApi, param)
         alert('6. api 호출 후, 성공 액션에 API Data put')
         // call은 미들웨어에게 함수와 인자들을 실행하라는 명령
         // = yield userLoginApi(login.payload)
-        yield put(loginSuccess(response)) 
+        yield put(loginSuccess(response))
+        window.location.href = ('/');
     }
     catch(error){
          alert('진행 3: saga내부 join 실패  ') 
@@ -63,7 +66,7 @@ function* findUserName(action : {payload: UserFindIdInput}){
     const { findUserNameSuccess, findUserNameFailure } = findUserNameActions
     const param = action.payload
     try {
-        alert (' 아이디 찾기 ' + JSON.stringify(findUserName))
+        console.log (' 아이디 찾기 요청 ' + JSON.stringify(param))
         const response: ResultFindUserName = yield call(findUserNameApi, param)
         yield put(findUserNameSuccess(response))
     }
@@ -89,18 +92,7 @@ function* findUserPw(action : {payload: UserFindPwInput}){
 
 //main Saga + get Saga -> Lambda try
 export function* watchJoin(){
-    yield throttle(500, userActions.joinRequest, (user: UserJoinType ) => {
-        try{
-            alert(`3. saga내부 join 성공  + ${JSON.stringify(user)}`)
-            //console.log(' saga내부 join 성공  '+ JSON.stringify(user))
-            const response: any =  userJoinApi(user.payload)
-            put(joinSuccess(response.payload))
-            
-        }catch(error){
-             console.log(' saga내부 join 실패  ') 
-            put(userActions.joinFailure(error))
-        }
-    })
+    yield throttle(500, userActions.joinRequest, join)
 }
 export function* watchLogin(){
     const { loginRequest } = loginActions;

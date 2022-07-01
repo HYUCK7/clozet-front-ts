@@ -1,13 +1,18 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Link from 'next/link'
 import styled from 'styled-components';
 import JoinPage from '@/pages/users/join';
 import LoginPage from '@/pages/users/login';
+import LogoutPage from '@/pages/users/logout';
 
-
+    
 export function Nav() {
-
+    const [item, setItem] = useState(null)
+    useEffect (()=> {
+        let item : any = localStorage.getItem('loginSuccessUser');    
+        setItem(item)
+    },[])
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
@@ -73,7 +78,10 @@ export function Nav() {
                     <a>Clozet 이용하기</a>
                 </button>
                 </Link>
+            <div>
+                {item === null ?
 
+                <div>
                 <button  type = 'button' className='btn btn-dark' data-bs-toggle="modal" data-bs-target="#modal1">
                 <h5>Register</h5>
                 </button>
@@ -90,6 +98,7 @@ export function Nav() {
                 </div>
             </div>
             </div>
+            
             &nbsp;
             <button  type = 'button' className='btn btn-dark' data-bs-toggle="modal" data-bs-target="#modal2">
                 <h5>Login</h5>
@@ -107,10 +116,17 @@ export function Nav() {
                 </div>
             </div>
             </div>
+            
+            &nbsp;
+            </div>:
+            
+            <div>
+                <LogoutPage/>
+            </div>
+            }
+        </div>
         </div>
     </div>
-    
-    
     </nav>
     )
 }

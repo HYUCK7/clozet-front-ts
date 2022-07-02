@@ -85,7 +85,7 @@ export const userJoinApi = async (
         findUserPwData : {username: string, email: string}) => {
             try{
                 alert(`Find PASSWORD API TRY`)
-                const response: AxiosResponse<any, ResultFindPw[]> =
+                const response: AxiosResponse<any, ResultFindPw[]>=
                 await axios.post(`${SERVER}/users/NOTURL`, findUserPwData, { headers })
                 alert(`서버 응답 + ${JSON.stringify(response.data)}`) 
                 return response.data

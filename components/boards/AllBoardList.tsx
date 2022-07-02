@@ -13,18 +13,11 @@ export interface Article {
   weight? : string,
   comment? : string
 }
-/** 
-const RecStyle: CSSProperties = {
-  width: "80%",
-  height: "300px",
-  borderRadius: "21px 21px 0 0"
-}
-*/
 
 const AllBoardList: React.FC = () => {
   const [articleList, setArticleList] = useState<Array<Article>>([])
 
-  /** 
+  /** 임의로 데이터 직접 넣어 test
   useEffect(() => {
     let articles: Array<Article> = [
       {"articleId":1001,"title":"234234","writtenDate":"2022","open":"2022","content":"423432423","picture":null,"height":"234234","weight":"23423","comment":"test"},
@@ -35,27 +28,6 @@ const AllBoardList: React.FC = () => {
   })
  */
 
-  /** 
-  
-  useEffect( () => {
-    const res = []
-    const articles: Array<Article> = res.concat.fetchArticle()
-    setArticleList(articles)
-  })
-  */
-  const SERVER = 'http://127.0.0.1:8080'
-
-  const test = async () => {
-    try{
-      console.log(`API 진입`)
-      const response : AxiosResponse = await axios.get(`${SERVER}/articles/findAll`)
-      console.log(`서버 응답 + ${JSON.stringify(response.data)}`)
-      return response.data
-  } catch(err) {
-      return err;
-  }
-
-  }
   useEffect (() => { fetchArticleAPI().then(data => {
     setArticleList(data)
   } ) }, [])

@@ -1,5 +1,12 @@
+import axios, { AxiosResponse } from 'axios'
 import React, { useState } from 'react'
 import css from 'styled-jsx/css'
+
+const headers = {
+  "Content-Type" : "application/json",
+  Authorization: "JWT fefege...",
+}
+
 type Props ={
   data:{
     username : string,
@@ -191,6 +198,15 @@ const Update: React.FC<Props> = ({data}) => {
       </div>
       </div>
   )
+}
+export const getServerSideProps = async(
+  userToken: any = localStorage.getItem('loginSuccessUser')) => {
+  const SERVER = 'http://127.0.0.1:8080'
+  console.log(typeof(userToken))
+  try{
+    const response: AxiosResponse = await axios.post(`${SERVER}/users/load`, userToken, {headers})
+    console.log(`로그인 상태 유지중 : + ${JSON.stringify(response.data)}`)
+  } catch(err){ return err; }
 }
 
 export default Update

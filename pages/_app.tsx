@@ -20,3 +20,4 @@ function MyApp({ Component, pageProps: {...pageProps} }: AppProps) {
 }
 
 export default wrapper.withRedux(MyApp)
+

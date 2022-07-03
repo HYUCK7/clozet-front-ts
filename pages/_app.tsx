@@ -3,11 +3,12 @@ import type { AppProps } from 'next/app'
 import LoginTestPage from './users/loginTest'
 import {wrapper} from '@/modules/store'
 import { Nav } from '@/components/Nav'
+import Layout from '@/components/Layout'
 
 function MyApp({ Component, pageProps: {...pageProps} }: AppProps) {
   return ( 
     <>
-    <Nav/>
+    <Layout>
     <Component {...pageProps} />
     <LoginTestPage />
     <style jsx>{`
@@ -15,6 +16,7 @@ function MyApp({ Component, pageProps: {...pageProps} }: AppProps) {
             textDecoration: none;
         }
     `}</style>
+    </Layout>
     </>
   )
 }

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import JoinPage from '@/pages/users/join';
 import LoginPage from '@/pages/users/login';
 import LogoutPage from '@/pages/users/logout';
+import Image from 'next/image';
 
     
 export function Nav() {
@@ -15,12 +16,12 @@ export function Nav() {
     },[])
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="container">
+            <ul padding-left = '32px' margin-top = '32px' >
             <Link href="/">
-            <a className="navbar-brand col" >
-                <img src="clozet-black.svg" style={{width:90+"px"}}/>
-            </a>
+                <Image src="/clozet-black.svg" alt='clozet' width={100  } height={50} />
             </Link>
+            </ul>
+            <div className="container">
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
         </button>

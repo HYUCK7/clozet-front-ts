@@ -1,5 +1,7 @@
+import RemovePage from '@/pages/users/remove'
 import axios, { AxiosResponse } from 'axios'
-import React, { useState } from 'react'
+import Link from 'next/link'
+import React, { useRef, useState } from 'react'
 import css from 'styled-jsx/css'
 
 const headers = {
@@ -19,7 +21,8 @@ type Props ={
   
 }
 
-const Update: React.FC<Props> = ({data}) => {
+const Mypage: React.FC<Props> = ({data}) => {
+  
   return (<div>
     <div className="container">
     <div className="input-form-backgroud row">
@@ -177,28 +180,28 @@ const Update: React.FC<Props> = ({data}) => {
                 </div>
               </div>
           
-          <hr className="mb-4"/>
+          <hr className="mb-4 "/>
           <div className='row'>
           <div className="col-md-6 mb-4">
           <button className="btn btn-secondary btn-lg btn-block" type="submit">
             <h5>Account Update</h5>
             </button>
-          </div>
-          <div className="col-md-6 mb-4">
+           &nbsp; 
+           <Link href={'/users/remove'}>
           <button className="btn btn-danger btn-lg btn-block" type="submit">
             <h5>Account Delete</h5>
-            </button>
+          </button>  
+          </Link>
           </div>
           </div>
         </form>
       </div>
     </div>
-            
-       
       </div>
       </div>
   )
 }
+/** 
 export const getServerSideProps = async(
   userToken: any = localStorage.getItem('loginSuccessUser')) => {
   const SERVER = 'http://127.0.0.1:8080'
@@ -208,5 +211,5 @@ export const getServerSideProps = async(
     console.log(`로그인 상태 유지중 : + ${JSON.stringify(response.data)}`)
   } catch(err){ return err; }
 }
-
-export default Update
+*/
+export default Mypage

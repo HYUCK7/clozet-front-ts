@@ -56,8 +56,7 @@ export function Nav() {
         UserPage
         </a>
     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a className="dropdown-item" href="/users/remove">Account Remove</a></li>
-        <li><a className="dropdown-item" href="/users/update">Account Update</a></li>
+        <li><a className="dropdown-item" href="/users/mypage">My Page</a></li>
         <li><a className="dropdown-item" href="/users/findAccount">Find Account</a></li>
     </ul>
     </li>

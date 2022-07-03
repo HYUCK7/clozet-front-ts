@@ -1,4 +1,4 @@
-import Update from '@/components/users/Update'
+import Mypage from '@/components/users/Mypage'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { StringIterator } from 'lodash'
 import { NextPage } from 'next'
@@ -14,18 +14,18 @@ export interface fetchData{
   nickname: string
 }
 
-const updatePage : NextPage = () => {
+const MypagePage : NextPage = () => {
   const [data, setData] = useState<fetchData>({
     username : '', name: '', email: '', phone: '', birth: '', nickname:''  })
 
   // 스토어 내 로그인 정보 가져오겠음.
-  const { userInfo } = useAppSelector(state => state.login);
-  console.log(JSON.stringify(userInfo))
-  useEffect(() => {setData(userInfo)})
+  //const { userInfo } = useAppSelector(state => state.login);
+  //console.log(JSON.stringify(userInfo))
+ // useEffect(() => {setData(userInfo)})
 
   return (
-    <Update data = {data}/>
+    <Mypage data = {data}/>
   )
 }
 
-export default updatePage
+export default MypagePage

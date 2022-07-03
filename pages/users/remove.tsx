@@ -1,14 +1,11 @@
 import Remove from '@/components/users/Remove'
-import { NextPage } from 'next'
 import React from 'react'
 
 type Props = {}
 
-const removePage: NextPage = (props: Props) => {
-  //const onClickeDelete = (e: React.FormEvent<HTMLFormElement)
+const RemovePage = (props: Props) => {
   return (
-    <Remove />
+    <Remove/>
   )
 }
-
-export default removePage
+export default RemovePage

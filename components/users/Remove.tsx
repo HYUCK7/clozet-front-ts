@@ -4,7 +4,7 @@ type Props = {}
 
 const Remove = (props: Props) => {
   return (
-    <p className='btn btn-secondary'> Remove Account</p>
+   <div></div>
   )
 }
 

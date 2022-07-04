@@ -31,8 +31,8 @@ const LoginPage: NextPage = () => {
     }
 
   }
-  const {isLoggined, loginedUser} = useAppSelector((state : AppState) => state.login || {})
-  //console.log('store 저장 상태  ' + isLoggined)
+  const {isLoggined, loginedUser} = useAppSelector((state : AppState) => state.rootReducer.login || {})
+  console.log('store 저장 상태  ' + isLoggined)
   return (
     <>
     <Login handleChange = {onChange} handleSubmit = {onSubmit}/>

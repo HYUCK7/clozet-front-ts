@@ -45,7 +45,7 @@ const AllBoardList: React.FC = () => {
         <div className="col p-4 d-flex flex-column position-static">
           <strong className="d-inline-block mb-2 text-primary">
             <h5>iqeq1219</h5>
-            </strong>
+          </strong>
           <h3 className="mb-0">
             {article?.title}
           </h3>

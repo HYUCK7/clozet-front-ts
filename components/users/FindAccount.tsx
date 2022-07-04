@@ -1,4 +1,5 @@
 import store, { AppState, useAppSelector } from '@/modules/store';
+import { ResultFindUserName } from '@/modules/users/findUserName';
 import React, { useEffect } from 'react'
 
 type Props = {
@@ -6,9 +7,10 @@ type Props = {
   handleFindPw : (e : React.FormEvent<HTMLInputElement>) => void;
   submitFindId : (e : React.FormEvent<HTMLFormElement>) => void;
   submitFindPw : (e : React.FormEvent<HTMLFormElement>) => void;
+  findId: any
 }
 
-const FindAccount: React.FC<Props> = ({handleFindId, handleFindPw, submitFindId, submitFindPw} : Props) => {
+const FindAccount: React.FC<Props> = ({findId, handleFindId, handleFindPw, submitFindId, submitFindPw} : Props) => {
   
   return (    
     <div>
@@ -33,7 +35,8 @@ const FindAccount: React.FC<Props> = ({handleFindId, handleFindPw, submitFindId,
       <button className="w-100 btn btn-lg btn-outline-secondary" type="submit">
         <h4>다음</h4>
         </button>
-      <p><small></small></p>
+       
+      <p><small>회원님의 ID는 {findId} 입니다.</small></p>
             </div>
           </form>
         </div>
@@ -42,6 +45,7 @@ const FindAccount: React.FC<Props> = ({handleFindId, handleFindPw, submitFindId,
         <h4 className="h4 text-center mb-3 fw-normal my-5">비밀번호 찾기</h4>
         <form onSubmit = {submitFindPw}>
           <div className = 'd-grid gap-2'>
+
       <div className="form-floating">
         <input onChange = {handleFindPw} name = "username" type="name" className="form-control" id="inputName" placeholder='Name'/>
         <label htmlFor="floatingInput"><h5>내 아이디</h5></label>

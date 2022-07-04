@@ -27,11 +27,13 @@ export const findUserNameSlice = createSlice ({
         findUserNameRequest(state, action: PayloadAction<UserFindIdInput>){
             state.status = 'loading'
             console.log (`진행 : 유저 입력 값 ${ JSON.stringify(state.data)}`)
+            alert (`진행 : 유저 입력 값 ${ JSON.stringify(state.data)}`)
         },
         findUserNameSuccess(state: FindUserNameState, action : PayloadAction<ResultFindUserName>){
             //const newState = state.data.concat(action.payload)
             state.data = [...state.data, action.payload]
             console.log(`findUserName Data : ${JSON.stringify( state.data )}`)
+            alert(`findUserName Data : ${JSON.stringify( state.data )}`)
             console.log(typeof(state.data))
             console.log(state.data)
             state.status = 'idle'

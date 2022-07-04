@@ -2,14 +2,16 @@ import { AnyAction, CombinedState, combineReducers,  configureStore } from '@red
 import { createWrapper } from 'next-redux-wrapper'
 import logger from 'redux-logger'
 import { HYDRATE } from 'next-redux-wrapper';
-import eventReducer from './events'
-import userReducer, { userSlice, UserState } from './users/join'
-import loginReducer, { loginSlice, LoginState } from './users/login';
-import findUserNameReducer, {findUserNameSlice, FindUserNameState } from './users/findUserName'
-import findUserPwReducer, {findUserPwSlice, FindUserPwState} from './users/findPw'
+import userReducer from './users/join'
+import loginReducer from './users/login';
+import findUserNameReducer from './users/findUserName'
+import findUserPwReducer from './users/findPw'
+import loadUserReducer from './users/loadUser'
+import articleReducer from './boards';
 import rootSaga from '@/sagas';
 import createSagaMiddleware from '@redux-saga/core'
-import articleReducer, { ArticleState } from './boards';
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
+
 
 // 기존 RootState는 RTK로 인해서, 자체적으로 RootState와 Dispatch는 스토어 자체에서 추론.
 // export interface RootStates 
@@ -23,6 +25,7 @@ const combinedReducer = combineReducers({
         login : loginReducer,
         findUserName : findUserNameReducer,
         findUserPw : findUserPwReducer,
+        loadUser: loadUserReducer,
         article: articleReducer
 })
 const rootReducer = (
@@ -43,7 +46,7 @@ const makeStore = () =>{
     configureStore({
         reducer:{ rootReducer },
         middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware()
+        getDefaultMiddleware({serializableCheck: false})
         //직렬화 문제 발생 시 {serializableCheck: false} 파라미터로 전달
             .prepend(sagaMiddleware)
             .concat(logger),
@@ -56,6 +59,7 @@ const makeStore = () =>{
 const store = makeStore();
 export type AppState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
+export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
 export const wrapper = createWrapper(makeStore, {debug: isDev})
 export default store;
 

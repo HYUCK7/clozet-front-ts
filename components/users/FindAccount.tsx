@@ -1,4 +1,5 @@
-import React from 'react'
+import store, { AppState, useAppSelector } from '@/modules/store';
+import React, { useEffect } from 'react'
 
 type Props = {
   handleFindId : (e : React.FormEvent<HTMLInputElement>) => void;
@@ -8,6 +9,7 @@ type Props = {
 }
 
 const FindAccount: React.FC<Props> = ({handleFindId, handleFindPw, submitFindId, submitFindPw} : Props) => {
+  
   return (    
     <div>
       <h4 className="h4 text-center mb-3 fw-normal my-3">내 계정 정보 찾기</h4>
@@ -28,12 +30,10 @@ const FindAccount: React.FC<Props> = ({handleFindId, handleFindPw, submitFindId,
         <input onChange = {handleFindId} name = "email" type="email" className="form-control" id="inputEmail" placeholder='E-mail'/>
         <label htmlFor="floatingInput"><h5>가입한 E-mail</h5></label>
       </div>
-
-      
-
       <button className="w-100 btn btn-lg btn-outline-secondary" type="submit">
         <h4>다음</h4>
         </button>
+      <p><small></small></p>
             </div>
           </form>
         </div>
@@ -51,10 +51,12 @@ const FindAccount: React.FC<Props> = ({handleFindId, handleFindPw, submitFindId,
         <input onChange = {handleFindPw} name = "email" type="email" className="form-control" id="inputEmail" placeholder='E-mail'/>
         <label htmlFor="floatingInput"><h5>가입한 E-mail</h5></label>
       </div>
-
+      
       <button  className="w-100 btn btn-lg btn-outline-secondary" type="submit">
         <h4>다음</h4>
         </button>
+      <p><small>* 가입하신 이메일로 
+        '임시 비밀번호'를 전송합니다.</small></p>
               </div>
               </form>
             </div>

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import Login from '@/components/users/Login'
 import { NextPage } from 'next'
 import GoogleLogin from '@/components/users/GoogleLogin'
-import { useAppDispatch, useAppSelector } from '@/hooks'
+import { useAppDispatch } from '@/hooks'
 import { loginRequest, LoginState, LoginUser, UserLoginInput } from '@/modules/users/login'
-import {  AppState,  } from '@/modules/store'
+import {  AppState, useAppSelector,  } from '@/modules/store'
 /* global google */
 
 const LoginPage: NextPage = () => {
@@ -31,7 +31,7 @@ const LoginPage: NextPage = () => {
     }
 
   }
-  const {isLoggined, loginedUser} = useAppSelector((state) => state.login || {})
+  const {isLoggined, loginedUser} = useAppSelector((state : AppState) => state.login || {})
   //console.log('store 저장 상태  ' + isLoggined)
   return (
     <>
@@ -41,3 +41,4 @@ const LoginPage: NextPage = () => {
   )
 }
 export default LoginPage
+

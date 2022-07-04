@@ -10,13 +10,15 @@ import Image from 'next/image';
     
 export function Nav() {
     const [item, setItem] = useState(null)
+    const [googleItem, setGoogleItem] = useState(null)
     useEffect (()=> {
-        let item : any = localStorage.getItem('loginSuccessUser');    
+        let item : any = localStorage.getItem('loginSuccessUser');
+        //let googleItem: any = windo.getItem()
         setItem(item)
     },[])
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <ul padding-left = '32px' margin-top = '32px' >
+            <ul padding-left = '32px' margin-top = '32px' className='table-active'>
             <Link href="/">
                 <Image src="/clozet-black.svg" alt='clozet' width={100  } height={50} />
             </Link>

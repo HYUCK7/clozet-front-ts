@@ -1,6 +1,7 @@
  import { useAppDispatch } from "@/hooks";
 import { ResultFindPw } from "@/modules/users/findPw";
 import { ResultFindUserName } from "@/modules/users/findUserName";
+import { Token } from "@/modules/users/loadUser";
 import { loginSuccess } from "@/modules/users/login";
 import axios, {AxiosResponse} from "axios";
 const SERVER = 'http://127.0.0.1:8080'
@@ -93,6 +94,18 @@ export const userJoinApi = async (
                 return err;
             }
         }
+    export const loadUserApi = async(
+        token: Token) => {
+            try {
+                console.log(`LOGIN CHECK ${token}`)
+                const response: AxiosResponse = await axios.post(`${SERVER}/`, token, {headers})
+                console.log (`서버 응답 + ${JSON.stringify(response.data)}`)
+                return response.data
+            } catch (err) {
+                return err;
+            }
+        }
+    
         /** 
     export const userUpdateApi = async (
             payload: {userid:string, password:string}) => {

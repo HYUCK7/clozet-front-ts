@@ -1,5 +1,5 @@
 import Mypage from '@/components/users/Mypage'
-import { useAppDispatch, useAppSelector } from '@/hooks'
+import { useAppDispatch } from '@/hooks'
 import { StringIterator } from 'lodash'
 import { NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
@@ -29,3 +29,4 @@ const MypagePage : NextPage = () => {
 }
 
 export default MypagePage
+

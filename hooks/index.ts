@@ -4,7 +4,7 @@ import React,{useEffect} from 'react';
 
 
 export const useAppDispatch : () => AppDispatch = useDispatch
-export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
+
 
 export const useScript = (url: any, onload: any) => {
     useEffect(() => {

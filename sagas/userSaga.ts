@@ -3,11 +3,12 @@ import { call, delay, put, takeLatest, takeLeading, throttle } from 'redux-saga/
 // yarn add @redux-saga/is --dev , yarn add @types/redux, yarn add redux-saga
 import { joinSuccess, userActions } from '@/modules/users/join';
 import { loginActions, loginFailure, loginSuccess } from '@/modules/users/login';
-import { findUserNameApi, findUserPwApi, LoginType, userJoinApi, userLoginApi  } from '@/apis/userApi'
+import { findUserNameApi, findUserPwApi, loadUserApi, LoginType, userJoinApi, userLoginApi  } from '@/apis/userApi'
 import { AxiosResponse } from 'axios';
 import { findUserNameActions, findUserNameRequest, ResultFindUserName } from '@/modules/users/findUserName';
 import { UserFindIdInput, UserFindPwInput } from '@/pages/users/findAccount';
 import { findUserPwActions, findUserPwRequest, ResultFindPw } from '@/modules/users/findPw';
+import { loadUserActions, Token, UserInfo } from '@/modules/users/loadUser';
 
 interface UserJoinType{
     type: string;
@@ -30,18 +31,6 @@ export interface UserLoginInput {
 
 //Get Saga
 
-function* join(user: UserJoinType ){
-    try{
-        alert(`3. saga내부 join 성공  + ${JSON.stringify(user)}`)
-        //console.log(' saga내부 join 성공  '+ JSON.stringify(user))
-        const response: UserJoinType = yield userJoinApi(user.payload)
-        yield put(joinSuccess(response.payload))
-        
-    }catch(error){
-         console.log(' saga내부 join 실패  ') 
-         yield put(userActions.joinFailure(error))
-    }
-}
 
 
 function* login(action : {payload: UserLoginInput}) {
@@ -88,11 +77,34 @@ function* findUserPw(action : {payload: UserFindPwInput}){
         yield put(findUserPwFailure(error))
     }
 }
+function* loadUser(action : {payload : Token}){
+    const { loadUserSuccess, loadUserFailure} = loadUserActions
+    const param = action.payload
+    try {
+        console.log(`3. saga내부 login 성공  + ${JSON.stringify(param)}`)
+        const response: UserInfo = yield call (loadUserApi, param)
+        yield put(loadUserSuccess(response))
+    } catch (error) {
+        yield put(loadUserFailure(error))
+    }
+}
 
 
 //main Saga + get Saga -> Lambda try
 export function* watchJoin(){
-    yield throttle(500, userActions.joinRequest, join)
+    yield throttle(500, userActions.joinRequest, (user: UserJoinType ) => {
+        try{
+            alert(`3. saga내부 join 성공  + ${JSON.stringify(user)}`)
+            //console.log(' saga내부 join 성공  '+ JSON.stringify(user))
+            const response: any =  userJoinApi(user.payload)
+            put(joinSuccess(response.payload))
+            
+        }catch(error){
+             console.log(' saga내부 join 실패  ') 
+            put(userActions.joinFailure(error))
+        }
+    }
+    )
 }
 export function* watchLogin(){
     const { loginRequest } = loginActions;
@@ -106,4 +118,6 @@ export function* watchFindPw(){
     const { findUserPwRequest } = findUserPwActions
     yield takeLatest(findUserPwRequest, findUserPw)
 }
-
+export function* watchLoadUser(){
+    yield takeLatest(loadUserActions.loadUserRequest, loadUser)
+}

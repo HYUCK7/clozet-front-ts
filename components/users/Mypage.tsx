@@ -11,15 +11,10 @@ const headers = {
 }
 
 type Props ={
-  data:{
-    username : string,
-    email: string,
-    name: string,
-    nickname: string,
-    phone: string,
-    birth: string,
-  }
+  handleChange : (e : React.FormEvent<HTMLInputElement> ) => void;
+  handleSubmit : (e : React.FormEvent<HTMLFormElement>) => void;
 }
+
 export interface User {
   userId?: number,
   username?: string,
@@ -35,7 +30,7 @@ export interface User {
   roles?: any
 }
 
-const Mypage: React.FC<Props> = ({data}) => {
+const Mypage: React.FC<Props> = ({handleChange, handleSubmit} : Props) => {
   const [userInfo, setUserInfo] = useState<Array<User>>([])
   
   useEffect(() => { 
@@ -49,7 +44,7 @@ const Mypage: React.FC<Props> = ({data}) => {
     <div className="input-form-backgroud row">
       <div className="input-form col-md-12 mx-auto">
         <h4 className="mb-3">MY PAGE</h4>
-        <form>
+        <form onSubmit={handleSubmit}>
         {userInfo.map(( user: User ) =>
         <>
           <div className="row">
@@ -71,7 +66,7 @@ const Mypage: React.FC<Props> = ({data}) => {
                         <h5>수정할 아이디 입력</h5>
                         </div>
                         <div className='col'>
-                        <h5><input/></h5>
+                        <h5><input name='username' onChange={handleChange}/></h5>
                           </div>
                           <button>수정</button>
                         </div>
@@ -122,7 +117,7 @@ const Mypage: React.FC<Props> = ({data}) => {
                         <h5>수정할 이메일 입력</h5>
                         </div>
                         <div className='col'>
-                        <h5><input/></h5>
+                        <h5><input name='email' onChange={handleChange}/></h5>
                           </div>
                         </div>
                       </div>
@@ -147,7 +142,7 @@ const Mypage: React.FC<Props> = ({data}) => {
                         <h5>수정할 이름 입력</h5>
                         </div>
                         <div className='col'>
-                        <h5><input/></h5>
+                        <h5><input name='name' onChange={handleChange}/></h5>
                           </div>
                         </div>
                       </div>
@@ -171,7 +166,7 @@ const Mypage: React.FC<Props> = ({data}) => {
                         <h5>수정할 닉네임 입력</h5>
                         </div>
                         <div className='col'>
-                        <h5><input/></h5>
+                        <h5><input name='nickname' onChange={handleChange}/></h5>
                           </div>
                         </div>
                       </div>
@@ -196,7 +191,7 @@ const Mypage: React.FC<Props> = ({data}) => {
                         <h5>수정할 전화번호 입력</h5>
                         </div>
                         <div className='col'>
-                        <h5><input/></h5>
+                        <h5><input name='phone' onChange={handleChange}/></h5>
                           </div>
                         </div>
                       </div>

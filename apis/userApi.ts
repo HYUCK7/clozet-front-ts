@@ -3,6 +3,7 @@ import { ResultFindPw } from "@/modules/users/findPw";
 import { ResultFindUserName } from "@/modules/users/findUserName";
 import { Token } from "@/modules/users/loadUser";
 import { loginSuccess } from "@/modules/users/login";
+import { UpdateInfo } from "@/pages/users/mypage";
 import axios, {AxiosResponse} from "axios";
 const SERVER = 'http://127.0.0.1:8080'
 const headers = {
@@ -57,7 +58,7 @@ export const userJoinApi = async (
             try{
                 // alert(`Login API TRY`)
                 console.log(`API 진입 + ${JSON.stringify(userLoginData)}`)
-                const response : AxiosResponse<any, LoginType[]>=
+                const response : AxiosResponse<any, LoginType[]> =
                 await axios.post(`${SERVER}/users/login`, userLoginData, { headers })
                 alert(`진행5 : 응답 성공 + ${JSON.stringify(response.data)}`)
                 const loginSuccessUser = response.data.token
@@ -86,7 +87,7 @@ export const userJoinApi = async (
         findUserPwData : {username: string, email: string}) => {
             try{
                 alert(`Find PASSWORD API TRY`)
-                const response: AxiosResponse<any, ResultFindPw[]>=
+                const response: AxiosResponse<any, ResultFindPw[]> =
                 await axios.post(`${SERVER}/users/NOTURL`, findUserPwData, { headers })
                 alert(`서버 응답 + ${JSON.stringify(response.data)}`) 
                 return response.data
@@ -106,6 +107,18 @@ export const userJoinApi = async (
                 return err;
             }
         }
+    export const updateUserApi = async(
+        updateData: UpdateInfo
+    ) => {
+        try{
+            console.log('API 진입')
+            await axios.patch(`${SERVER}/users/update`, updateData, {headers})
+        } catch(err){
+            return err;
+        }
+    }
+        
+    
     
         /** 
     export const userUpdateApi = async (

@@ -1,30 +1,43 @@
-import Mypage from '@/components/users/Mypage'
+import Mypage, { User } from '@/components/users/Mypage'
 import { useAppDispatch } from '@/hooks'
+import { updateRequest } from '@/modules/users/update'
 import { StringIterator } from 'lodash'
 import { NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
-export interface fetchData{
-  username: string,
-  name: string,
-  email: string,
-  phone: string,
-  birth: string, 
-  nickname: string
+export interface UpdateInfo {
+  username? : string,
+  password? : string,
+  email? : string,
+  name? : string,
+  nickname?: string,
+  phone?: string
+  token?: string // - update 시 같이 제공
 }
-
+//const userToken = localStorage.getItem('loginSuccessUser')
 const MypagePage : NextPage = () => {
-  const [data, setData] = useState<fetchData>({
-    username : '', name: '', email: '', phone: '', birth: '', nickname:''  })
+  const [info, setInfo] = useState<UpdateInfo>({
+    username: '', name: '', email: '', phone: '',  nickname:'', token:'' })
 
-  // 스토어 내 로그인 정보 가져오겠음.
-  //const { userInfo } = useAppSelector(state => state.login);
-  //console.log(JSON.stringify(userInfo))
- // useEffect(() => {setData(userInfo)})
+  const dispatch = useAppDispatch()
+
+  const onInfoChange = (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    const { name , value } = e.currentTarget
+    setInfo({ ...info , [name]: value})
+  }
+
+  const onInfoSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log(`바꿀 계정 정보 ${JSON.stringify(info)}`)
+    console.log(`업데이트 버튼 클릭 ${JSON.stringify(info)}`)
+    dispatch(updateRequest(info))
+    console.log(`업데이트 액션 생성 ${JSON.stringify(info)}`)
+  }
 
   return (
-    <Mypage data = {data}/>
+    <Mypage handleChange = {onInfoChange} handleSubmit = {onInfoSubmit}/>
   )
 }
 

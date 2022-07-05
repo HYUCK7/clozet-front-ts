@@ -8,6 +8,7 @@ import findUserNameReducer from './users/findUserName'
 import findUserPwReducer from './users/findPw'
 import loadUserReducer from './users/loadUser'
 import articleReducer from './boards';
+import updateReducer from './users/update'
 import rootSaga from '@/sagas';
 import createSagaMiddleware from '@redux-saga/core'
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
@@ -26,7 +27,8 @@ const combinedReducer = combineReducers({
         findUserName : findUserNameReducer,
         findUserPw : findUserPwReducer,
         loadUser: loadUserReducer,
-        article: articleReducer
+        article: articleReducer,
+        update: updateReducer
 })
 const rootReducer = (
 	state: ReturnType<typeof combinedReducer>,

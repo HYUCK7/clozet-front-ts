@@ -1,4 +1,5 @@
 import Home from "@/components/Home";
+import axios from "axios";
 import type { NextPage } from "next";
 /**
  * 
@@ -25,6 +26,9 @@ const HomePage: NextPage = () => {
   )
 }
 export default HomePage
+
+
+
 
 
 

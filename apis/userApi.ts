@@ -98,7 +98,8 @@ export const userJoinApi = async (
         token: Token) => {
             try {
                 console.log(`LOGIN CHECK ${token}`)
-                const response: AxiosResponse = await axios.post(`${SERVER}/`, token, {headers})
+                console.log(JSON.stringify(token))
+                const response: AxiosResponse = await axios.post(`${SERVER}/users/token`, token , {headers})
                 console.log (`서버 응답 + ${JSON.stringify(response.data)}`)
                 return response.data
             } catch (err) {

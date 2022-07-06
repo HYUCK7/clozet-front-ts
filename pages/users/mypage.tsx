@@ -13,12 +13,18 @@ export interface UpdateInfo {
   name? : string,
   nickname?: string,
   phone?: string
-  token?: string // - update 시 같이 제공
+  token?: any 
 }
-//const userToken = localStorage.getItem('loginSuccessUser')
+
 const MypagePage : NextPage = () => {
   const [info, setInfo] = useState<UpdateInfo>({
-    username: '', name: '', email: '', phone: '',  nickname:'', token:'' })
+    username: '', 
+    name: '', 
+    email: '', 
+    phone: '',  
+    nickname:'', 
+    token :null
+  })
 
   const dispatch = useAppDispatch()
 
@@ -27,15 +33,19 @@ const MypagePage : NextPage = () => {
     const { name , value } = e.currentTarget
     setInfo({ ...info , [name]: value})
   }
-
+  
   const onInfoSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(`바꿀 계정 정보 ${JSON.stringify(info)}`)
     console.log(`업데이트 버튼 클릭 ${JSON.stringify(info)}`)
     dispatch(updateRequest(info))
     console.log(`업데이트 액션 생성 ${JSON.stringify(info)}`)
   }
 
+  useEffect(() => {
+    const token = localStorage.getItem('loginSuccessUser')
+    setInfo({token})},['loginSuccessUser'])
+  
+  
   return (
     <Mypage handleChange = {onInfoChange} handleSubmit = {onInfoSubmit}/>
   )

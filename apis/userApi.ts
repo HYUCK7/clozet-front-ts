@@ -111,10 +111,18 @@ export const userJoinApi = async (
         updateData: UpdateInfo
     ) => {
         try{
-            console.log('API 진입')
+            console.log(`API 진입 + ${JSON.stringify(updateData)}`)
             await axios.patch(`${SERVER}/users/update`, updateData, {headers})
         } catch(err){
             return err;
+        }
+    }
+
+    export const deleteUserApi = async() => {
+        try {
+            console.log(`api 진입`)
+        } catch (err) {
+
         }
     }
         

@@ -68,7 +68,6 @@ const Mypage: React.FC<Props> = ({handleChange, handleSubmit} : Props) => {
                         <div className='col'>
                         <h5><input name='username' onChange={handleChange}/></h5>
                           </div>
-                          <button>수정</button>
                         </div>
                       </div>
                     </div>
@@ -208,7 +207,7 @@ const Mypage: React.FC<Props> = ({handleChange, handleSubmit} : Props) => {
             </button>
            &nbsp; 
            <Link href={'/users/remove'}>
-          <button className="btn btn-danger btn-lg btn-block" type="submit">
+          <button className="btn btn-danger btn-lg btn-block">
             <h5>Account Delete</h5>
           </button>  
           </Link>

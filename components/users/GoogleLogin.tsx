@@ -28,15 +28,11 @@ export default function GoogleLogin({
         type: 'standard', text: "signin_with"
       }
     )
-    const button = document.getElementById('signout_button') as HTMLButtonElement
-    button.onclick = () =>{
-    window.google.accounts.id.disableAutoSelect()
-    }
+    
   });
 
   return (
-  <><div id = "buttonDiv"></div>
-  <div id = "signout_button"></div></>)
+  <div id="buttonDiv"/>)
   
   //return (<div ref={googleSignInButton as React.RefObject<HTMLDivElement>}></div>)
 }

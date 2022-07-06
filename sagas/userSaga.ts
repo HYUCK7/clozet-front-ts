@@ -3,7 +3,7 @@ import { call, delay, put, takeLatest, takeLeading, throttle } from 'redux-saga/
 // yarn add @redux-saga/is --dev , yarn add @types/redux, yarn add redux-saga
 import { joinSuccess, userActions } from '@/modules/users/join';
 import { loginActions, loginFailure, loginSuccess } from '@/modules/users/login';
-import { findUserNameApi, findUserPwApi, loadUserApi, LoginType, updateUserApi, userJoinApi, userLoginApi  } from '@/apis/userApi'
+import { findUserNameApi, findUserPwApi, loadUserApi, LoginType, removeUserApi, updateUserApi, userJoinApi, userLoginApi  } from '@/apis/userApi'
 import { AxiosResponse } from 'axios';
 import { findUserNameActions, findUserNameRequest, ResultFindUserName } from '@/modules/users/findUserName';
 import { UserFindIdInput, UserFindPwInput } from '@/pages/users/findAccount';
@@ -11,6 +11,7 @@ import { findUserPwActions, findUserPwRequest, ResultFindPw } from '@/modules/us
 import { loadUserActions, Token, UserInfo } from '@/modules/users/loadUser';
 import { UpdateInfo } from '@/pages/users/mypage';
 import { updateActions, updateFailure, updateSuccess } from '@/modules/users/update';
+import { removeActions } from '@/modules/users/remove';
 
 interface UserJoinType{
     type: string;
@@ -32,9 +33,6 @@ export interface UserLoginInput {
 }
 
 //Get Saga
-
-
-
 function* login(action : {payload: UserLoginInput}) {
     const {loginSuccess, loginFailure} = loginActions;
     const param = action.payload // 입력된 action에 대한 payload
@@ -91,6 +89,17 @@ function* loadUser(action : {payload : Token}){
     }
 }
 
+function* remove(action : PayloadAction<{}>){
+    const {removeSuccess, removeFailure} = removeActions
+    try{
+        console.log(`삭제 saga 성공 + ${JSON.stringify(action.payload)}`)
+        yield call(removeUserApi, action.payload)
+        yield put (removeSuccess())
+    } catch (error) {
+        yield put (removeFailure())
+    }
+}
+
 function* update(action: {payload: UpdateInfo}) {
     const param = action.payload
     try{
@@ -136,4 +145,8 @@ export function* watchLoadUser(){
 export function* watchUpdateUser(){
     const { updateRequest } = updateActions
     yield takeLatest(updateRequest, update)
+}
+export function* watchRemoveUser(){
+    const {removeRequest}  = removeActions
+    yield takeLatest(removeRequest, remove)
 }

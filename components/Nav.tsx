@@ -27,54 +27,51 @@ export function Nav() {
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
         </button>
-
+        
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-    <li className="nav-item dropdown">
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"  aria-expanded="false">
-        Closet
-        </a>
-    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a className="dropdown-item" href="/closets/main">MAIN</a></li>
-        <li><a className="dropdown-item" href="/closets/top">TOP</a></li>
-        <li><a className="dropdown-item" href="/closets/bottom">BOTTOM</a></li>
-        <li><a className="dropdown-item" href="/closets/best">BEST</a></li>
-    </ul>
-    </li>
-
-    <li className="nav-item dropdown">
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"  aria-expanded="false">
-        MyWeek
-        </a>
-    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a className="dropdown-item" href="/closets/thisWeek">This Week</a></li>
-        <li><a className="dropdown-item" href="/closets/lastWeek">Last Week</a></li>
-        <li><a className="dropdown-item" href="/clothes/optionRecommand">Special</a></li>
-    </ul>
-    </li>
-
-    <li className="nav-item dropdown">
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"  aria-expanded="false">
-        UserPage
-        </a>
-    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a className="dropdown-item" href="/users/mypage">My Page</a></li>
-        <li><a className="dropdown-item" href="/users/findAccount">Find Account</a></li>
-    </ul>
-    </li>
-
-    <li className="nav-item dropdown">
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"  aria-expanded="false">
-        People
-        </a>
-    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li><a className="dropdown-item" href="/articles/addBoard">UPLOAD</a></li>
-        <li><a className="dropdown-item" href="/boards/myBoardList">MY UPLOAD</a></li>
-        <li><a className="dropdown-item" href="/boards/allBoardList">Clozet People</a></li>
-        <li><a className="dropdown-item" href="/boards/trend">Trend</a></li>
-    </ul>
-    </li>
-        </ul>
+    
+        <ul className="navbar-nav me-auto mb-2 mb-lg-0">    
+        { item !== null ? 
+    <><li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Closet
+                                </a>
+                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a className="dropdown-item" href="/closets/main">MAIN</a></li>
+                                    <li><a className="dropdown-item" href="/closets/top">TOP</a></li>
+                                    <li><a className="dropdown-item" href="/closets/bottom">BOTTOM</a></li>
+                                    <li><a className="dropdown-item" href="/closets/best">BEST</a></li>
+                                </ul>
+                            </li><li className="nav-item dropdown">
+                                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        MyWeek
+                                    </a>
+                                    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a className="dropdown-item" href="/closets/thisWeek">This Week</a></li>
+                                        <li><a className="dropdown-item" href="/closets/lastWeek">Last Week</a></li>
+                                        <li><a className="dropdown-item" href="/clothes/optionRecommand">Special</a></li>
+                                    </ul>
+                                </li><li className="nav-item dropdown">
+                                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        UserPage
+                                    </a>
+                                    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a className="dropdown-item" href="/users/mypage">My Page</a></li>
+                                        <li><a className="dropdown-item" href="/users/findAccount">Find Account</a></li>
+                                    </ul>
+                                </li><li className="nav-item dropdown">
+                                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        People
+                                    </a>
+                                    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a className="dropdown-item" href="/articles/addBoard">UPLOAD</a></li>
+                                        <li><a className="dropdown-item" href="/boards/myBoardList">MY UPLOAD</a></li>
+                                        <li><a className="dropdown-item" href="/boards/allBoardList">Clozet People</a></li>
+                                        <li><a className="dropdown-item" href="/boards/trend">Trend</a></li>
+                                    </ul>
+                                </li></> : null}
+        </ul> 
+                    
                 <Link href='/clothes/recommand'>
                 <button className='btn btn-datk'>
                     <a>Clozet 이용하기</a>

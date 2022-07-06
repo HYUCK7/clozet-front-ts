@@ -5,6 +5,7 @@ import GoogleLogin from '@/components/users/GoogleLogin'
 import { useAppDispatch } from '@/hooks'
 import { loginRequest, LoginState, LoginUser, UserLoginInput } from '@/modules/users/login'
 import {  AppState, useAppSelector,  } from '@/modules/store'
+import LoginTestPage from './loginTest'
 /* global google */
 
 const LoginPage: NextPage = () => {
@@ -36,7 +37,7 @@ const LoginPage: NextPage = () => {
   return (
     <>
     <Login handleChange = {onChange} handleSubmit = {onSubmit}/>
-    <GoogleLogin/>
+    <LoginTestPage />
     </>
   )
 }

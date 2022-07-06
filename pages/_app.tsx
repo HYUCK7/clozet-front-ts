@@ -19,7 +19,6 @@ function MyApp({ Component, pageProps: {...pageProps} }: AppProps) {
     <Provider store = {store}>
     <Layout>
     <Component {...pageProps} />
-    <LoginTestPage />
     <style jsx>{`
         a{
             textDecoration: none;

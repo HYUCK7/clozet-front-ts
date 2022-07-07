@@ -2,7 +2,8 @@ import Remove from '@/components/users/Remove'
 import { useAppDispatch } from '@/hooks'
 import { removeRequest } from '@/modules/users/remove'
 import { NextPage } from 'next'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
 
 
 const RemovePage: NextPage = () => {

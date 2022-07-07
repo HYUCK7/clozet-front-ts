@@ -1,5 +1,6 @@
 import { all, fork } from 'redux-saga/effects';
 import {
+  watchCheckId,
   watchFindPw,
   watchFindUserName,
   watchJoin,
@@ -20,7 +21,8 @@ export default function* rootSaga() {
     fork(watchFindPw),
     fork(watchWriteArticle),
     fork(watchUpdateUser),
-    fork(watchRemoveUser)
+    fork(watchRemoveUser),
+    fork(watchCheckId)
     //fork(watchFetchArticle)
   ]);
 }

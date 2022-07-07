@@ -10,6 +10,8 @@ import loadUserReducer from './users/loadUser'
 import articleReducer from './boards';
 import updateReducer from './users/update'
 import removeReducer from './users/remove'
+import checkReducer from '@/modules/users/check'
+
 import rootSaga from '@/sagas';
 import createSagaMiddleware from '@redux-saga/core'
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
@@ -30,7 +32,8 @@ const combinedReducer = combineReducers({
         loadUser: loadUserReducer,
         article: articleReducer,
         update: updateReducer,
-        remove: removeReducer
+        remove: removeReducer,
+        check: checkReducer
 })
 const rootReducer = (
 	state: ReturnType<typeof combinedReducer>,

@@ -1,9 +1,11 @@
- import { useAppDispatch } from "@/hooks";
+ import { UsernameType } from "@/components/users/Join";
+import { useAppDispatch } from "@/hooks";
 import { ResultFindPw } from "@/modules/users/findPw";
 import { ResultFindUserName } from "@/modules/users/findUserName";
 import { Token } from "@/modules/users/loadUser";
 import { loginSuccess } from "@/modules/users/login";
 import { UpdateInfo } from "@/pages/users/mypage";
+import { PayloadAction } from "@reduxjs/toolkit";
 import axios, {AxiosError, AxiosResponse} from "axios";
 const SERVER = 'http://127.0.0.1:8080'
 const headers = {
@@ -44,6 +46,7 @@ export const userJoinApi = async (
     }) => {
         try{
             alert(`진행4. API 시도`)   
+            console.log(typeof({payload}))
             const response : AxiosResponse<any, UserType[]> =
             await axios.post(`${SERVER}/users/join`, payload, { headers })
             alert(`진행5 : 응답 성공 + ${JSON.stringify(response.data)}`)
@@ -57,6 +60,7 @@ export const userJoinApi = async (
         userLoginData: { username:string, password:string }) => {
             try{
                 // alert(`Login API TRY`)
+                console.log(typeof(userLoginData))
                 console.log(`API 진입 + ${JSON.stringify(userLoginData)}`)
                 const response : AxiosResponse<any, LoginType[]> =
                 await axios.post(`${SERVER}/users/login`, userLoginData, { headers })
@@ -123,11 +127,23 @@ export const userJoinApi = async (
     export const removeUserApi = async(PayloadAction: any) => {
         try {
             console.log(`api 진입 + ${JSON.stringify(PayloadAction)}`)
-            await axios.post(`${SERVER}/users/delete`, PayloadAction )
+            await axios.delete(`${SERVER}/users/delete`, PayloadAction )
             
             
         } catch (err) {
             return err;
 
+        }
+    }
+    export const checkIdApi = async(PayloadAction: UsernameType) => {
+        // existsByUsername
+        try{
+            console.log(`API + ${JSON.stringify(PayloadAction)}`)
+            const response = await axios.post(`${SERVER}/users/existsByUsername`, PayloadAction)
+            console.log(response)
+            const checkResult = response.data === true ? alert('중복되는 아이디입니다.') : alert('사용 가능한 아이디입니다.')
+            return checkResult
+        } catch (err) {
+            return err;
         }
     }

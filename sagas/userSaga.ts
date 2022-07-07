@@ -3,7 +3,7 @@ import { call, delay, put, takeLatest, takeLeading, throttle } from 'redux-saga/
 // yarn add @redux-saga/is --dev , yarn add @types/redux, yarn add redux-saga
 import { joinSuccess, userActions } from '@/modules/users/join';
 import { loginActions, loginFailure, loginSuccess } from '@/modules/users/login';
-import { findUserNameApi, findUserPwApi, loadUserApi, LoginType, removeUserApi, updateUserApi, userJoinApi, userLoginApi  } from '@/apis/userApi'
+import { checkIdApi, findUserNameApi, findUserPwApi, loadUserApi, LoginType, removeUserApi, updateUserApi, userJoinApi, userLoginApi  } from '@/apis/userApi'
 import { AxiosResponse } from 'axios';
 import { findUserNameActions, findUserNameRequest, ResultFindUserName } from '@/modules/users/findUserName';
 import { UserFindIdInput, UserFindPwInput } from '@/pages/users/findAccount';
@@ -12,6 +12,7 @@ import { loadUserActions, Token, UserInfo } from '@/modules/users/loadUser';
 import { UpdateInfo } from '@/pages/users/mypage';
 import { updateActions, updateFailure, updateSuccess } from '@/modules/users/update';
 import { removeActions } from '@/modules/users/remove';
+import { checkActions } from '@/modules/users/Check';
 
 interface UserJoinType{
     type: string;
@@ -111,6 +112,15 @@ function* update(action: {payload: UpdateInfo}) {
     }
 }
 
+function* checkId(action : PayloadAction<{}>){
+    console.log(`check saga 실행 + ${JSON.stringify(action.payload)}`)
+    try{
+        yield call(checkIdApi, action.payload)
+    }catch (error) {
+    yield 
+    }
+}
+
 //main Saga + get Saga -> Lambda try
 export function* watchJoin(){
     yield throttle(500, userActions.joinRequest, (user: UserJoinType ) => {
@@ -149,4 +159,7 @@ export function* watchUpdateUser(){
 export function* watchRemoveUser(){
     const {removeRequest}  = removeActions
     yield takeLatest(removeRequest, remove)
+}
+export function* watchCheckId(){
+    yield takeLatest(checkActions.checkIdRequest, checkId)
 }

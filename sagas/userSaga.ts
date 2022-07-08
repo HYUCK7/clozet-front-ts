@@ -12,7 +12,7 @@ import { loadUserActions, Token, UserInfo } from '@/modules/users/loadUser';
 import { UpdateInfo } from '@/pages/users/mypage';
 import { updateActions, updateFailure, updateSuccess } from '@/modules/users/update';
 import { removeActions } from '@/modules/users/remove';
-import { checkActions } from '@/modules/users/Check';
+import { checkActions } from '@/modules/users/check';
 
 interface UserJoinType{
     type: string;
@@ -116,8 +116,9 @@ function* checkId(action : PayloadAction<{}>){
     console.log(`check saga 실행 + ${JSON.stringify(action.payload)}`)
     try{
         yield call(checkIdApi, action.payload)
+        
     }catch (error) {
-    yield 
+        yield
     }
 }
 

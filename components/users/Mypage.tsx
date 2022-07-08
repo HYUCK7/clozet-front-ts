@@ -13,6 +13,8 @@ const headers = {
 type Props ={
   handleChange : (e : React.FormEvent<HTMLInputElement> ) => void;
   handleSubmit : (e : React.FormEvent<HTMLFormElement>) => void;
+  handleClick : (e : React.MouseEvent<HTMLButtonElement>) => void;
+  // 삭제 토큰 보내기 테스트용 핸들 클릭
 }
 
 export interface User {
@@ -30,7 +32,7 @@ export interface User {
   roles?: any
 }
 
-const Mypage: React.FC<Props> = ({handleChange, handleSubmit} : Props) => {
+const Mypage: React.FC<Props> = ({handleChange, handleSubmit, handleClick} : Props) => {
   const [userInfo, setUserInfo] = useState<Array<User>>([])
   
   useEffect(() => { 
@@ -207,7 +209,7 @@ const Mypage: React.FC<Props> = ({handleChange, handleSubmit} : Props) => {
             </button>
            &nbsp; 
            <Link href={'/users/remove'}>
-          <button className="btn btn-danger btn-lg btn-block">
+          <button className="btn btn-danger btn-lg btn-block" onClick={handleClick}>
             <h5>Account Delete</h5>
           </button>  
           </Link>
@@ -222,15 +224,5 @@ const Mypage: React.FC<Props> = ({handleChange, handleSubmit} : Props) => {
       </div>
   )
 }
-/** 
-export const getServerSideProps = async(
-  userToken: any = localStorage.getItem('loginSuccessUser')) => {
-  const SERVER = 'http://127.0.0.1:8080'
-  console.log(typeof(userToken))
-  try{
-    const response: AxiosResponse = await axios.post(`${SERVER}/users/load`, userToken, {headers})
-    console.log(`로그인 상태 유지중 : + ${JSON.stringify(response.data)}`)
-  } catch(err){ return err; }
-}
-*/
+
 export default Mypage

@@ -4,7 +4,7 @@ import { ResultFindPw } from "@/modules/users/findPw";
 import { ResultFindUserName } from "@/modules/users/findUserName";
 import { Token } from "@/modules/users/loadUser";
 import { loginSuccess } from "@/modules/users/login";
-import { UpdateInfo } from "@/pages/users/mypage";
+import { UpdateInfo, UserInfoTest } from "@/pages/users/mypage";
 import { PayloadAction } from "@reduxjs/toolkit";
 import axios, {AxiosError, AxiosResponse} from "axios";
 const SERVER = 'http://127.0.0.1:8080'
@@ -135,8 +135,15 @@ export const userJoinApi = async (
 
         }
     }
+
+    export const removeUserTokenApi = async(tokenData : UserInfoTest) => {
+        try{
+            console.log (`토큰 보낼게 윤섭 + ${JSON.stringify(tokenData)}` )
+            await axios.delete(`${SERVER}/users/delete`, { data: tokenData })
+        } catch (err) { return err;}
+    }
+
     export const checkIdApi = async(PayloadAction: UsernameType) => {
-        // existsByUsername
         try{
             console.log(`API + ${JSON.stringify(PayloadAction)}`)
             const response = await axios.post(`${SERVER}/users/existsByUsername`, PayloadAction)

@@ -1,4 +1,4 @@
-import { Article } from "@/modules/boards";
+import { Article } from "@/pages/articles/addBoard";
 import axios, { AxiosResponse } from "axios";
 const SERVER = 'http://127.0.0.1:8080'
 const headers = {
@@ -6,7 +6,7 @@ const headers = {
     Authorization: "JWT fefege...",
 }
 export const writeArticleApi = async (
-    writeData: Article) => {
+    writeData: Article[]) => {
         try {
             console.log(`API 진입 + ${JSON.stringify(writeData)}`)
             await axios.post(`${SERVER}/articles/join`, writeData, {headers})            

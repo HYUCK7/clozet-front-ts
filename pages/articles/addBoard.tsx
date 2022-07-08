@@ -4,23 +4,30 @@ import { useAppDispatch } from '@/hooks'
 import { NextPage } from 'next'
 import { writeBoard } from '@/modules/boards'
 
-export interface ArticleWrite {
+// 게시판 DB 스키마 동일.
+export interface Article {
+  articleId: number ,
   title: string,
   content: string,
-  picture?: any | undefined,
+  picture: FileList | null,
   height: string,
-  weight: string
+  weight: string,
+  writtenDate: string
+  open : boolean,
+  comment? : string,
+  qna? : string
+  pictureName: string,
+  size? : number
 }
 
 const AddBoardPage: NextPage = () =>  {
-  const [write, setWrite] = useState<ArticleWrite>({
-    title: '', content: '', height: '', weight: '', picture: null
-  })
+  const [write, setWrite] = useState<Article[]>([])
   const dispatch = useAppDispatch()
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault()
     const {name, value} = e.currentTarget
     setWrite({...write, [name]: value})
+    console.log(`데이터 : ${JSON.stringify( write )}`)
   }
   const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

@@ -1,7 +1,8 @@
+import { Article } from "@/pages/articles/addBoard";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 //const boardSliceType = "slice/board";
-
+/** 
 export interface Article{
     title: string,
     content: string,
@@ -9,6 +10,7 @@ export interface Article{
     height : string,
     weight: string
 }
+*/
 
 export interface ArticleState{
     data: Article[],
@@ -20,13 +22,12 @@ const initialState: ArticleState = {
     status: 'loading',
     error: null
 }
-
 const ArticleSlice = createSlice({
 	name: 'articleSlice',
     //initialState : [] as BoardState[],
     initialState,
     reducers: {
-        writeBoard: (state, action: PayloadAction<Article>) => {
+        writeBoard: (state, action: PayloadAction<Article[]>) => {
             alert(`게시글 작성 액션 요청`)
             const newArticle = state.data.concat(action.payload)
             state.data = newArticle
@@ -34,21 +35,17 @@ const ArticleSlice = createSlice({
             console.log(`게시글 작성 성공 - 리듀서 ${JSON.stringify( state.data )}`)
             //state.push({data: action.payload, status: 'loading', error: null})
         },
-
         writeBoardSuccess: (state, action: PayloadAction) => {
             state.status = 'successed'
         },
-
         writeBoardFailure: (state, action: PayloadAction) => {
             alert(`게시글 작성 실패`)
             state.status = 'failed'
         },
-        
         fetchBoards : (state) => {
             console.log(`게시글 불러오기 - 리듀서`)
             state.status = 'loading'
         },
-        
         fetchBoardSuccess: (state, {payload}) => {
             const fetchArticle = state.data.concat(payload)
             state.data = fetchArticle

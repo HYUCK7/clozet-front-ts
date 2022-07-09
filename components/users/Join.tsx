@@ -18,24 +18,45 @@ const Join: React.FC = () => {
   const [user, setUser] =useState<User>({
     username:'', password:'', email:'', name:'', phone:'', birth:'', nickname:''
 })
-  const [username, setUsername] = useState<UsernameType>({username: ''}) // 아이디 중복확인
-  const [check, setCheck] = useState<CompareType>({checkIdValue: '', checkPwValue: ''})
-  const [pwCheck, setPwCheck] = useState(0)
+const [username, setUsername] = useState<UsernameType>({username: ''}) // 아이디 중복확인
+const [check, setCheck] = useState<CompareType>({checkIdValue: '', checkPwValue: ''})
+const [nameVal, setNameVal] = useState(false)
+const [passwordval, setPasswordVal] = useState(false)
+const [emailVal, setEmailVal] = useState(false)
+const [passwordSame, setPasswordSame] = useState(false)
 
 const dispatch = useAppDispatch();
+
+const nameRegex =  /^[가-힣]{2,10}$/
+const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^*+=-]).{7,25}$/
+const emailRegex = /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
 
 const handleChange = (e: { preventDefault: () => void; target: { name: string; value: string } }) =>{
     e.preventDefault()
     const {name, value} = e.target;
     setUser({...user, [name]: value})
-}
+    //if (user.name.length <= 2 || user.name.length > 10) 
+    if(nameRegex.test(e.target.value))
+    { setNameVal(true) } else { setNameVal(false) }
 
+    if(passwordRegex.test(e.target.value))
+    { setPasswordVal(true) } else { setPasswordVal(false)}
+
+    if(emailRegex.test(e.target.value))
+    { setEmailVal(true) } else { setEmailVal(false)} 
+}
 const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
+  
       e.preventDefault()
       dispatch(userActions.joinRequest(user)) // 리퀘스트 객체를 생성해라 요청 시 객체이름은 request, 또는 response
       console.log(JSON.stringify(user))       // 타입이 {} JSON
       window.location.href = ('/')
 }
+// Check Validiate
+
+//아이디 검사
+
+//const 
 
 const idCheckChange = (e : React.FormEvent<HTMLInputElement>) => {
   e.preventDefault()
@@ -43,27 +64,27 @@ const idCheckChange = (e : React.FormEvent<HTMLInputElement>) => {
   setUsername({...username, [name]: value})
 }
 
-const pwCheckChange = (e : React.FormEvent<HTMLInputElement>) => {
-  e.preventDefault
-  
-  const { name, value} = e.currentTarget
-  setCheck ({ ...check, [name] : value })
-
-  console.log(`비밀번호 체크 : ${JSON.stringify(user.password)}`)
-  console.log(`비교 비밀번호 체크 : ${JSON.stringify(check.checkPwValue)}`)
-  useEffect(() => {
-  const comparePwValue = user.password === check.checkPwValue ? setPwCheck(1) : setPwCheck(2)
-  return comparePwValue
-}, [check.checkPwValue])
-}
-//const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
 const idCheck = (e : React.MouseEvent<HTMLButtonElement>) => {
   e.preventDefault()
   console.log(`중복 체크 아이디 : ${JSON.stringify(username)}`)
   dispatch(checkIdRequest(username))
 }
 
+// 비밀번호 유효성 검사
+//const pwValCheck = (e : {}) {}
 
+//이메일 유효성 검사
+//const emailValCheck = ( e: {}) {}
+
+// 이름 검사
+
+// 비밀번호 중복 검사
+const pwCheckChange = (e : { preventDefault:() => void; target: {name: string ; value: string}}) => {
+  e.preventDefault()
+  const {name , value} = e.target;
+  setCheck({...check, [name] : value })
+}
+console.log(user.password)
     return(
     
     <form onSubmit = { handleSubmit } >
@@ -87,13 +108,15 @@ const idCheck = (e : React.MouseEvent<HTMLButtonElement>) => {
       <div className="form-floating">
         <input onChange = {handleChange} type="password" className="form-control" id="password" name = "password" placeholder="Password" />
         <label htmlFor="floatingPassword"><h5>Password</h5></label>
+        {user.password === '' ? null :
+        <>{passwordval === true ? <p>'안전한 비밀번호에요.'</p> : <p className='fw-bold text-danger'>영문과 숫자, 특수문자 조합으로 8자리 이상 입력해주세요</p>}</> }
       </div>
       <div className="form-floating">
         <input onChange = {pwCheckChange} type= 'password' className="form-control" id="passwordCheck" name = "checkPwValue" placeholder="Password Check" />      
-        <label htmlFor="floatingPassword"><h5>Password Check</h5></label>
+        <label htmlFor="floatingPassword"><h5>Password를 확인해주세요</h5></label>
       </div>
-      <p>{pwCheck === 0 ? '':(pwCheck === 1 ? "일치합니다." : "비밀번호를 확인해주세요.") }</p>
-      
+      {check.checkPwValue === '' ? null :  
+      <>{ check.checkPwValue === user.password ? <p>'일치'</p> || setPasswordSame(true) : <p className='fw-bold text-danger'> 일치하지 않아요 </p> || setPasswordSame(false)} </> }
       <div className="form-floating">
         <input onChange = {handleChange} type="text" className="form-control" id="birth" name = "birth" placeholder="생년월일" />
         <label htmlFor="floatingBirth"><h5>birth</h5></label>
@@ -101,6 +124,7 @@ const idCheck = (e : React.MouseEvent<HTMLButtonElement>) => {
       <div className="form-floating">
         <input onChange = {handleChange} type="text" className="form-control" id="name" name = "name" placeholder="Name" />
         <label htmlFor="floatingName"><h5>Name</h5></label>
+        { nameVal === true ? null : <p className='fw-bold text-danger'>2자 이상 10자 미만의 올바른 이름을 입력해주세요.</p>}
       </div>
       <div className="form-floating">
         <input onChange = {handleChange} type="text" className="form-control" id="nickname" name='nickname' placeholder="NickName" />
@@ -109,13 +133,14 @@ const idCheck = (e : React.MouseEvent<HTMLButtonElement>) => {
       <div className="form-floating">
         <input onChange = {handleChange} type="text" className="form-control" id="email" name='email' placeholder="E-mail" />
         <label htmlFor="floatingPassword"><h5>E-Mail</h5></label>
+        {user.email === '' ? null : <p> {emailVal === true ? '올바른 이메일 형식입니다.' :  <p className='fw-bold text-danger'>올바르지 않은 이메일 형식입니다.</p>} </p>}
       </div>
       <div className="form-floating">
         <input onChange = {handleChange} type="text" className="form-control" id="phone" name='phone' placeholder="Phone Number" />
         <label htmlFor="floatingPhone"><h5>Phone Number</h5></label>
       </div>
       
-      <button className="w-100 btn btn-lg btn-outline-secondary" type='submit'>
+      <button className="w-100 btn btn-lg btn-outline-secondary" type='submit' disabled = {! (nameVal && emailVal && passwordval && passwordSame)} >
                 <h4>Sign Up</h4>
       </button>
       <div className="custom-control custom-checkbox">

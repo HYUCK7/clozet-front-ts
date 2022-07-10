@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useRef, useState} from 'react'
 import { useAppDispatch } from '@/hooks'
 import { useDispatch } from 'react-redux'
 import {  User, userActions } from '@/modules/users/join'
@@ -15,6 +15,7 @@ export interface CompareType {
 
 const Join: React.FC = () => {
 
+  // 회원가입 타입
   const [user, setUser] =useState<User>({
     username:'', password:'', email:'', name:'', phone:'', birth:'', nickname:''
 })
@@ -27,71 +28,59 @@ const [passwordSame, setPasswordSame] = useState(false)
 
 const dispatch = useAppDispatch();
 
+const nameRef : any = useRef()
+const passwordRef : any = useRef()
+const emailRef : any = useRef()
+
+
 const nameRegex =  /^[가-힣]{2,10}$/
 const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^*+=-]).{7,25}$/
 const emailRegex = /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
 
+//inputSet, 유효성 검사
 const handleChange = (e: { preventDefault: () => void; target: { name: string; value: string } }) =>{
     e.preventDefault()
     const {name, value} = e.target;
     setUser({...user, [name]: value})
-    //if (user.name.length <= 2 || user.name.length > 10) 
-    if(nameRegex.test(e.target.value))
-    { setNameVal(true) } else { setNameVal(false) }
+    
+   if(e.target === nameRef.current) {
+    nameRegex.test(e.target.value) ? setNameVal(true) : setNameVal(false)
 
-    if(passwordRegex.test(e.target.value))
-    { setPasswordVal(true) } else { setPasswordVal(false)}
+   } else if(e.target === passwordRef.current) {
+    passwordRegex.test(e.target.value) ? setPasswordVal(true) : setPasswordVal(false)
 
-    if(emailRegex.test(e.target.value))
-    { setEmailVal(true) } else { setEmailVal(false)} 
+    } else if(e.target === emailRef.current) {
+    emailRegex.test(e.target.value) ? setEmailVal(true) : setEmailVal(false)
+   }
 }
 const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
-  
-      e.preventDefault()
-      dispatch(userActions.joinRequest(user)) // 리퀘스트 객체를 생성해라 요청 시 객체이름은 request, 또는 response
-      console.log(JSON.stringify(user))       // 타입이 {} JSON
-      window.location.href = ('/')
+  e.preventDefault()
+  dispatch(userActions.joinRequest(user)) // 리퀘스트 객체를 생성해라 요청 시 객체이름은 request, 또는 response
+  console.log(JSON.stringify(user))       // 타입이 {} JSON
+  window.location.href = ('/')
 }
-// Check Validiate
-
-//아이디 검사
-
-//const 
-
 const idCheckChange = (e : React.FormEvent<HTMLInputElement>) => {
   e.preventDefault()
   const {name, value} = e.currentTarget
   setUsername({...username, [name]: value})
 }
-
 const idCheck = (e : React.MouseEvent<HTMLButtonElement>) => {
   e.preventDefault()
   console.log(`중복 체크 아이디 : ${JSON.stringify(username)}`)
   dispatch(checkIdRequest(username))
 }
-
-// 비밀번호 유효성 검사
-//const pwValCheck = (e : {}) {}
-
-//이메일 유효성 검사
-//const emailValCheck = ( e: {}) {}
-
-// 이름 검사
-
-// 비밀번호 중복 검사
 const pwCheckChange = (e : { preventDefault:() => void; target: {name: string ; value: string}}) => {
   e.preventDefault()
   const {name , value} = e.target;
   setCheck({...check, [name] : value })
 }
-console.log(user.password)
+console.log(nameVal, passwordval, emailVal)
     return(
-    
     <form onSubmit = { handleSubmit } >
         <h4 className="h4 mb-3 fw-normal">Clozet의 회원이 되어주세요!</h4>
     <div className = 'd-grid gap-2'>
       <div className="form-floating">
-        <input onChange = {handleChange} type="text" className="form-control" id="username" name = "username" placeholder='UserID'  />
+        <input  onChange = {handleChange} type="text" className="form-control" id="username" name = "username" placeholder='UserID'  />
         <label htmlFor="floatingUserName"><h5>User ID</h5></label>
       </div>
        
@@ -106,7 +95,7 @@ console.log(user.password)
       </button>
         
       <div className="form-floating">
-        <input onChange = {handleChange} type="password" className="form-control" id="password" name = "password" placeholder="Password" />
+        <input ref = {passwordRef} onChange = {handleChange} type="password" className="form-control" id="password" name = "password" placeholder="Password" />
         <label htmlFor="floatingPassword"><h5>Password</h5></label>
         {user.password === '' ? null :
         <>{passwordval === true ? <p>'안전한 비밀번호에요.'</p> : <p className='fw-bold text-danger'>영문과 숫자, 특수문자 조합으로 8자리 이상 입력해주세요</p>}</> }
@@ -122,7 +111,7 @@ console.log(user.password)
         <label htmlFor="floatingBirth"><h5>birth</h5></label>
       </div>
       <div className="form-floating">
-        <input onChange = {handleChange} type="text" className="form-control" id="name" name = "name" placeholder="Name" />
+        <input ref = {nameRef} onChange = {handleChange} type="text" className="form-control" id="name" name = "name" placeholder="Name" />
         <label htmlFor="floatingName"><h5>Name</h5></label>
         { nameVal === true ? null : <p className='fw-bold text-danger'>2자 이상 10자 미만의 올바른 이름을 입력해주세요.</p>}
       </div>
@@ -131,16 +120,16 @@ console.log(user.password)
         <label htmlFor="floatingNickName"><h5>NickName</h5></label>
       </div>
       <div className="form-floating">
-        <input onChange = {handleChange} type="text" className="form-control" id="email" name='email' placeholder="E-mail" />
+        <input ref = {emailRef} onChange = {handleChange} type="text" className="form-control" id="email" name='email' placeholder="E-mail" />
         <label htmlFor="floatingPassword"><h5>E-Mail</h5></label>
-        {user.email === '' ? null : <p> {emailVal === true ? '올바른 이메일 형식입니다.' :  <p className='fw-bold text-danger'>올바르지 않은 이메일 형식입니다.</p>} </p>}
+        {user.email === '' ? null :  <>{emailVal === true ? <p>올바른 이메일 형식입니다.</p> :  <p className='fw-bold text-danger'>올바르지 않은 이메일 형식입니다.</p>}</> }
       </div>
       <div className="form-floating">
         <input onChange = {handleChange} type="text" className="form-control" id="phone" name='phone' placeholder="Phone Number" />
         <label htmlFor="floatingPhone"><h5>Phone Number</h5></label>
       </div>
       
-      <button className="w-100 btn btn-lg btn-outline-secondary" type='submit' disabled = {! (nameVal && emailVal && passwordval && passwordSame)} >
+      <button className="w-100 btn btn-lg btn-outline-secondary" type='submit' disabled = {!((nameVal && emailVal && passwordval) === true)} >
                 <h4>Sign Up</h4>
       </button>
       <div className="custom-control custom-checkbox">

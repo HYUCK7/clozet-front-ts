@@ -21,6 +21,7 @@ const Join: React.FC = () => {
 })
 const [username, setUsername] = useState<UsernameType>({username: ''}) // 아이디 중복확인
 const [check, setCheck] = useState<CompareType>({checkIdValue: '', checkPwValue: ''})
+const [usernameVal, setUsernameVal] = useState(false)
 const [nameVal, setNameVal] = useState(false)
 const [passwordval, setPasswordVal] = useState(false)
 const [emailVal, setEmailVal] = useState(false)
@@ -28,11 +29,12 @@ const [passwordSame, setPasswordSame] = useState(false)
 
 const dispatch = useAppDispatch();
 
-const nameRef : any = useRef()
-const passwordRef : any = useRef()
-const emailRef : any = useRef()
+const usernameRef  = useRef<HTMLInputElement>(null) //getById
+const nameRef  = useRef<HTMLInputElement>(null)
+const passwordRef = useRef<HTMLInputElement>(null)
+const emailRef = useRef<HTMLInputElement>(null)
 
-
+const usernameRegex = /^[a-z]+[a-z0-9]{5,19}$/g;
 const nameRegex =  /^[가-힣]{2,10}$/
 const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^*+=-]).{7,25}$/
 const emailRegex = /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
@@ -44,13 +46,16 @@ const handleChange = (e: { preventDefault: () => void; target: { name: string; v
     setUser({...user, [name]: value})
     
    if(e.target === nameRef.current) {
-    nameRegex.test(e.target.value) ? setNameVal(true) : setNameVal(false)
-
-   } else if(e.target === passwordRef.current) {
-    passwordRegex.test(e.target.value) ? setPasswordVal(true) : setPasswordVal(false)
-
-    } else if(e.target === emailRef.current) {
-    emailRegex.test(e.target.value) ? setEmailVal(true) : setEmailVal(false)
+      nameRegex.test(e.target.value) ? setNameVal(true) : setNameVal(false)
+    } 
+    else if (e.target === usernameRef.current){
+      usernameRegex.test(e.target.value) ? setUsernameVal(true) : setUsernameVal(false)
+    } 
+    else if(e.target === passwordRef.current) {
+      passwordRegex.test(e.target.value) ? setPasswordVal(true) : setPasswordVal(false)
+    }
+    else if(e.target === emailRef.current) {
+      emailRegex.test(e.target.value) ? setEmailVal(true) : setEmailVal(false)
    }
 }
 const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
@@ -74,16 +79,15 @@ const pwCheckChange = (e : { preventDefault:() => void; target: {name: string ; 
   const {name , value} = e.target;
   setCheck({...check, [name] : value })
 }
-console.log(nameVal, passwordval, emailVal)
     return(
     <form onSubmit = { handleSubmit } >
         <h4 className="h4 mb-3 fw-normal">Clozet의 회원이 되어주세요!</h4>
     <div className = 'd-grid gap-2'>
       <div className="form-floating">
-        <input  onChange = {handleChange} type="text" className="form-control" id="username" name = "username" placeholder='UserID'  />
+        <input ref = {usernameRef} onChange = {handleChange} type="text" className="form-control" id="username" name = "username" placeholder='UserID'  />
         <label htmlFor="floatingUserName"><h5>User ID</h5></label>
+        { usernameVal === true ? null : <p className='fw-bold text-secondary'>영문자로 시작하는 영문 또는 숫자의 6 ~ 20자로 만들어주세요</p>}
       </div>
-       
       <div className='form-floating'>
       <input onChange={idCheckChange} name = "username" className='form-control' id = "checkId"/>
       <label htmlFor='floatingCheckUsername'>
@@ -98,7 +102,7 @@ console.log(nameVal, passwordval, emailVal)
         <input ref = {passwordRef} onChange = {handleChange} type="password" className="form-control" id="password" name = "password" placeholder="Password" />
         <label htmlFor="floatingPassword"><h5>Password</h5></label>
         {user.password === '' ? null :
-        <>{passwordval === true ? <p>'안전한 비밀번호에요.'</p> : <p className='fw-bold text-danger'>영문과 숫자, 특수문자 조합으로 8자리 이상 입력해주세요</p>}</> }
+        <>{passwordval === true ? <p>안전한 비밀번호에요.</p> : <p className='fw-bold text-danger'>영문과 숫자, 특수문자 조합으로 8자리 이상 입력해주세요</p>}</> }
       </div>
       <div className="form-floating">
         <input onChange = {pwCheckChange} type= 'password' className="form-control" id="passwordCheck" name = "checkPwValue" placeholder="Password Check" />      
@@ -134,7 +138,9 @@ console.log(nameVal, passwordval, emailVal)
       </button>
       <div className="custom-control custom-checkbox">
         <input type="checkbox" className="custom-control-input" id="aggrement" required />
-        <label className="custom-control-label" htmlFor="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+        <label className="custom-control-label" htmlFor="aggrement">
+          <p>개인정보 수집 및 이용에 동의합니다.</p>
+        </label>
           </div>
         </div>  
         

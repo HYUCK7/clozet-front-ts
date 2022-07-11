@@ -60,9 +60,11 @@ const handleChange = (e: { preventDefault: () => void; target: { name: string; v
 }
 const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
   e.preventDefault()
+  
   dispatch(userActions.joinRequest(user)) // 리퀘스트 객체를 생성해라 요청 시 객체이름은 request, 또는 response
   console.log(JSON.stringify(user))       // 타입이 {} JSON
   window.location.href = ('/')
+  
 }
 const idCheckChange = (e : React.FormEvent<HTMLInputElement>) => {
   e.preventDefault()
@@ -79,7 +81,9 @@ const pwCheckChange = (e : { preventDefault:() => void; target: {name: string ; 
   const {name , value} = e.target;
   setCheck({...check, [name] : value })
 }
+debugger;
     return(
+      
     <form onSubmit = { handleSubmit } >
         <h4 className="h4 mb-3 fw-normal">Clozet의 회원이 되어주세요!</h4>
     <div className = 'd-grid gap-2'>
@@ -133,7 +137,7 @@ const pwCheckChange = (e : { preventDefault:() => void; target: {name: string ; 
         <label htmlFor="floatingPhone"><h5>Phone Number</h5></label>
       </div>
       
-      <button className="w-100 btn btn-lg btn-outline-secondary" type='submit' disabled = {!((nameVal && emailVal && passwordval) === true)} >
+      <button className="w-100 btn btn-lg btn-outline-secondary"   >
                 <h4>Sign Up</h4>
       </button>
       <div className="custom-control custom-checkbox">

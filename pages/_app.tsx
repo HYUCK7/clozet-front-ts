@@ -10,7 +10,7 @@ import { AppTreeType } from 'next/dist/shared/lib/utils'
 import { Router } from 'next/router'
 import { isContext } from 'vm'
 import { loadUserRequest, Token } from '@/modules/users/loadUser'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Provider } from 'react-redux'
 
 

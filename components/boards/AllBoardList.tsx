@@ -56,7 +56,7 @@ const AllBoardList: React.FC = () => {
           <p className="card-text mb-auto">{article?.height} , {article?.weight}</p>
         </div>
         <div className="col-auto d-none d-lg-block">
-          <svg className="bd-placeholder-img" width="200" height="250"  role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>{article?.picture}<text x="5%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
+          <img src={article.picture}></img>
         </div>
       </div>
       </div>

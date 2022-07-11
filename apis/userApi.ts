@@ -45,11 +45,10 @@ export const userJoinApi = async (
         phone: string
     }) => {
         try{
-            alert(`진행4. API 시도`)   
             console.log(typeof({payload}))
             const response : AxiosResponse<any, UserType[]> =
             await axios.post(`${SERVER}/users/join`, payload, { headers })
-            alert(`진행5 : 응답 성공 + ${JSON.stringify(response.data)}`)
+            if(response.data.message == "SUCCESS") { alert('회원가입 성공') }
             return response.data
         }catch(err){
             return err;

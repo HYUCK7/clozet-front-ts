@@ -1,5 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit'
-import { call, delay, put, takeLatest, takeLeading, throttle } from 'redux-saga/effects'
+import { call, delay, put, takeEvery, takeLatest, takeLeading, throttle } from 'redux-saga/effects'
 // yarn add @redux-saga/is --dev , yarn add @types/redux, yarn add redux-saga
 import { joinSuccess, userActions } from '@/modules/users/join';
 import { loginActions, loginFailure, loginSuccess } from '@/modules/users/login';
@@ -124,15 +124,14 @@ function* checkId(action : PayloadAction<{}>){
 
 //main Saga + get Saga -> Lambda try
 export function* watchJoin(){
-    yield throttle(500, userActions.joinRequest, (user: UserJoinType ) => {
+    yield takeLatest( userActions.joinRequest, (user: UserJoinType ) => {
+        
         try{
-            alert(`3. saga내부 join 성공  + ${JSON.stringify(user)}`)
             //console.log(' saga내부 join 성공  '+ JSON.stringify(user))
             const response: any =  userJoinApi(user.payload)
             put(joinSuccess(response.payload))
             
         }catch(error){
-             console.log(' saga내부 join 실패  ') 
             put(userActions.joinFailure(error))
         }
     }

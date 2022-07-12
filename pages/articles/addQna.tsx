@@ -1,36 +1,42 @@
 import AddQna from '@/components/articles/AddQna'
 import { useAppDispatch } from '@/hooks'
-import React, { useRef, useState } from 'react'
+import { writeQna } from '@/modules/boards/qna'
+import React, { useEffect, useState } from 'react'
 
 export interface Question{
   title: string
-  open: boolean
+  open: string
   content: string
+  token : string | null
 }
-
 export default function AddQnaPage() {
   const [question, setQuestion] = useState<Question>(
-    {title: '', open: true, content: ''}
+    {title: '', open: 'true', content: '', token: ''}
   )
   const dispatch = useAppDispatch()
+  
+  useEffect (()=> {
+    const token = localStorage.getItem('loginSuccessUser')
+    setQuestion({...question, token: token})
+  }, [])
 
-  const checkRef = useRef<HTMLInputElement>( null )
-
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const onChange = (e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLTextAreaElement>) => {
     e.preventDefault()
     const {name, value} = e.currentTarget
     setQuestion({...question, [name]: value})
   }
-
-
+  console.log(question)
+  const checkChange = ( e: React.ChangeEvent<HTMLInputElement> ) => {
+    e.target.checked ? setQuestion({...question, open: 'false'}) : setQuestion({...question, open: 'true'})
+  }
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    //dispatch
+    dispatch(writeQna(question))
   }
-  console.log(question)
+
 
 
   return (
-    <AddQna handleChange = {onChange} handleSubmit = {onSubmit} check = {checkRef}/>
+    <AddQna checkChange = {checkChange} handleChange = {onChange} handleSubmit = {onSubmit} />
   )
 }

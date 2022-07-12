@@ -6,25 +6,35 @@ type Props = {
 }
 
 const AddBoard: React.FC<Props> = ({onChange, onSubmit}) => {
+  const date = new Date();
+  const parseDate = date.toDateString()
   return (
     <div>
 <div className='container'>
     <div text-align = "center">
         <h3>내 게시물 올리기</h3>
     </div>
+
       <div>
           <h4>추천 복장을 입고 업로드해보세요.</h4><br/>
       </div>
+      <div>
+        <p>{parseDate}</p>
+      </div>
         </div>
+        
     <form onSubmit={onSubmit}>
         <div className='container'>
         <div className="input-group mb-3">
           <span className="input-group-text" id="inputGroup-sizing-default">
             <h5>제목 입력</h5>
             </span>
+            
           <input onChange = {onChange} name = "title" type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+          
         </div>
-
+        
+        
           <div className="input-group mb-3">
             <h3>
               <input onChange = {onChange} name = "picture" type="file" className="form-control" id="inputGroupFile02" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>

@@ -11,6 +11,7 @@ import articleReducer from './boards';
 import updateReducer from './users/update'
 import removeReducer from './users/remove'
 import checkReducer from '@/modules/users/check'
+import qnaReducer from './boards/qna'
 
 import rootSaga from '@/sagas';
 import createSagaMiddleware from '@redux-saga/core'
@@ -33,7 +34,8 @@ const combinedReducer = combineReducers({
         article: articleReducer,
         update: updateReducer,
         remove: removeReducer,
-        check: checkReducer
+        check: checkReducer,
+        qna: qnaReducer
 })
 const rootReducer = (
 	state: ReturnType<typeof combinedReducer>,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddBoard from '@/components/articles/AddBoard'
 import { useAppDispatch } from '@/hooks'
 import { NextPage } from 'next'
@@ -21,8 +21,14 @@ export interface Article {
 }
 
 const AddBoardPage: NextPage = () =>  {
+  const date = new Date();
+  const writtenDate = date.toDateString()
   const [write, setWrite] = useState<Article[]>([])
+
   const dispatch = useAppDispatch()
+  
+  //setWrite(write => {...write, writtenDate: writtenDate})
+
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault()
     const {name, value} = e.currentTarget
@@ -34,8 +40,15 @@ const AddBoardPage: NextPage = () =>  {
     alert(`page useState에 입력된 게시판 저장 ${JSON.stringify(write)}`)
     dispatch(writeBoard(write))
   }
+  
+  useEffect(()=> {
+    setWrite({...write, writtenDate}) // 오류 catch
+  }, [writtenDate])
+  
+  
+  console.log(write)
   return (
-    <AddBoard onChange={onChange} onSubmit = {onSubmit}/>
+    <AddBoard onChange={onChange} onSubmit = {onSubmit} />
   )
 }
 export default AddBoardPage

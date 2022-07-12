@@ -1,0 +1,38 @@
+import { Question } from "@/pages/articles/addQna";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+export interface QnaState {
+    data: Question,
+    status : 'success' | 'loading' | 'failed'
+    error: null
+}
+const initialState: QnaState = {
+    data: { title: '', open: '', content: '', token : ''},
+    status: 'loading',
+    error : null
+}
+
+const qnaSlice = createSlice({
+    name: 'qnaSlice',
+    initialState,
+    reducers: {
+        writeQna: (state, action: PayloadAction<Question>) => {
+            console.log(`QnA 글 쓰기 작성`)
+            state.data = action.payload
+            state.status = 'loading'
+            console.log(`진행 : QnA 쓴 글 ${JSON.stringify( state.data )}`)
+        },
+        writeQnaSuccess : (state, action: PayloadAction) => {
+            console.log(`QNA 작성 성공`)
+            state.status = 'success'
+        },
+        writeQnaFailure : (state, action : PayloadAction) => {
+            console.log(`QNA 작성 실패`)
+            state.status = `failed`
+        }
+    }
+})
+export const {writeQna, writeQnaSuccess, writeQnaFailure} = qnaSlice.actions;
+const {reducer, actions} = qnaSlice
+export const qnaActions = actions
+export default reducer

@@ -1,16 +1,6 @@
 import { Article } from "@/pages/articles/addBoard";
+import { Question } from "@/pages/articles/addQna";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-//const boardSliceType = "slice/board";
-/** 
-export interface Article{
-    title: string,
-    content: string,
-    picture?: any | undefined,
-    height : string,
-    weight: string
-}
-*/
 
 export interface ArticleState{
     data: Article[],
@@ -22,6 +12,7 @@ const initialState: ArticleState = {
     status: 'loading',
     error: null
 }
+
 const ArticleSlice = createSlice({
 	name: 'articleSlice',
     //initialState : [] as BoardState[],

@@ -81,7 +81,7 @@ const pwCheckChange = (e : { preventDefault:() => void; target: {name: string ; 
   const {name , value} = e.target;
   setCheck({...check, [name] : value })
 }
-debugger;
+//debugger;
     return(
       
     <form onSubmit = { handleSubmit } >

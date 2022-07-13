@@ -7,6 +7,7 @@ import { loadUserApi } from '@/apis/userApi'
 
 // 게시판 DB 스키마 동일.
 export interface Article {
+  
   userId?: number
   articleId?: number ,
   title?: string,
@@ -50,11 +51,13 @@ const AddBoardPage: NextPage = () =>  {
       const userId = data.userId
       console.log(userId)
       console.log(`유저정보 + ${JSON.stringify(data)}`)
-      setWrite({...write, writtenDate})
-      setWrite({...write, userId})
+      setWrite({
+        userId: userId,
+        writtenDate: writtenDate
+      })
     }
     )
-  }, [writtenDate])
+  }, [])
   
   
   console.log(write)

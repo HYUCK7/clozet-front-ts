@@ -7,9 +7,11 @@ import {
   watchLogin,
   watchRemoveUser,
   watchUpdateUser,
+  
 } from './userSaga';
 import {
-  watchWriteArticle
+  watchWriteArticle,
+  watchFetchMyArticleSaga
 } from './articleSaga'
 
 // rootSaga를 만들어줘서 store에 추가해주 어야 합니다.
@@ -22,7 +24,8 @@ export default function* rootSaga() {
     fork(watchWriteArticle),
     fork(watchUpdateUser),
     fork(watchRemoveUser),
-    fork(watchCheckId)
+    fork(watchCheckId),
+    fork(watchFetchMyArticleSaga)
     //fork(watchFetchArticle)
   ]);
 }

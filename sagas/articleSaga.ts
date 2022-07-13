@@ -1,16 +1,15 @@
-import { writeArticleApi, writeQnaApi } from "@/apis/articleApi";
+import { fetchMyBoardApi, writeArticleApi, writeQnaApi } from "@/apis/articleApi";
 import { ArticleActions, writeBoard, writeBoardFailure, writeBoardSuccess } from "@/modules/boards";
 import { qnaActions, writeQnaFailure, writeQnaSuccess } from "@/modules/boards/qna";
 import { userActions } from "@/modules/users/join";
 import { loginFailure, loginSuccess } from "@/modules/users/login";
 import { Article } from "@/pages/articles/addBoard";
-import { Question } from "@/pages/articles/addQna";
 import { AxiosResponse } from "axios";
-import { call, put, take, takeLatest, throttle } from "redux-saga/effects";
+import { call, put, take, takeEvery, takeLatest, throttle } from "redux-saga/effects";
 
 
 //get Saga
-function* writeArticleSaga(action : {payload: Article[]}) {
+function* writeArticleSaga(action : {payload: Article}) {
     const param = action.payload
     try{
         alert(`3. saga 내부 Write 성공 + ${JSON.stringify(param)}`)
@@ -21,7 +20,7 @@ function* writeArticleSaga(action : {payload: Article[]}) {
     }
 }
 
-function* writeQnaSaga(action: {payload: Question}){
+function* writeQnaSaga(action: {payload: Article}){
     const param = action.payload
     try { 
         console.log(`Saga 내부 write qna 성공 + ${JSON.stringify(param)}`)
@@ -32,10 +31,24 @@ function* writeQnaSaga(action: {payload: Question}){
     }
 }
 
+function* fetchMyArticleSaga(action : {payload : any}) {
+    const {fetchMyBoardSuccess, fetchMyBoardFailure} = ArticleActions
+    try {
+        console.log(`SAGA + ${JSON.stringify(action.payload)}`)
+        const response: Article = yield call(fetchMyBoardApi, action.payload)
+        yield put(fetchMyBoardSuccess(response))
+    } catch (error) {
+        yield put(fetchMyBoardFailure())
+    }
+}
+
 // main saga
 export function* watchWriteArticle(){
     yield takeLatest(ArticleActions.writeBoard, writeArticleSaga)
 }
 export function* watchwriteQna(){
     yield takeLatest(qnaActions.writeQna, writeQnaSaga)
+}
+export function* watchFetchMyArticleSaga(){
+    yield takeEvery(ArticleActions.fetchMyBoard, fetchMyArticleSaga)
 }

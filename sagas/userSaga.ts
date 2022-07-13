@@ -112,7 +112,7 @@ function* update(action: {payload: UpdateInfo}) {
     }
 }
 
-function* checkId(action : PayloadAction<{}>){
+function* checkId(action : {payload : any}){
     console.log(`check saga 실행 + ${JSON.stringify(action.payload)}`)
     try{
         yield call(checkIdApi, action.payload)

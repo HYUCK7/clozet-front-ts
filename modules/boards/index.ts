@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface ArticleState{
     data: Article,
-    status: 'successed' | 'loading' | 'failed'
+    status: 'successed' | 'loading' | 'failed' 
     error: null
 }
 const initialState: ArticleState = {
@@ -49,13 +49,29 @@ const ArticleSlice = createSlice({
             state.error = payload;
             state.status = 'failed'
         },
+        fetchMyBoard : (state, action: PayloadAction<Article>) => {
+            console.log(action)
+            state.data = action.payload
+            state.status = 'loading'
+            console.log(`내 게시물 분류 과정 ${JSON.stringify( state.data )}`)
+        },
+        fetchMyBoardSuccess : (state, action: PayloadAction<Article>) => {
+            console.log(action)
+            state.data= action.payload
+            state.status = 'successed'
+            console.log(`게시물 받아오기 성공 ${JSON.stringify (state.data)}`)
+        },
+        fetchMyBoardFailure : (state, action: PayloadAction) => {
+            console.log(action)
+            state.status = 'failed'
+        },
         deleteBoard(state, action: PayloadAction){
             alert(`게시글 삭제하기 - 리듀서`)
         }
     }
 })
 
-export const { writeBoard, writeBoardSuccess, writeBoardFailure, fetchBoards, fetchBoardSuccess, deleteBoard } = ArticleSlice.actions;
+export const { writeBoard, writeBoardSuccess, writeBoardFailure, fetchBoards, fetchBoardSuccess, deleteBoard, fetchMyBoard } = ArticleSlice.actions;
 const {reducer, actions} = ArticleSlice
 export const ArticleActions = actions
 export default reducer;

@@ -1,4 +1,3 @@
-import { Token } from "@/modules/users/loadUser";
 import { Article } from "@/pages/articles/addBoard";
 import axios, { AxiosResponse } from "axios";
 const SERVER = 'http://127.0.0.1:8080'
@@ -28,10 +27,12 @@ export const fetchArticleAPI = async () => {
 }
 
 export const fetchMyBoardApi = async(
-    token : Token
+    payload : JSON
 ) => {
     try{
-        const response: AxiosResponse = await axios.post(`${SERVER}/mo`, token, {headers})
+        console.log('api 진입')
+        const response: AxiosResponse = await axios.post(`${SERVER}/articles/findByUserId`, payload, {headers})
+        console.log(`서버 응답 + ${JSON.stringify(response.data)}`)
         return response.data
     } catch(err) {
         return err;

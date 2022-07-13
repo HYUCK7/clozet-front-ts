@@ -44,7 +44,7 @@ export const writeQnaApi = async(
 ) => {
     try{
         console.log(`API 진입 + ${JSON.stringify(writeData)}`)
-        const response: AxiosResponse = await axios.post(`${SERVER}/articles/join`, writeData, {headers})
+        const response: AxiosResponse = await axios.post(`${SERVER}/articles/joinQna`, writeData, {headers})
         console.log(`서버 응답 + ${JSON.stringify(response.data)}`)
         return response.data
     } catch(err) {

@@ -2,6 +2,12 @@ import { fetchArticleAPI } from '@/apis/articleApi'
 import axios, { AxiosResponse } from 'axios'
 import React, { CSSProperties, useEffect, useState } from 'react'
 
+const SERVER = 'http://127.0.0.1:8080'
+const headers = {
+    "Content-Type" : "application/json",
+    Authorization: "JWT fefege...",
+}
+
 export interface Article {
   articleId? : string,
   title: string,
@@ -30,7 +36,9 @@ const AllBoardList: React.FC = () => {
 
   useEffect (() => { fetchArticleAPI().then(data => {
     setArticleList(data)
+    console.log(data)
   } ) }, [])
+  
 
 
   return (
@@ -50,10 +58,10 @@ const AllBoardList: React.FC = () => {
             {article?.title}
           </h3>
           <div className="mb-1 text-muted">
-          <h5> Nov 12 </h5>
+          <h5> {article?.writtenDate} </h5>
           </div>
           <p key={article.content} className="card-text mb-auto">{article?.content}</p>
-          <p className="card-text mb-auto">{article?.height} , {article?.weight}</p>
+          <p className="card-text mb-auto">{article?.height}cm , {article?.weight}kg</p>
         </div>
         <div className="col-auto d-none d-lg-block">
           <img src={article.picture}></img>
@@ -65,5 +73,14 @@ const AllBoardList: React.FC = () => {
     </div>
   )
 }
-
+/** 
+export const getServerSideProps = async () => {
+  try {
+    const res: AxiosResponse = await axios.get(`${SERVER}/articles/findAll`, {headers})
+    if(res.status === 200){
+      
+    }
+  }
+}
+*/
 export default AllBoardList

@@ -6,17 +6,14 @@ import { findUserNameRequest, ResultFindUserName } from '@/modules/users/findUse
 import { NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
 
-
-
 export type UserFindIdInput = {
   name: string,
   email: string
-  
 }
+
 export type UserFindPwInput = {
   username: string,
   email : string,
- 
 }
 
 const findAccountPage: NextPage = () => {
@@ -32,6 +29,7 @@ const findAccountPage: NextPage = () => {
   const {status} = useAppSelector((state: AppState) => state.rootReducer.findUserName)
   console.log(data, status)
   //useEffect(()=>{setUsernameResult(data)},[data])
+
   useEffect(()=>{setUsernameResult(JSON.stringify(data))},[data])
   const onChangeFindId = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault()

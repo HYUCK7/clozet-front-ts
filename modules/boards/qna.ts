@@ -1,13 +1,13 @@
-import { Question } from "@/pages/articles/addQna";
+import { Article } from "@/pages/articles/addBoard";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface QnaState {
-    data: Question,
+    data: Article,
     status : 'success' | 'loading' | 'failed'
     error: null
 }
 const initialState: QnaState = {
-    data: { title: '', open: '', content: '', token : ''},
+    data: { title: '', open: '', content: '', userId : 0},
     status: 'loading',
     error : null
 }
@@ -16,7 +16,7 @@ const qnaSlice = createSlice({
     name: 'qnaSlice',
     initialState,
     reducers: {
-        writeQna: (state, action: PayloadAction<Question>) => {
+        writeQna: (state, action: PayloadAction<Article>) => {
             console.log(`QnA 글 쓰기 작성`)
             state.data = action.payload
             state.status = 'loading'

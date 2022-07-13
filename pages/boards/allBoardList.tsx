@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import AllBoardList from '@/components/boards/AllBoardList'
-import { useAppDispatch, useAppSelector } from '@/hooks'
+import { useAppDispatch,  } from '@/hooks'
 import { NextPage } from 'next'
 import { ArticleState, fetchBoards, fetchBoardSuccess } from '@/modules/boards'
 import { useDispatch, useSelector } from 'react-redux'

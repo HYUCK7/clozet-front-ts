@@ -1,4 +1,7 @@
-import React from 'react'
+import { loadUserApi } from '@/apis/userApi'
+import { Token } from '@/modules/users/loadUser'
+import React, { useEffect, useState } from 'react'
+import { User } from '../users/Mypage'
 
 type Props = {
   onChange : (e: React.FormEvent<HTMLInputElement> | any ) => void
@@ -8,10 +11,11 @@ type Props = {
 const AddBoard: React.FC<Props> = ({onChange, onSubmit}) => {
   const date = new Date();
   const parseDate = date.toDateString()
+
   return (
     <div>
-<div className='container'>
-    <div text-align = "center">
+    <div className='container'>
+      <div text-align = "center">
         <h3>내 게시물 올리기</h3>
     </div>
 
@@ -29,12 +33,9 @@ const AddBoard: React.FC<Props> = ({onChange, onSubmit}) => {
           <span className="input-group-text" id="inputGroup-sizing-default">
             <h5>제목 입력</h5>
             </span>
-            
+          <input onChange={onChange} type="hidden" name='userId'/>
           <input onChange = {onChange} name = "title" type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
-          
         </div>
-        
-        
           <div className="input-group mb-3">
             <h3>
               <input onChange = {onChange} name = "picture" type="file" className="form-control" id="inputGroupFile02" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>

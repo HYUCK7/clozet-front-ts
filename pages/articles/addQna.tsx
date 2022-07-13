@@ -1,23 +1,22 @@
+import { loadUserApi } from '@/apis/userApi'
 import AddQna from '@/components/articles/AddQna'
 import { useAppDispatch } from '@/hooks'
 import { writeQna } from '@/modules/boards/qna'
 import React, { useEffect, useState } from 'react'
+import { Article } from './addBoard'
 
-export interface Question{
-  title: string
-  open: string
-  content: string
-  token : string | null
-}
 export default function AddQnaPage() {
-  const [question, setQuestion] = useState<Question>(
-    {title: '', open: 'true', content: '', token: ''}
+  const [question, setQuestion] = useState<Article>(
+    {title: '', open: 'true', content: '', userId: 0}
   )
   const dispatch = useAppDispatch()
   
   useEffect (()=> {
     const token = localStorage.getItem('loginSuccessUser')
-    setQuestion({...question, token: token})
+    loadUserApi({token}).then(data => {
+      const userId = data.userId
+      setQuestion({...question, userId})
+    })
   }, [])
 
   const onChange = (e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLTextAreaElement>) => {

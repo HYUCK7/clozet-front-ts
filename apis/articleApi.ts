@@ -1,5 +1,5 @@
+import { Token } from "@/modules/users/loadUser";
 import { Article } from "@/pages/articles/addBoard";
-import { Question } from "@/pages/articles/addQna";
 import axios, { AxiosResponse } from "axios";
 const SERVER = 'http://127.0.0.1:8080'
 const headers = {
@@ -7,7 +7,7 @@ const headers = {
     Authorization: "JWT fefege...",
 }
 export const writeArticleApi = async (
-    writeData: Article[]) => {
+    writeData: Article) => {
         try {
             console.log(`API 진입 + ${JSON.stringify(writeData)}`)
             await axios.post(`${SERVER}/articles/join`, writeData, {headers})            
@@ -27,8 +27,19 @@ export const fetchArticleAPI = async () => {
     }
 }
 
+export const fetchMyBoardApi = async(
+    token : Token
+) => {
+    try{
+        const response: AxiosResponse = await axios.post(`${SERVER}/mo`, token, {headers})
+        return response.data
+    } catch(err) {
+        return err;
+    }
+}
+
 export const writeQnaApi = async(
-    writeData : Question
+    writeData : Article
 ) => {
     try{
         console.log(`API 진입 + ${JSON.stringify(writeData)}`)

@@ -23,14 +23,14 @@ export const userSlice = createSlice({
     initialState,
     reducers:{
         joinRequest(state: UserState, action : PayloadAction<User>){
-            console.log(`진행 : 회원가입 데이터 ${state.status, state.data, action.payload}`)
+            console.log(`2. 진행 : 회원가입 데이터 ${action.payload}`)
             state.status = 'loading';
             
         },
         joinSuccess(state: UserState, action : PayloadAction<User>){
             
             state.status = 'idle'
-            console.log(`진행 : 회원가입 데이터 ${state.status, state.data, action.payload}`)
+            //console.log(`진행 : 회원가입 데이터 ${state.status, state.data, action.payload}`)
             state.data = [...state.data, action.payload]
             
         },

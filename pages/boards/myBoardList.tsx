@@ -17,6 +17,11 @@ export default function MyBoardListPage() {
     }
     )
   }, [])
+
+  const onClickDelete = (e : any) => {
+    e.preventDefault()
+    
+  }
   return (
     <MyBoardList/>
   )

@@ -59,7 +59,7 @@ const makeStore = () =>{
         //직렬화 문제 발생 시 {serializableCheck: false} 파라미터로 전달
             .prepend(sagaMiddleware)
             .concat(logger),
-        devTools :isDev
+        devTools : false
     });
     sagaMiddleware.run(rootSaga)
     return store

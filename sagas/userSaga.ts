@@ -1,5 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit'
-import { call, delay, put, takeEvery, takeLatest, takeLeading, throttle } from 'redux-saga/effects'
+import { call, delay, put, take, takeEvery, takeLatest, takeLeading, throttle } from 'redux-saga/effects'
 // yarn add @redux-saga/is --dev , yarn add @types/redux, yarn add redux-saga
 import { joinSuccess, userActions } from '@/modules/users/join';
 import { loginActions, loginFailure, loginSuccess } from '@/modules/users/login';
@@ -34,6 +34,17 @@ export interface UserLoginInput {
 }
 
 //Get Saga
+function* join (user: UserJoinType ) {
+    try{
+        console.log(' 3.  saga내부 join 성공  '+ JSON.stringify(user))
+        const response: any = userJoinApi(user.payload)
+        yield put(joinSuccess(response.payload))
+        
+    }catch(error){
+        yield put(userActions.joinFailure(error))
+    }
+}
+
 function* login(action : {payload: UserLoginInput}) {
     const {loginSuccess, loginFailure} = loginActions;
     const param = action.payload // 입력된 action에 대한 payload
@@ -124,18 +135,8 @@ function* checkId(action : {payload : any}){
 
 //main Saga + get Saga -> Lambda try
 export function* watchJoin(){
-    yield takeLatest( userActions.joinRequest, (user: UserJoinType ) => {
-        
-        try{
-            //console.log(' saga내부 join 성공  '+ JSON.stringify(user))
-            const response: any =  userJoinApi(user.payload)
-            put(joinSuccess(response.payload))
-            
-        }catch(error){
-            put(userActions.joinFailure(error))
-        }
-    }
-    )
+    const {joinRequest} = userActions;
+    yield takeEvery(joinRequest, join)
 }
 export function* watchLogin(){
     const { loginRequest } = loginActions;
@@ -158,6 +159,7 @@ export function* watchUpdateUser(){
 }
 export function* watchRemoveUser(){
     const {removeRequest}  = removeActions
+    console.log(`언제 실행될까`)
     yield takeLatest(removeRequest, remove)
 }
 export function* watchCheckId(){

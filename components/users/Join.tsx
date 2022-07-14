@@ -60,8 +60,9 @@ const handleChange = (e: { preventDefault: () => void; target: { name: string; v
 }
 const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
   e.preventDefault()
-  
-  dispatch(userActions.joinRequest(user)) // 리퀘스트 객체를 생성해라 요청 시 객체이름은 request, 또는 response
+  console.log(`1. 버튼 클릭 및 액션 디스패치 +${JSON.stringify(user)}`)
+  dispatch(userActions.joinRequest(user))
+   // 리퀘스트 객체를 생성해라 요청 시 객체이름은 request, 또는 response
   console.log(JSON.stringify(user))       // 타입이 {} JSON
   window.location.href = ('/')
   
@@ -81,6 +82,7 @@ const pwCheckChange = (e : { preventDefault:() => void; target: {name: string ; 
   const {name , value} = e.target;
   setCheck({...check, [name] : value })
 }
+console.log(`0. 회원가입 입력 : ${JSON.stringify(user)}`)
 //debugger;
     return(
       

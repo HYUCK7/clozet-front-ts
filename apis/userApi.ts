@@ -46,6 +46,7 @@ export const userJoinApi = async (
     }) => {
         try{
             console.log(typeof({payload}))
+            alert(`1`)
             const response : AxiosResponse<any, UserType[]> =
             await axios.post(`${SERVER}/users/join`, payload, { headers })
             if(response.data.message == "SUCCESS") { alert('회원가입 성공') }
@@ -106,7 +107,7 @@ export const userJoinApi = async (
                 console.log(`LOGIN CHECK ${token}`)
                 console.log(JSON.stringify(token))
                 const response: AxiosResponse = await axios.post(`${SERVER}/users/token`, token , {headers})
-                console.log (`서버 응답 + ${JSON.stringify(response.data)}`)
+                console.log (`서버 응답1 + ${JSON.stringify(response.data)}`)
                 return response.data
             } catch (err) {
                 return err;

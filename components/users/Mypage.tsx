@@ -13,7 +13,7 @@ const headers = {
 type Props ={
   handleChange : (e : React.FormEvent<HTMLInputElement> ) => void;
   handleSubmit : (e : React.FormEvent<HTMLFormElement>) => void;
-  handleClick : (e : React.MouseEvent<HTMLButtonElement>) => void;
+  deleteClick : (e : React.MouseEvent<HTMLButtonElement>) => void;
   // 삭제 토큰 보내기 테스트용 핸들 클릭
 }
 
@@ -32,13 +32,14 @@ export interface User {
   roles?: any
 }
 
-const Mypage: React.FC<Props> = ({handleChange, handleSubmit, handleClick} : Props) => {
+const Mypage: React.FC<Props> = ({handleChange, handleSubmit, deleteClick} : Props) => {
   const [userInfo, setUserInfo] = useState<Array<User>>([])
   
   useEffect(() => { 
     const token = localStorage.getItem('loginSuccessUser')
     loadUserApi({token}).then(data => {
     setUserInfo([data])
+    console.log('MyPage 데이터 불러오기 성공')
   })}, [])
     
   return (<div>
@@ -204,15 +205,15 @@ const Mypage: React.FC<Props> = ({handleChange, handleSubmit, handleClick} : Pro
           <hr className="mb-4 "/>
           <div className='row'>
           <div className="col-md-6 mb-4">
-          <button className="btn btn-secondary btn-lg btn-block" type="submit">
+          <button className="btn btn-secondary btn-lg btn-block" >
             <h5>Account Update</h5>
             </button>
            &nbsp; 
-           <Link href={'/users/remove'}>
-          <button className="btn btn-danger btn-lg btn-block" onClick={handleClick}>
+           
+          <button className="btn btn-danger btn-lg btn-block" onClick={deleteClick}>
             <h5>Account Delete</h5>
           </button>  
-          </Link>
+          
           </div>
           </div>
           </>

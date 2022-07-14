@@ -4,7 +4,7 @@ import { ResultFindPw } from "@/modules/users/findPw";
 import { ResultFindUserName } from "@/modules/users/findUserName";
 import { Token } from "@/modules/users/loadUser";
 import { loginSuccess } from "@/modules/users/login";
-import { UpdateInfo, UserInfoTest } from "@/pages/users/mypage";
+import { UpdateInfo  } from "@/pages/users/mypage";
 import { PayloadAction } from "@reduxjs/toolkit";
 import axios, {AxiosError, AxiosResponse} from "axios";
 const SERVER = 'http://127.0.0.1:8080'

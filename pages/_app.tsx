@@ -16,7 +16,6 @@ import { Provider } from 'react-redux'
 
 function MyApp({ Component, pageProps: {...pageProps} }: AppProps) {
   return ( 
-    <Provider store = {store}>
     <Layout>
     <Component {...pageProps} />
     <style jsx>{`
@@ -25,8 +24,8 @@ function MyApp({ Component, pageProps: {...pageProps} }: AppProps) {
         }
     `}</style>
     </Layout>
-    </Provider>
   )
+  //provider 삭제 07-14
 }
 export default wrapper.withRedux(MyApp)
 /**
@@ -44,6 +43,7 @@ export async function getInitialProps() {
   
 }
 */
+/** 
 export const getInitialProps = async (req: any) => {
   let token;
   const SERVER = 'http://127.0.0.1:8080'
@@ -61,3 +61,4 @@ export const getInitialProps = async (req: any) => {
     return { page: data }
   }
 }
+*/

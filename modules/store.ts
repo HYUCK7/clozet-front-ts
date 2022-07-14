@@ -16,6 +16,7 @@ import qnaReducer from './boards/qna'
 import rootSaga from '@/sagas';
 import createSagaMiddleware from '@redux-saga/core'
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 
 // 기존 RootState는 RTK로 인해서, 자체적으로 RootState와 Dispatch는 스토어 자체에서 추론.
@@ -40,8 +41,8 @@ const combinedReducer = combineReducers({
 const rootReducer = (
 	state: ReturnType<typeof combinedReducer>,
     action: AnyAction
-) => {
-    if(action.type === HYDRATE) {
+)  => {
+    if(action.payload === HYDRATE) { // action.type => action.payload 07-14
         return{
             ...state, // use previous state
             ...action.payload // apply delta from hydration
@@ -59,17 +60,20 @@ const makeStore = () =>{
         //직렬화 문제 발생 시 {serializableCheck: false} 파라미터로 전달
             .prepend(sagaMiddleware)
             .concat(logger),
-        devTools : false
+        devTools : isDev
     });
+    
     sagaMiddleware.run(rootSaga)
+   
     return store
 }
 
-const store = makeStore();
-export type AppState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+const store =rootReducer; // makeStore() ==> rootReducer
+
+export type AppState = ReturnType<typeof store.getState>; // 오류 냅두셈
+export type AppDispatch = typeof store.dispatch; // 오류 냅두셈
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
-export const wrapper = createWrapper(makeStore, {debug: isDev})
+export const wrapper = createWrapper(makeStore)
 export default store;
 
 

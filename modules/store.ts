@@ -70,7 +70,7 @@ const makeStore = () =>{
 
 const store = rootReducer; // makeStore() ==> rootReducer
 
-export type AppState = ReturnType<typeof rootReducer>; // 오류 냅두셈 store.getState
+export type AppState = ReturnType<typeof rootReducer>; // store.getState
 export type AppDispatch = typeof store.dispatch; // 오류 냅두셈
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
 export const wrapper = createWrapper(makeStore)

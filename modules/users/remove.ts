@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type RemoveState={
-    removeId: string 
+export type RemoveState = {
+    token: string 
     status: 'success' | 'loading' | 'fail'
     error: null
 }
 const initialState : RemoveState = {
-    removeId: '',
+    token: '',
     status: 'loading',
     error: null
 }
@@ -15,7 +15,7 @@ export const removeSlice = createSlice({
     name: 'removeSlice',
     initialState,
     reducers: {
-        removeRequest(state, action: PayloadAction<{}>){
+        removeRequest(state, action: PayloadAction<{token: ''}>){
             console.log(`진행 : 삭제 상태 ${JSON.stringify(state)}`)
             console.log(`진행 : 삭제 데이터 ${JSON.stringify(action.payload)}`)
         },

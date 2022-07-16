@@ -1,9 +1,7 @@
 import { loadUserApi } from '@/apis/userApi'
-import RemovePage from '@/pages/users/remove'
 import axios, { AxiosResponse } from 'axios'
 import Link from 'next/link'
-import React, { useEffect, useRef, useState } from 'react'
-import css from 'styled-jsx/css'
+import React, { useEffect, useState } from 'react'
 
 const headers = {
   "Content-Type" : "application/json",
@@ -13,13 +11,12 @@ const headers = {
 type Props ={
   handleChange : (e : React.FormEvent<HTMLInputElement> ) => void;
   handleSubmit : (e : React.FormEvent<HTMLFormElement>) => void;
-  deleteClick : (e : React.MouseEvent<HTMLButtonElement>) => void;
-  // 삭제 토큰 보내기 테스트용 핸들 클릭
+  handleClick : (e : React.MouseEvent< HTMLButtonElement> ) => void;
 }
 
 export interface User {
   userId?: number,
-  username?: string,
+  username?: string,    
   password?: string,
   name?: string,
   birth?: string,
@@ -32,7 +29,7 @@ export interface User {
   roles?: any
 }
 
-const Mypage: React.FC<Props> = ({handleChange, handleSubmit, deleteClick} : Props) => {
+const Mypage: React.FC<Props> = ({handleChange, handleSubmit, handleClick} : Props) => {
   const [userInfo, setUserInfo] = useState<Array<User>>([])
   
   useEffect(() => { 
@@ -210,10 +207,10 @@ const Mypage: React.FC<Props> = ({handleChange, handleSubmit, deleteClick} : Pro
             </button>
            &nbsp; 
            
-          <button className="btn btn-danger btn-lg btn-block" onClick={deleteClick}>
+          <button className="btn btn-danger btn-lg btn-block" onClick={handleClick}>
             <h5>Account Delete</h5>
           </button>  
-          
+         
           </div>
           </div>
           </>

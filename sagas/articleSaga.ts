@@ -1,11 +1,8 @@
 import { fetchMyBoardApi, writeArticleApi, writeQnaApi } from "@/apis/articleApi";
-import { ArticleActions, writeBoard, writeBoardFailure, writeBoardSuccess } from "@/modules/boards";
+import { ArticleActions, writeBoardFailure, writeBoardSuccess } from "@/modules/boards";
 import { qnaActions, writeQnaFailure, writeQnaSuccess } from "@/modules/boards/qna";
-import { userActions } from "@/modules/users/join";
-import { loginFailure, loginSuccess } from "@/modules/users/login";
 import { Article } from "@/pages/articles/addBoard";
-import { AxiosResponse } from "axios";
-import { call, put, take, takeEvery, takeLatest, throttle } from "redux-saga/effects";
+import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
 
 //get Saga
@@ -21,6 +18,7 @@ function* writeArticleSaga(action : {payload: Article}) {
 }
 
 function* writeQnaSaga(action: {payload: Article}){
+    console.log(`payload : ${JSON.stringify(action)}`)
     const param = action.payload
     try { 
         console.log(`Saga 내부 write qna 성공 + ${JSON.stringify(param)}`)
@@ -46,7 +44,7 @@ function* fetchMyArticleSaga(action : {payload : any}) {
 export function* watchWriteArticle(){
     yield takeLatest(ArticleActions.writeBoard, writeArticleSaga)
 }
-export function* watchwriteQna(){
+export function* watchWriteQna(){
     yield takeLatest(qnaActions.writeQna, writeQnaSaga)
 }
 export function* watchFetchMyArticleSaga(){

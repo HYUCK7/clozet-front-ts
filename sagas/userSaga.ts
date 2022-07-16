@@ -21,13 +21,11 @@ interface UserJoinType{
         name:string, phone:string, birth:string, nickname:string
     }
 }
-
 export interface LoginUser{ // api data type
     username:string, password:string, email:string, name:string,
      phone:string, birth:string, nickname:string, userId? : number,
      token: any, roles: any   
 }
-
 export interface UserLoginInput {
     username: string,
     password: string
@@ -49,16 +47,15 @@ function* login(action : {payload: UserLoginInput}) {
     const {loginSuccess, loginFailure} = loginActions;
     const param = action.payload // 입력된 action에 대한 payload
     try{
-        alert(`3. saga내부 login 성공  + ${JSON.stringify(param)}`)
+        //alert(`3. saga내부 login 성공  + ${JSON.stringify(param)}`)
         const response: LoginUser = yield call(userLoginApi, param)
-        alert('6. api 호출 후, 성공 액션에 API Data put')
         // call은 미들웨어에게 함수와 인자들을 실행하라는 명령
         // = yield userLoginApi(login.payload)
         yield put(loginSuccess(response))
         window.location.href = ('/');
     }
     catch(error){
-         alert('진행 3: saga내부 join 실패  ') 
+         //alert('진행 3: saga내부 join 실패  ') 
          yield put(loginFailure(error))
     }
 }
@@ -101,10 +98,10 @@ function* loadUser(action : {payload : Token}){
     }
 }
 
-function* remove(action : PayloadAction<{}>){
+function* remove(action : PayloadAction<{token : ''}>){
     const {removeSuccess, removeFailure} = removeActions
     try{
-        console.log(`삭제 saga 성공 + ${JSON.stringify(action.payload)}`)
+        console.log(`삭제 saga + ${JSON.stringify(action.payload)}`)
         yield call(removeUserApi, action.payload)
         yield put (removeSuccess())
     } catch (error) {
@@ -159,7 +156,6 @@ export function* watchUpdateUser(){
 }
 export function* watchRemoveUser(){
     const {removeRequest}  = removeActions
-    console.log(`언제 실행될까`)
     yield takeLatest(removeRequest, remove)
 }
 export function* watchCheckId(){

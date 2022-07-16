@@ -1,14 +1,30 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import React, {useEffect, useState} from 'react'
 import Link from 'next/link'
-import styled from 'styled-components';
+import css from "styled-jsx/css"
 import JoinPage from '@/pages/users/join';
 import LoginPage from '@/pages/users/login';
 import LogoutPage from '@/pages/users/logout';
 import Image from 'next/image';
 
+const styled = css`
+a.line:after{
+    display:block;
+    content: '';
+    border-bottom: solid 1px black;  
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+    padding: 0px 30px;
+}
+a:hover:after {
+    transform: scaleX(1);
+}
+a.fromRight:after{ transform-origin:100% 50%; }
+a.fromLeft:after{  transform-origin:  0% 50%; }
+`
     
 export function Nav() {
+    
     const [item, setItem] = useState(null)
     const [googleItem, setGoogleItem] = useState(null)
     useEffect (()=> {
@@ -17,13 +33,13 @@ export function Nav() {
         setItem(item)
     },[])
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light" >
             <ul padding-left = '32px' margin-top = '32px' className='table-active'>
             <Link href="/">
-                <Image src="/clozet-black.svg" alt='clozet' width={100  } height={50} />
+                <Image className='navbar-brand' src="/clozet-black.svg" alt='clozet' width="30" height="24" />
             </Link>
             </ul>
-            <div className="container">
+            <div className="container-fluid">
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
         </button>
@@ -53,14 +69,6 @@ export function Nav() {
                                     </ul>
                                 </li><li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        UserPage
-                                    </a>
-                                    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a className="dropdown-item" href="/users/mypage">My Page</a></li>
-                                        <li><a className="dropdown-item" href="/users/findAccount">Find Account</a></li>
-                                    </ul>
-                                </li><li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         People
                                     </a>
                                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -71,17 +79,27 @@ export function Nav() {
                                     </ul>
                                 </li></> : null}
         </ul> 
-                    
+                {item === null ?
+                    <Link href='/users/findAccount' >
+                        <a className='line' style={{color : 'inherit', textDecoration : 'none'}}>
+                            계정 찾기
+                        </a>
+                    </Link>
+                :   <Link href='/users/mypage' >
+                        <a className='line' style={{color : 'inherit', textDecoration : 'none'}}>
+                            Profile
+                        </a>
+                    </Link>
+                }
+                
                 <Link href='/clothes/recommand'>
-                <button className='btn btn-datk'>
-                    <a>Clozet 이용하기</a>
-                </button>
+                    <a className='line' style={{color : 'inherit',textDecoration : 'none'}} >Clozet 이용하기</a>
                 </Link>
+                <style jsx>{styled}</style>
             <div>
                 {item === null ?
-
                 <div>
-                <button  type = 'button' className='btn btn-dark' data-bs-toggle="modal" data-bs-target="#modal1">
+                <button type = 'button' className='shadow-lg btn btn-dark' data-bs-toggle="modal" data-bs-target="#modal1">
                 <h5>Register</h5>
                 </button>
                 <div className="modal fade" id="modal1"tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -99,7 +117,7 @@ export function Nav() {
             </div>
             
             &nbsp;
-            <button  type = 'button' className='btn btn-dark' data-bs-toggle="modal" data-bs-target="#modal2">
+            <button  type = 'button' className='shadow-lg btn btn-dark' data-bs-toggle="modal" data-bs-target="#modal2">
                 <h5>Login</h5>
                 </button>
                 <div className="modal fade" id="modal2"tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -126,6 +144,8 @@ export function Nav() {
         </div>
         </div>
     </div>
+    
     </nav>
+    
     )
 }

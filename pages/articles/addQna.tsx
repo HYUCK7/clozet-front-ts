@@ -7,10 +7,11 @@ import { Article } from './addBoard'
 
 export default function AddQnaPage() {
   const [question, setQuestion] = useState<Article>(
-    {title: '', open: 'true', content: '', userId: 0}
+    {title: '', open: 'true', content: '', token: ''}
   )
   const dispatch = useAppDispatch()
   
+  /** 
   useEffect (()=> {
     const token = localStorage.getItem('loginSuccessUser')
     loadUserApi({token}).then(data => {
@@ -18,6 +19,11 @@ export default function AddQnaPage() {
       setQuestion({...question, userId})
     })
   }, [])
+  */
+ useEffect(()=> {
+  const token = localStorage.getItem('loginSuccessUser')
+  setQuestion({token: token})
+ }, [])
 
   const onChange = (e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLTextAreaElement>) => {
     e.preventDefault()

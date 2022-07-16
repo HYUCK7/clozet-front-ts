@@ -21,6 +21,7 @@ export interface Article {
   qna? : string
   pictureName?: string,
   size? : number
+  token?: string | null
 }
 
 const AddBoardPage: NextPage = () =>  {

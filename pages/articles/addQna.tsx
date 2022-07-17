@@ -20,6 +20,7 @@ export default function AddQnaPage() {
     })
   }, [])
   */
+ 
  useEffect(()=> {
   const token = localStorage.getItem('loginSuccessUser')
   setQuestion({token: token})

@@ -24,7 +24,7 @@ const Home: React.FC = () => {
         background-repeat: no-repeat;
     }
     .product0 {
-        background-image;
+        background-image: url('/dowalk.png')
         background-size: 600px;
         background-position: 80% center;
         text-align: 40%;
@@ -59,6 +59,9 @@ const Home: React.FC = () => {
         background-color: rgb(121, 91, 177);
         color: white;
     }
+    .image {
+      float : right
+    }
 `
     return(
     <>
@@ -73,7 +76,7 @@ const Home: React.FC = () => {
     </div>
     
     <div className="carousel-item" data-bs-interval="3000">
-      <img src="stores.jpg" height = {630} className="d-block w-100"/>
+      <img src="stores.jpg" height = {630}  className="d-block w-100"/>
       <div className = "carousel-caption text-end d-none d-md-block">
       <h1>오늘도 어떤 옷을 입을 지 고민이신가요?</h1>
         <p>100만 건의 의류 데이터를 통해 최적의 분석 데이터로 추천해드릴게요</p>
@@ -90,29 +93,34 @@ const Home: React.FC = () => {
 </div>
 <div className='contents'>
   <section className='wrapper'>
-
       <article className='product0'>
         <p>Use Closet
         클로젯을 이용하세요 제발 좀</p>
+        
         <p><a className="btn btn-secondary" href="/clothes/addCloth">내 Closet 만들러가기 &raquo;</a></p>
+        <img src='dowalk.png'/>
       </article>
 
       <article className='product1'>
+      
         <p>Use Closet
         클로젯을 사용하세요 제발 좀</p>
         <p><a className="btn btn-secondary" href="/clothes/addCloth">내 Closet 만들러가기 &raquo;</a></p>
+        <img src = 'dochilling.png' className='image'/>
       </article>
 
       <article className='product2'>
         <p>Use Closet
         클로젯을 사용하세요 제발 좀</p>
         <p><a className="btn btn-secondary" href="/clothes/addCloth">내 Closet 만들러가기 &raquo;</a></p>
+       
+        <img src='dothink.png'/>
       </article>
 
       <article className='product5'>
-        <p>Use Closet
-        클로젯을 사용하세요 제발 좀</p>
+        <p>클로젯에 회원가입 하러 가볼까요?</p>
         <p><a className="btn btn-secondary" href="/clothes/addCloth">Clozet 회원가입</a></p>
+        <img src='dosplint.png'/>
       </article>
 
   </section>

@@ -14,13 +14,17 @@ a.line:after{
     border-bottom: solid 1px black;  
     transform: scaleX(0);  
     transition: transform 250ms ease-in-out;
-    padding: 0px 30px;
+    padding : 
 }
 a:hover:after {
-    transform: scaleX(1);
+    transform: scaleX(100%);
 }
 a.fromRight:after{ transform-origin:100% 50%; }
 a.fromLeft:after{  transform-origin:  0% 50%; }
+
+a.navItem: {
+    font-size: 20rem;
+}
 `
     
 export function Nav() {
@@ -36,7 +40,7 @@ export function Nav() {
         <nav className="navbar navbar-expand-lg navbar-light bg-light" >
             <ul padding-left = '32px' margin-top = '32px' className='table-active'>
             <Link href="/">
-                <Image className='navbar-brand' src="/clozet-black.svg" alt='clozet' width="30" height="24" />
+                <Image className='navbar-brand' src="/clozet-black.svg" alt='clozet' width="200" height="50" />
             </Link>
             </ul>
             <div className="container-fluid">
@@ -50,7 +54,7 @@ export function Nav() {
         { item !== null ? 
     <><li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Closet
+                                    <strong>Closet</strong>
                                 </a>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a className="dropdown-item" href="/closets/main">MAIN</a></li>
@@ -60,7 +64,7 @@ export function Nav() {
                                 </ul>
                             </li><li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        MyWeek
+                                        <strong>MyWeek</strong>
                                     </a>
                                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li><a className="dropdown-item" href="/closets/thisWeek">This Week</a></li>
@@ -69,7 +73,7 @@ export function Nav() {
                                     </ul>
                                 </li><li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        People
+                                        <strong>People</strong>
                                     </a>
                                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li><a className="dropdown-item" href="/articles/addBoard">UPLOAD</a></li>
@@ -81,25 +85,25 @@ export function Nav() {
         </ul> 
                 {item === null ?
                     <Link href='/users/findAccount' >
-                        <a className='line' style={{color : 'inherit', textDecoration : 'none'}}>
+                        <a className='line mx-5' style={{color : 'inherit', textDecoration : 'none'}}>
                             계정 찾기
                         </a>
                     </Link>
                 :   <Link href='/users/mypage' >
-                        <a className='line' style={{color : 'inherit', textDecoration : 'none'}}>
+                        <a className='line mx-5' style={{color : 'inherit', textDecoration : 'none'}}>
                             Profile
                         </a>
                     </Link>
                 }
                 
                 <Link href='/clothes/recommand'>
-                    <a className='line' style={{color : 'inherit',textDecoration : 'none'}} >Clozet 이용하기</a>
+                    <a className='line mx-5' style={{color : 'inherit',textDecoration : 'none'}} >Clozet 이용하기</a>
                 </Link>
                 <style jsx>{styled}</style>
             <div>
                 {item === null ?
-                <div>
-                <button type = 'button' className='shadow-lg btn btn-dark' data-bs-toggle="modal" data-bs-target="#modal1">
+                <div >
+                <button type = 'button' className='shadow-lg btn btn-dark ' data-bs-toggle="modal" data-bs-target="#modal1">
                 <h5>Register</h5>
                 </button>
                 <div className="modal fade" id="modal1"tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">

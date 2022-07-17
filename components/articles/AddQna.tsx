@@ -10,7 +10,7 @@ const AddQna = ({handleChange, handleSubmit, checkChange}: Props) => {
   return (
     <div className = 'container'>
       <div className="py-5 text-center">
-        <img className="d-block mx-auto mb-4" src="/clozet-black.svg" alt="" width="72" height="57"/>
+        <img className="d-block mx-auto mb-4" src="/clozet-black.svg" alt="" width="150" height=""/>
         <h2>clozet 이용 불편사항을 말해주세요 !</h2>
         <p className="lead">저희 웹 이용 불편사항, 문의사항을 신속하게 처리해드리겠습니다.</p>
       </div>
@@ -19,7 +19,7 @@ const AddQna = ({handleChange, handleSubmit, checkChange}: Props) => {
         <div>
         <div className="input-group ">
           <span className="input-group-text" id="inputGroup-sizing-default">
-          <p>Title</p>
+          <p>제목</p>
           </span>
           <input onChange={handleChange} name = 'title'  type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
         </div>

@@ -15,7 +15,7 @@ const AddBoard: React.FC<Props> = ({onChange, onSubmit}) => {
   return (
     <div>
     <div className='container'>
-      <div text-align = "center">
+      <div>
         <h3>내 게시물 올리기</h3>
     </div>
 
@@ -40,29 +40,30 @@ const AddBoard: React.FC<Props> = ({onChange, onSubmit}) => {
             <h3>
               <input onChange = {onChange} name = "picture" type="file" className="form-control" id="inputGroupFile02" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             </h3>
+            
           </div>
           <br/>
           <div className="input-group">
             <span className="input-group-text">
               <h5>키와 몸무게를 적어주세요</h5>
             </span>
-            <input onChange = {onChange} name ="height"  type="number" aria-label="height" className="form-control"/>
-            <input onChange = {onChange} name ="weight" type="number" aria-label="weight" className="form-control"/>
+            <input onChange = {onChange} name ="height"  type="number" aria-label="height" className="form-control" placeholder='키'/>
+            <input onChange = {onChange} name ="weight" type="number" aria-label="weight" className="form-control" placeholder='몸무게'/>
           </div>
+          <br/>
           <div className="input-group">
               <span className="input-group-text">
               <h5>
                 문구 입력...
               </h5>
               </span>
-              <textarea name = "content" onChange = {onChange} className="form-control" aria-label="With textarea"></textarea>
-            </div>            
-          </div>    
-            
-          <button  className="w-100 btn btn-lg btn-outline-secondary" type="submit">
-          UPLOAD
-          </button>
-
+              <textarea name = "content" onChange = {onChange} className="form-control p-5" aria-label="With textarea"></textarea>
+            </div>
+            <br/>  
+            <button  className="w-100 btn btn-lg btn-outline-secondary " type="submit">
+              UPLOAD
+            </button>          
+          </div>
           </form>
           </div>
     

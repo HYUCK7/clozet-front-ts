@@ -1,6 +1,7 @@
 import { fetchArticleAPI } from '@/apis/articleApi'
-import axios, { AxiosResponse } from 'axios'
-import React, { CSSProperties, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import css from "styled-jsx/css"
+
 
 const SERVER = 'http://127.0.0.1:8080'
 const headers = {
@@ -23,6 +24,11 @@ export interface Article {
 const AllBoardList: React.FC = () => {
   const [articleList, setArticleList] = useState<Array<Article>>([])
 
+  useEffect (() => { fetchArticleAPI().then(data => {
+    setArticleList(data)
+    console.log(data)
+  } ) }, [])
+
   /** 임의로 데이터 직접 넣어 test
   useEffect(() => {
     let articles: Array<Article> = [
@@ -33,24 +39,26 @@ const AllBoardList: React.FC = () => {
     setArticleList(articles)
   })
  */
-
-  useEffect (() => { fetchArticleAPI().then(data => {
-    setArticleList(data)
-    console.log(data)
-  } ) }, [])
   
-
+const styled = css`
+.row{
+  width: 1200px;
+  margin o auto;
+}
+`
 
   return (
     <div className='container'>
-    <div text-align = "center">
-      <h1>Clozet 사람들</h1>
+    <div>
+      <h1 className='text-right'>Clozet 사람들</h1>
     </div>
+    <br/>
     {articleList.map((article: Article) => 
     <div className="row mb-2">
     <div className="col-md-6">
       <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div className="col p-4 d-flex flex-column position-static">
+
           <strong className="d-inline-block mb-2 text-primary">
             <h5>iqeq1219</h5>
           </strong>

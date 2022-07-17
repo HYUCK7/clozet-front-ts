@@ -4,6 +4,7 @@ type Props = {}
 
 const AllQnaList = (props: Props) => {
     return (
+      <div className='container'>
     <table className="table table-hover caption-top">
     <caption>
       <p>문의 목록</p>
@@ -25,6 +26,7 @@ const AllQnaList = (props: Props) => {
       
     </tbody>
   </table>
+  </div>
   )
 }
 

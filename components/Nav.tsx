@@ -85,12 +85,12 @@ export function Nav() {
         </ul> 
                 {item === null ?
                     <Link href='/users/findAccount' >
-                        <a className='line mx-5' style={{color : 'inherit', textDecoration : 'none'}}>
+                        <a className='line ' style={{color : 'inherit', textDecoration : 'none'}}>
                             계정 찾기
                         </a>
                     </Link>
                 :   <Link href='/users/mypage' >
-                        <a className='line mx-5' style={{color : 'inherit', textDecoration : 'none'}}>
+                        <a className='line' style={{color : 'inherit', textDecoration : 'none'}}>
                             Profile
                         </a>
                     </Link>

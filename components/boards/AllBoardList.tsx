@@ -1,6 +1,7 @@
 import { fetchArticleAPI } from '@/apis/articleApi'
-import React, { useEffect, useState } from 'react'
+import React, { MouseEventHandler, useEffect, useRef, useState } from 'react'
 import css from "styled-jsx/css"
+import HeartButton from './HeartButton'
 
 
 const SERVER = 'http://127.0.0.1:8080'
@@ -22,40 +23,25 @@ export interface Article {
 }
 
 const AllBoardList: React.FC = () => {
+  
   const [articleList, setArticleList] = useState<Array<Article>>([])
+  
+
 
   useEffect (() => { fetchArticleAPI().then(data => {
     setArticleList(data)
     console.log(data)
   } ) }, [])
 
-  /** 임의로 데이터 직접 넣어 test
-  useEffect(() => {
-    let articles: Array<Article> = [
-      {"articleId":1001,"title":"234234","writtenDate":"2022","open":"2022","content":"423432423","picture":null,"height":"234234","weight":"23423","comment":"test"},
-  {"articleId":1002,"title":"테스트","writtenDate":"2022","open":"2022","content":"게시물","picture":null,"height":"170","weight":"60","comment":"test"}
-    ];
-    console.log('articles prototype 타입: ' + Object.prototype.toString.call(articles))
-    setArticleList(articles)
-  })
- */
-  
-const styled = css`
-.row{
-  width: 1200px;
-  margin o auto;
-}
-`
-
   return (
     <div className='container'>
     <div>
-      <h1 className='text-right'>Clozet 사람들</h1>
+      <h1 className='text-center'># Clozet 사람들</h1>
     </div>
     <br/>
     {articleList.map((article: Article) => 
     <div className="row mb-2">
-    <div className="col-md-6">
+    <div className="col-12">
       <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div className="col p-4 d-flex flex-column position-static">
 
@@ -70,9 +56,14 @@ const styled = css`
           </div>
           <p key={article.content} className="card-text mb-auto">{article?.content}</p>
           <p className="card-text mb-auto">{article?.height}cm , {article?.weight}kg</p>
+          
         </div>
         <div className="col-auto d-none d-lg-block">
           <img src={article.picture}></img>
+        </div>
+        <div className='p-4'>
+          <p>좋아요 수 : </p>
+          <HeartButton/>
         </div>
       </div>
       </div>
@@ -81,6 +72,18 @@ const styled = css`
     </div>
   )
 }
+
+  /** 임의로 데이터 직접 넣어 test
+  useEffect(() => {
+    let articles: Array<Article> = [
+      {"articleId":1001,"title":"234234","writtenDate":"2022","open":"2022","content":"423432423","picture":null,"height":"234234","weight":"23423","comment":"test"},
+  {"articleId":1002,"title":"테스트","writtenDate":"2022","open":"2022","content":"게시물","picture":null,"height":"170","weight":"60","comment":"test"}
+    ];
+    console.log('articles prototype 타입: ' + Object.prototype.toString.call(articles))
+    setArticleList(articles)
+  })
+ */
+
 /** 
 export const getServerSideProps = async () => {
   try {

@@ -20,10 +20,16 @@ const MyQnaList = (props: Props) => {
         <td> 
           <p><strong>제목</strong></p>
        </td>
+       <td> 
+          <p><strong>질의내용</strong></p>
+       </td>
+       <td> 
+          <p><strong>공개 상태</strong></p>
+       </td>
       </tr>
     </thead>
     <tbody>
-      
+    
     </tbody>
   </table>
   </div>

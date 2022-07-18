@@ -65,7 +65,7 @@ export const userJoinApi = async (
                 console.log(`진행5 : 응답 성공 + ${JSON.stringify(response.data)}`)
                 const loginSuccessUser = response.data.token
                 console.log(loginSuccessUser)
-                if(loginSuccessUser === null && AxiosError && 'FAILURE'){
+                if(loginSuccessUser === null && AxiosError || loginSuccessUser.value === 'FAILURE'){
                     alert('아이디 및 비밀번호를 확인해주세요.')
                 }else {
                     localStorage.setItem("loginSuccessUser", loginSuccessUser)

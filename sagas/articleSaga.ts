@@ -1,4 +1,4 @@
-import { fetchMyBoardApi, writeArticleApi, writeQnaApi } from "@/apis/articleApi";
+import { fetchAllQnaApi, fetchMyBoardApi, writeArticleApi, writeQnaApi } from "@/apis/articleApi";
 import { ArticleActions, writeBoardFailure, writeBoardSuccess } from "@/modules/boards";
 import { qnaActions, writeQnaFailure, writeQnaSuccess } from "@/modules/boards/qna";
 import { Article } from "@/pages/articles/addBoard";
@@ -37,6 +37,17 @@ function* fetchMyArticleSaga(action : {payload : any}) {
         yield put(fetchMyBoardSuccess(response))
     } catch (error) {
         yield put(fetchMyBoardFailure())
+    }
+}
+
+function* fetchAllQnaSaga(action: {payload: {open: string}}) {
+    const {fetchAllQnaSuccess, fetchAllQnaFailure} = qnaActions
+    try{
+        console.log(`SAGA + ${JSON.stringify(action.payload)}`)
+        const response: {open: string} = yield call(fetchAllQnaApi, action.payload)
+        yield put(fetchAllQnaSuccess(response))
+    } catch (error) {
+        yield put(fetchAllQnaFailure)
     }
 }
 

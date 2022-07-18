@@ -62,9 +62,18 @@ export const fetchAllQnaApi = async (
             return(err);
         }
 }
-
 // open, token
-export const fetchMyQnaApi = async() => {}
+export const fetchMyQnaApi = async(
+
+) => {
+    try {
+        console.log()
+        const response: AxiosResponse = await axios.post()
+        return response.data
+    } catch (err){
+        return(err);
+    }
+}
 
 
 

@@ -29,6 +29,19 @@ const qnaSlice = createSlice({
         writeQnaFailure : (state, action : PayloadAction) => {
             console.log(`QNA 작성 실패`)
             state.status = `failed`
+        },
+        fetchAllQna: (state, action: PayloadAction<{open: string}>) => {
+            console.log(`TRY All Qna Fetch`)
+            console.log(action)
+            state.status = `loading`
+        },
+        fetchAllQnaSuccess: (state, action: PayloadAction<Article>) => {
+            console.log(`SUCCESS`)
+            state.status = `success`
+            state.data = action.payload
+        },
+        fetchAllQnaFailure: (state, action) => {
+            console.log(`FAILURE`)
         }
     }
 })

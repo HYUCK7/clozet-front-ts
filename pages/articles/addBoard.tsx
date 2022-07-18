@@ -6,9 +6,9 @@ import { writeBoard } from '@/modules/boards'
 import { loadUserApi } from '@/apis/userApi'
 
 // 게시판 DB 스키마 동일.
-export interface Article {
-  
+export interface Article {  
   userId?: number
+  nickname? : string,
   articleId?: number ,
   title?: string,
   content?: string,
@@ -50,11 +50,13 @@ const AddBoardPage: NextPage = () =>  {
     const token = localStorage.getItem('loginSuccessUser')
     loadUserApi({token}).then(data =>{
       const userId = data.userId
+      const nickname = data.nickname
       console.log(userId)
       console.log(`유저정보 + ${JSON.stringify(data)}`)
       setWrite({
         userId: userId,
-        writtenDate: writtenDate
+        writtenDate: writtenDate,
+        nickname: nickname
       })
     }
     )
@@ -63,7 +65,7 @@ const AddBoardPage: NextPage = () =>  {
   
   console.log(write)
   return (
-    <AddBoard onChange={onChange} onSubmit = {onSubmit}/>
+    <AddBoard info = {write} onChange={onChange} onSubmit = {onSubmit}/>
   )
 }
 export default AddBoardPage

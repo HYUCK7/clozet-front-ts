@@ -12,6 +12,7 @@ const headers = {
 
 export interface Article {
   articleId? : string,
+  nickname? : string,
   title: string,
   writtenDate? : string,
   open? : string,
@@ -46,7 +47,7 @@ const AllBoardList: React.FC = () => {
         <div className="col p-4 d-flex flex-column position-static">
 
           <strong className="d-inline-block mb-2 text-primary">
-            <h5>iqeq1219</h5>
+            <h5>{article?.nickname}</h5>
           </strong>
           <h3 className="mb-0">
             {article?.title}

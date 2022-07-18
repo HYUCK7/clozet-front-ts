@@ -4,15 +4,11 @@ import { RefObject, useRef, useState } from "react";
 
 
 export default function GoogleLogin({
-    /*
-    handleCredentialResponse = (response : any) =>{
-    console.log("ENCODED JWT ID TOKEN" + response.credential)
-    }
-    */
+
     handleCredentialResponse = (response : any) => { console.log ("ENCODED JWT ID TOKEN: " + response.credential)},
 }) 
   
-{  //const googleSignInButton = useRef(document.getElementById("#buttonDiv")!)
+{  
   
   useScript('https://accounts.google.com/gsi/client',() => {
         
@@ -21,8 +17,6 @@ export default function GoogleLogin({
       callback: handleCredentialResponse
   })
     window.google.accounts.id.renderButton(
-      //document.getElementById( "#buttonDiv" )!, <div id = "buttonDiv"></div>
-      //googleSignInButton.current,
       document.getElementById('buttonDiv') as HTMLButtonElement,
       {
         theme: "outline", size: "large",

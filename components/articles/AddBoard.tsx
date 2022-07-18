@@ -1,14 +1,16 @@
 import { loadUserApi } from '@/apis/userApi'
 import { Token } from '@/modules/users/loadUser'
+import { Article } from '@/pages/articles/addBoard'
 import React, { useEffect, useState } from 'react'
 import { User } from '../users/Mypage'
 
 type Props = {
+  info: Article
   onChange : (e: React.FormEvent<HTMLInputElement> | any ) => void
   onSubmit : (e: React.FormEvent<HTMLFormElement> ) => void
 }
 
-const AddBoard: React.FC<Props> = ({onChange, onSubmit}) => {
+const AddBoard: React.FC<Props> = ({onChange, onSubmit, info}) => {
   const date = new Date();
   const parseDate = date.toDateString()
 
@@ -22,7 +24,9 @@ const AddBoard: React.FC<Props> = ({onChange, onSubmit}) => {
       <div>
           <h4>추천 복장을 입고 업로드해보세요.</h4><br/>
       </div>
+      
       <div>
+        <p>{info.nickname} 님의 글쓰기 장소</p>
         <p>{parseDate}</p>
       </div>
         </div>

@@ -10,17 +10,8 @@ export default function AddQnaPage() {
     {title: '', open: 'true', content: '', token: ''}
   )
   const dispatch = useAppDispatch()
-  
-  /** 
-  useEffect (()=> {
-    const token = localStorage.getItem('loginSuccessUser')
-    loadUserApi({token}).then(data => {
-      const userId = data.userId
-      setQuestion({...question, userId})
-    })
-  }, [])
-  */
  
+
  useEffect(()=> {
   const token = localStorage.getItem('loginSuccessUser')
   setQuestion({token: token})

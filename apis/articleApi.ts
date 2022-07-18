@@ -52,3 +52,15 @@ export const writeQnaApi = async(
     }
 }
 
+export const fetchAllQnaApi = async (
+    openState: string) => {
+        try{
+            console.log(openState)
+            const response: AxiosResponse = await axios.post(`${SERVER}/articles/findByQnaDateASC`, {open: openState}, {headers})
+            return response.data
+        } catch(err){
+            return(err);
+        }
+    }
+
+

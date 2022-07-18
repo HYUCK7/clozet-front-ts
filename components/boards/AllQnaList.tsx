@@ -15,25 +15,42 @@ const AllQnaList: React.FC = () => {
     return (
       <div className='container'>
     <table className="table table-hover caption-top">
-    {qnaList.map((x : Article) => 
-    <><caption>
+    
+    <>
+    <caption>
         <p>문의 목록</p>
-      </caption><thead>
+    </caption>
+      <thead>
           <tr>
             <th scope="row">
-              <p>{x.writtenDate}</p>
+              <p>작성일자</p>
             </th>
-            <td>
-              <p><strong>{x.title}</strong></p>
-            </td>
-            <td>
+            <th>
+              <p><strong>계정</strong></p>
+            </th>
+            <th>
               <p><strong>제목</strong></p>
-            </td>
+            </th>
+            <th>
+              <p><strong>질의내용</strong></p>
+            </th>
           </tr>
-        </thead><tbody>
+        </thead>
 
-        </tbody></>
-    )}
+        <tbody>
+         
+          { qnaList.map((x : Article) => 
+          <tr key = {x.writtenDate}>
+              <td>{x.writtenDate}</td>
+              <td>{x.nickname}</td>
+              <td>{x.title}</td>
+              <td>{x.content}</td>
+          </tr>   
+              )}
+          
+        </tbody>
+        </>
+    
   </table>
   </div>
   )

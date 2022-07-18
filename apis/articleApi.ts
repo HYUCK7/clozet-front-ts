@@ -18,7 +18,7 @@ export const writeArticleApi = async (
 export const fetchArticleAPI = async () => {
     try{
         console.log(`API 진입`)
-        const response : AxiosResponse = await axios.get(`${SERVER}/articles/findAll`, {headers})
+        const response : AxiosResponse = await axios.get(`${SERVER}/articles/findAllArticle`, {headers})
         console.log(`서버 응답 + ${JSON.stringify(response.data)}`)
         return response.data
     } catch(err) {
@@ -31,7 +31,7 @@ export const fetchMyBoardApi = async(
 ) => {
     try{
         console.log('api 진입')
-        const response: AxiosResponse = await axios.post(`${SERVER}/articles/findByUserId`, payload, {headers})
+        const response: AxiosResponse = await axios.post(`${SERVER}/articles/findByTokenToArticle`, payload, {headers})
         console.log(`서버 응답 + ${JSON.stringify(response.data)}`)
         return response.data
     } catch(err) {
@@ -61,6 +61,10 @@ export const fetchAllQnaApi = async (
         } catch(err){
             return(err);
         }
-    }
+}
+
+// open, token
+export const fetchMyQnaApi = async() => {}
+
 
 

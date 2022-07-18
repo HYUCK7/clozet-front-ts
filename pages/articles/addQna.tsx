@@ -6,16 +6,23 @@ import React, { useEffect, useState } from 'react'
 import { Article } from './addBoard'
 
 export default function AddQnaPage() {
+  const date = new Date();
+  const parseDate = date.toDateString()
   const [question, setQuestion] = useState<Article>(
-    {title: '', open: 'true', content: '', token: ''}
+    {title: '', open: '', content: '', token: '', nickname: '', writtenDate: ''}
   )
   const dispatch = useAppDispatch()
  
 
  useEffect(()=> {
   const token = localStorage.getItem('loginSuccessUser')
-  setQuestion({token: token})
- }, [])
+  loadUserApi({token}).then(data => {
+    const nickname = data.nickname
+  setQuestion({token: token,
+                open: 'true',
+                nickname: nickname,
+                writtenDate: parseDate})
+  })}, [])
 
   const onChange = (e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLTextAreaElement>) => {
     e.preventDefault()
@@ -34,6 +41,6 @@ export default function AddQnaPage() {
 
 
   return (
-    <AddQna checkChange = {checkChange} handleChange = {onChange} handleSubmit = {onSubmit} />
+    <AddQna nickname = {question.nickname} checkChange = {checkChange} handleChange = {onChange} handleSubmit = {onSubmit} />
   )
 }

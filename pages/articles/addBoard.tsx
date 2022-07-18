@@ -49,14 +49,12 @@ const AddBoardPage: NextPage = () =>  {
   useEffect(()=> {    
     const token = localStorage.getItem('loginSuccessUser')
     loadUserApi({token}).then(data =>{
-      const userId = data.userId
+      //const userId = data.userId
       const nickname = data.nickname
-      console.log(userId)
       console.log(`유저정보 + ${JSON.stringify(data)}`)
       setWrite({
-        userId: userId,
         writtenDate: writtenDate,
-        nickname: nickname
+        nickname: nickname,
       })
     }
     )

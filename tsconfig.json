@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
+    "types": ["kakao.maps.d.ts"],
     "baseUrl": ".",
     "paths": {
       "@/*": [

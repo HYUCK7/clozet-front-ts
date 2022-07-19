@@ -81,15 +81,15 @@ export function Nav() {
                                         <li><a className="dropdown-item" href="/boards/trend">Trend</a></li>
                                     </ul>
                                 </li></> : null}
-        </ul> 
+                            </ul> 
                         <Link href='/common/intro'>
-                            <a className='line' style={{color : 'inherit', textDecoration: 'none'}}>
+                            <a className='line mx-5' style={{color : 'inherit', textDecoration: 'none'}}>
                                 회사 소개
                             </a>
                         </Link>
                 {item === null ?
                     <Link href='/users/findAccount' >
-                        <a className='line ' style={{color : 'inherit', textDecoration : 'none'}}>
+                        <a className='line' style={{color : 'inherit', textDecoration : 'none'}}>
                             계정 찾기
                         </a>
                     </Link>

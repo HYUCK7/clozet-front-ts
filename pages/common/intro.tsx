@@ -1,4 +1,5 @@
 import DataChart from '@/components/common/Chart'
+import KakaoMap from '@/components/common/KakaoMap'
 import axios from 'axios'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import React from 'react'
@@ -19,7 +20,11 @@ const intro = ({articleCount, userCount} : Props) => {
   
   
   return (
-    <DataChart dataFormat = {dataFormat}/>
+    <>
+      <h1>Clozet 회사 소개입니다.</h1>
+      <DataChart dataFormat = {dataFormat}/>
+      <KakaoMap/>
+    </>
   )
 }
 

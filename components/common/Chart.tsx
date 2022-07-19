@@ -1,3 +1,4 @@
+import { autocompleteClasses } from '@mui/material'
 import axios from 'axios'
 import { GetServerSideProps } from 'next'
 import React, { useEffect, useState } from 'react'
@@ -24,9 +25,9 @@ const convert = (dataFormat : any) => {
     todata.push(keys)
     
     for(let i = 0; i<dataFormat.length; i++){
-        const values = Object.values(dataFormat[i])
-        console.log('>>>>todata:', values)
-        todata.push(values)
+    const values = Object.values(dataFormat[i])
+    console.log('>>>>todata:', values)
+    todata.push(values)
     }
 return todata
 }
@@ -34,16 +35,15 @@ return todata
 
 const DataChart = ({dataFormat}: Props) => {
   return (
-    <div>
+    <div className='container'>
         <Chart
             chartType='Bar'
-            width='70%'
-            height="400px"
+            width='100%'
+            height="600px"
             data={convert(dataFormat)}
             options={options}
         />
-
-    </div>
+            </div>
   )
 }
 

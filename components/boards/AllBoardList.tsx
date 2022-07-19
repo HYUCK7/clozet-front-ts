@@ -1,7 +1,7 @@
 import { fetchArticleAPI } from '@/apis/articleApi'
 import React, { MouseEventHandler, useEffect, useRef, useState } from 'react'
 import css from "styled-jsx/css"
-import HeartButton from './HeartButton'
+import HeartButton from '../common/HeartButton'
 
 
 const SERVER = 'http://127.0.0.1:8080'
@@ -13,22 +13,21 @@ const headers = {
 export interface Article {
   articleId? : string,
   nickname? : string,
-  title: string,
+  title?: string,
   writtenDate? : string,
   open? : string,
-  content: string,
+  content?: string,
   picture? : any,
   height? : string,
   weight? : string,
   comment? : string
+  token? : string
 }
 
 const AllBoardList: React.FC = () => {
   
   const [articleList, setArticleList] = useState<Array<Article>>([])
   
-
-
   useEffect (() => { fetchArticleAPI().then(data => {
     setArticleList(data)
     console.log(data)

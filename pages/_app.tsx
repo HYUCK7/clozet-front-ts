@@ -15,7 +15,8 @@ import { Provider } from 'react-redux'
 
 
 function MyApp({ Component, pageProps: {...pageProps} }: AppProps) {
-  return ( 
+  return (
+     
     <Layout>
     <Component {...pageProps} />
     <style jsx>{`

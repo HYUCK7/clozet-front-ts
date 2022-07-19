@@ -1,5 +1,5 @@
 import { loadUserApi } from '@/apis/userApi'
-import AddQna from '@/components/articles/AddQna'
+import AddQna from '@/components/boards/AddQna'
 import { useAppDispatch } from '@/hooks'
 import { writeQna } from '@/modules/boards/qna'
 import React, { useEffect, useState } from 'react'

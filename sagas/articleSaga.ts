@@ -1,7 +1,7 @@
-import { fetchAllQnaApi, fetchMyBoardApi, writeArticleApi, writeQnaApi } from "@/apis/articleApi";
+import { fetchAllQnaApi, fetchMyBoardApi, fetchMyQnaApi, removeBoardApi, writeArticleApi, writeQnaApi } from "@/apis/articleApi";
 import { ArticleActions, writeBoardFailure, writeBoardSuccess } from "@/modules/boards";
 import { qnaActions, writeQnaFailure, writeQnaSuccess } from "@/modules/boards/qna";
-import { Article } from "@/pages/articles/addBoard";
+import { Article } from "@/pages/boards/addBoard";
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
 
@@ -39,7 +39,7 @@ function* fetchMyArticleSaga(action : {payload : any}) {
         yield put(fetchMyBoardFailure())
     }
 }
-
+/** 
 function* fetchAllQnaSaga(action: {payload: {open: string}}) {
     const {fetchAllQnaSuccess, fetchAllQnaFailure} = qnaActions
     try{
@@ -49,6 +49,24 @@ function* fetchAllQnaSaga(action: {payload: {open: string}}) {
     } catch (error) {
         yield put(fetchAllQnaFailure)
     }
+}
+*/
+
+function* fetchMyQnaSaga(action: {payload: Article}) {
+    const {fetchMyQnaSuccess, fetchMyQnaFailure} = qnaActions
+    try{
+        console.log(`SAGA + ${JSON.stringify(action.payload)}`)
+        const response: Article = yield call(fetchMyQnaApi, action.payload)
+        yield put(fetchMyQnaSuccess(response))
+    } catch (error) {
+        yield put(fetchMyQnaFailure(error))
+    }
+}
+function* removeBoardSaga(action: {payload: Article}) {
+    try{
+        console.log(`saga + ${JSON.stringify(action.payload)}`)
+        yield call(removeBoardApi, action.payload)
+    } catch (error) {}
 }
 
 // main saga
@@ -60,4 +78,10 @@ export function* watchWriteQna(){
 }
 export function* watchFetchMyArticleSaga(){
     yield takeEvery(ArticleActions.fetchMyBoard, fetchMyArticleSaga)
+}
+export function* watchFetchMyQnaSaga(){
+    yield takeLatest(qnaActions.fetchMyQna, fetchMyQnaSaga)
+}
+export function* watchRemoveBoard(){
+    yield takeLatest(ArticleActions.removeBoard, removeBoardSaga)
 }

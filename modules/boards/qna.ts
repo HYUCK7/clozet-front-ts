@@ -1,4 +1,4 @@
-import { Article } from "@/pages/articles/addBoard";
+import { Article } from "@/pages/boards/addBoard";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface QnaState {
@@ -42,10 +42,24 @@ const qnaSlice = createSlice({
         },
         fetchAllQnaFailure: (state, action) => {
             console.log(`FAILURE`)
+        },
+        fetchMyQna: (state, action: PayloadAction<Article>) => {
+            console.log(`FETCH`)
+            state.status = 'loading'
+            console.log(action.payload)
+            state.data = action.payload
+        },
+        fetchMyQnaSuccess: (state, action: PayloadAction<Article>) => {
+            console.log(`SUCCESS`)
+            state.status = 'success'
+            state.data = action.payload
+        },
+        fetchMyQnaFailure: (state, action) => {
+            console.log(`Failure`)
         }
     }
 })
-export const {writeQna, writeQnaSuccess, writeQnaFailure} = qnaSlice.actions;
+export const {writeQna, writeQnaSuccess, writeQnaFailure, fetchMyQna, fetchMyQnaSuccess, fetchMyQnaFailure} = qnaSlice.actions;
 const {reducer, actions} = qnaSlice
 export const qnaActions = actions
 export default reducer

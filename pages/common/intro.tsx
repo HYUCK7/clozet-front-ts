@@ -1,4 +1,4 @@
-import DataChart from '@/components/users/common/Chart'
+import DataChart from '@/components/common/Chart'
 import React from 'react'
 
 type Props = {}

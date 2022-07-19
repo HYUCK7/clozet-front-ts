@@ -76,7 +76,7 @@ export function Nav() {
                                         <strong>People</strong>
                                     </a>
                                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a className="dropdown-item" href="/articles/addBoard">UPLOAD</a></li>
+                                        <li><a className="dropdown-item" href="/boards/addBoard">UPLOAD</a></li>
                                         <li><a className="dropdown-item" href="/boards/myBoardList">MY UPLOAD</a></li>
                                         <li><a className="dropdown-item" href="/boards/allBoardList">Clozet People</a></li>
                                         <li><a className="dropdown-item" href="/boards/trend">Trend</a></li>

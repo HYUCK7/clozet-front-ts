@@ -19,7 +19,7 @@ const Copyright: React.FC = () => {
 const QA: React.FC = () => {
   return(
   <Typography variant='body2' color = "text.secondary" align = "center">
-  <Link color = "#009688"href = "/articles/addQna" align-right={100}>
+  <Link color = "#009688"href = "/boards/addQna" align-right={100}>
     문의하기       
     </Link>
     &nbsp; &nbsp;

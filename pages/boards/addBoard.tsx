@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import AddBoard from '@/components/articles/AddBoard'
+import AddBoard from '@/components/boards/AddBoard'
 import { useAppDispatch } from '@/hooks'
 import { NextPage } from 'next'
 import { writeBoard } from '@/modules/boards'

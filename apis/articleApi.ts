@@ -1,4 +1,4 @@
-import { Article } from "@/pages/articles/addBoard";
+import { Article } from "@/pages/boards/addBoard";
 import axios, { AxiosResponse } from "axios";
 const SERVER = 'http://127.0.0.1:8080'
 const headers = {
@@ -62,15 +62,23 @@ export const fetchAllQnaApi = async (
             return(err);
         }
 }
-// open, token
 export const fetchMyQnaApi = async(
-
+    fetchForData : Article
 ) => {
     try {
-        console.log()
-        const response: AxiosResponse = await axios.post()
+        const response: AxiosResponse = await axios.post(`${SERVER}/articles/findMyQna`, fetchForData, {headers})
+        console.log(`넘어온데이터: ${JSON.stringify(response)}`)
         return response.data
     } catch (err){
+        return(err);
+    }
+}
+export const removeBoardApi = async(
+    removeForData : Article
+) => {
+    try{
+        const response = await axios.delete(`${SERVER}/articles/deleteArticle`, {data : removeForData})
+    } catch (err) {
         return(err);
     }
 }

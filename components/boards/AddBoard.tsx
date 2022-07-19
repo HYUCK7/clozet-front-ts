@@ -1,6 +1,6 @@
 import { loadUserApi } from '@/apis/userApi'
 import { Token } from '@/modules/users/loadUser'
-import { Article } from '@/pages/articles/addBoard'
+import { Article } from '@/pages/boards/addBoard'
 import React, { useEffect, useState } from 'react'
 import { User } from '../users/Mypage'
 
@@ -26,7 +26,7 @@ const AddBoard: React.FC<Props> = ({onChange, onSubmit, info}) => {
       </div>
       
       <div>
-        <p>{info.nickname} 님의 글쓰기 장소</p>
+        <h2>{info.nickname} 님의 글쓰기 장소</h2>
         <p>{parseDate}</p>
       </div>
         </div>

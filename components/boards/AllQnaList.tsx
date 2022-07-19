@@ -7,7 +7,7 @@ type Props = {}
 
 const AllQnaList: React.FC = () => {
   const [qnaList, setQnaList] = useState<Array<Article>>([])
-  //const dispatch = useAppDispatch()
+
   useEffect(() => { fetchAllQnaApi('true').then(data =>{
     setQnaList(data)
     console.log(data)
@@ -39,7 +39,6 @@ const AllQnaList: React.FC = () => {
         </thead>
 
         <tbody>
-         
           { qnaList.map((x : Article) => 
           <tr key = {x.articleId}>
               <td>{x.writtenDate}</td>

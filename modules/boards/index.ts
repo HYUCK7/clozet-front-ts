@@ -1,4 +1,4 @@
-import { Article } from "@/pages/articles/addBoard";
+import { Article } from "@/pages/boards/addBoard";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface ArticleState{
@@ -65,13 +65,15 @@ const ArticleSlice = createSlice({
             console.log(action)
             state.status = 'failed'
         },
-        deleteBoard(state, action: PayloadAction){
-            alert(`게시글 삭제하기 - 리듀서`)
+        removeBoard : (state, action: PayloadAction<Article>) => {
+            console.log(`게시글 삭제하기 - 리듀서`)
+            state.status = 'loading'
+            state.data = action.payload
         }
     }
 })
 
-export const { writeBoard, writeBoardSuccess, writeBoardFailure, fetchBoards, fetchBoardSuccess, deleteBoard, fetchMyBoard } = ArticleSlice.actions;
+export const { writeBoard, writeBoardSuccess, writeBoardFailure, fetchBoards, fetchBoardSuccess, removeBoard, fetchMyBoard } = ArticleSlice.actions;
 const {reducer, actions} = ArticleSlice
 export const ArticleActions = actions
 export default reducer;

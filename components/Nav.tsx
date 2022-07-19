@@ -33,7 +33,6 @@ export function Nav() {
     const [googleItem, setGoogleItem] = useState(null)
     useEffect (()=> {
         let item : any = localStorage.getItem('loginSuccessUser');
-        //let googleItem: any = windo.getItem()
         setItem(item)
     },[])
     return (
@@ -83,6 +82,11 @@ export function Nav() {
                                     </ul>
                                 </li></> : null}
         </ul> 
+                        <Link href='/common/intro'>
+                            <a className='line' style={{color : 'inherit', textDecoration: 'none'}}>
+                                회사 소개
+                            </a>
+                        </Link>
                 {item === null ?
                     <Link href='/users/findAccount' >
                         <a className='line ' style={{color : 'inherit', textDecoration : 'none'}}>

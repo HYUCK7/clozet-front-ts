@@ -1,61 +1,45 @@
-import React, { useState } from 'react'
+import axios from 'axios'
+import { GetServerSideProps } from 'next'
+import React, { useEffect, useState } from 'react'
 import Chart from 'react-google-charts'
 
 
-type Props = {}
 
-export interface Info{
-    year: string,
-    user: number,
-    article: number
+type Props = {
+    dataFormat : any
 }
-
-export const dataFormat = [
-    { year: '2019', user: 460, article: 250 },
-    { year: '2020', user: 300, article: 1120},
-    { year: '2021', user: 500, article: 1000 },
-]
 
 export const options = {
     chart: {
-        title: "회사 성과표",
-        subtitle: "매출, 비용, 이익: 2018-2021년도",
+        title: "Clozet의 활동",
+        subtitle: "회원 수와 회원들의 활동 - 2022",
     }
 }
 
-const valueK = () => {
-    //const [data, setData] = useState(dataFormat);
-    let values = []
-    for (let i = 0; i < dataFormat.length; i++) {
-        values[i] = Object.values(dataFormat[i])
+const convert = (dataFormat : any) => {
+    console.log(dataFormat)
+    const todata: any[] = []
+    const keys = Object.keys(dataFormat[0])
+    console.log('>>>>todata:', keys)
+    todata.push(keys)
+    
+    for(let i = 0; i<dataFormat.length; i++){
+        const values = Object.values(dataFormat[i])
+        console.log('>>>>todata:', values)
+        todata.push(values)
     }
-    console.log(`values : ${JSON.stringify(values)}`)
-    return values
-}
-
-const convert = () => {
-    let data : any[] = []
-    const keys = Object.keys(data[0])
-    data.push(keys)
-
-    for(let i = 0; i < 3; i++) {
-        const index = valueK()[i]
-        data.push(index)
-        console.log(data)
-    }
-    return data
+return todata
 }
 
 
-const DataChart = (props: Props) => {
+const DataChart = ({dataFormat}: Props) => {
   return (
     <div>
-        <p>Chart</p>
         <Chart
             chartType='Bar'
             width='70%'
             height="400px"
-            data={valueK()}
+            data={convert(dataFormat)}
             options={options}
         />
 

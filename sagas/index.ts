@@ -13,7 +13,7 @@ import {
   watchWriteArticle,
   watchFetchMyArticleSaga,
   watchWriteQna,
-  watchFetchMyQnaSaga,
+  //watchFetchMyQnaSaga,
   watchRemoveBoard
 } from './articleSaga'
 
@@ -30,7 +30,7 @@ export default function* rootSaga() {
     fork(watchCheckId),
     fork(watchFetchMyArticleSaga),
     fork(watchWriteQna),
-    fork(watchFetchMyQnaSaga),
+    //fork(watchFetchMyQnaSaga),
     fork(watchRemoveBoard)
     //fork(watchFetchArticle)
   ]);

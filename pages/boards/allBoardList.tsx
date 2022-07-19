@@ -19,28 +19,7 @@ export interface fetchBoardData {
 
 
 const AllBoardListPage: NextPage = () => {
-  /** 
-  const [info, setInfo] = useState<fetchBoardData>({
-    title: '', content: '', height: '', weight:''})
-
-    // 서버 게시물 데이터 요청
-  const dispatch = useAppDispatch()
-  useEffect(() => {
-    dispatch(fetchBoards()) 
-  }, [])
-
-   // selector
-  const data = useAppSelector((state) => state.article)
-  console.log(JSON.stringify(data && 1))
-
-  // setdata에 대한 무한루프 방지
-  const fetchAllArticle = useCallback(() => {
-    setInfo(data)
-  }, [])
-
-  useEffect(() => {fetchAllArticle();}, [])
-  */
-  // 무한 loop 생성 https://typeofnan.dev/fix-the-maximum-update-depth-exceeded-error-in-react/
+  
   return (
     <AllBoardList />
   )

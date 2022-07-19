@@ -29,37 +29,10 @@ const qnaSlice = createSlice({
         writeQnaFailure : (state, action : PayloadAction) => {
             console.log(`QNA 작성 실패`)
             state.status = `failed`
-        },
-        fetchAllQna: (state, action: PayloadAction<{open: string}>) => {
-            console.log(`TRY All Qna Fetch`)
-            console.log(action)
-            state.status = `loading`
-        },
-        fetchAllQnaSuccess: (state, action: PayloadAction<Article>) => {
-            console.log(`SUCCESS`)
-            state.status = `success`
-            state.data = action.payload
-        },
-        fetchAllQnaFailure: (state, action) => {
-            console.log(`FAILURE`)
-        },
-        fetchMyQna: (state, action: PayloadAction<Article>) => {
-            console.log(`FETCH`)
-            state.status = 'loading'
-            console.log(action.payload)
-            state.data = action.payload
-        },
-        fetchMyQnaSuccess: (state, action: PayloadAction<Article>) => {
-            console.log(`SUCCESS`)
-            state.status = 'success'
-            state.data = action.payload
-        },
-        fetchMyQnaFailure: (state, action) => {
-            console.log(`Failure`)
         }
     }
 })
-export const {writeQna, writeQnaSuccess, writeQnaFailure, fetchMyQna, fetchMyQnaSuccess, fetchMyQnaFailure} = qnaSlice.actions;
+export const {writeQna, writeQnaSuccess, writeQnaFailure} = qnaSlice.actions;
 const {reducer, actions} = qnaSlice
 export const qnaActions = actions
 export default reducer

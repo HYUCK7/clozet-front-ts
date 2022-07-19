@@ -51,7 +51,7 @@ function* fetchAllQnaSaga(action: {payload: {open: string}}) {
     }
 }
 */
-
+/** 
 function* fetchMyQnaSaga(action: {payload: Article}) {
     const {fetchMyQnaSuccess, fetchMyQnaFailure} = qnaActions
     try{
@@ -61,7 +61,8 @@ function* fetchMyQnaSaga(action: {payload: Article}) {
     } catch (error) {
         yield put(fetchMyQnaFailure(error))
     }
-}
+}*/
+
 function* removeBoardSaga(action: {payload: Article}) {
     try{
         console.log(`saga + ${JSON.stringify(action.payload)}`)
@@ -78,9 +79,6 @@ export function* watchWriteQna(){
 }
 export function* watchFetchMyArticleSaga(){
     yield takeEvery(ArticleActions.fetchMyBoard, fetchMyArticleSaga)
-}
-export function* watchFetchMyQnaSaga(){
-    yield takeLatest(qnaActions.fetchMyQna, fetchMyQnaSaga)
 }
 export function* watchRemoveBoard(){
     yield takeLatest(ArticleActions.removeBoard, removeBoardSaga)

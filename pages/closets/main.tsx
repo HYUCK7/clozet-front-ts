@@ -5,16 +5,23 @@ import { loadUserApi } from '@/apis/userApi'
 import { User } from '@/modules/users/join'
 import axios from 'axios'
 
+
+
 export type Props = {
   info: User
   onChange : (e: any) => void
   onSubmit : (e: any) => void
 }
 
+const headers = {
+  "Content-Type" : "multipart/form-data",
+  Authorization: "JWT fefege...",
+}
+
 const MainPage: NextPage = () => {
-  //const [image, setImage] = useState({})
   const [info, setInfo] = useState<User>({nickname: ''})
-  const [images, setImages] = useState()
+  const [images, setImages] = useState('')
+
   const onLoadFile = (e: any) => {
     e.preventDefault()
     const file = e.target.files
@@ -23,7 +30,10 @@ const MainPage: NextPage = () => {
   }
   const onSubmitFile = async (e: any) => {
     e.preventDefault()
-    const res = await axios.post(`http://127.0.0.1:8000/rc/{filename}`,images)
+    const formData = new FormData()
+    formData.append('uploadImage', images[0])
+    console.log('>>' + formData)
+    const res = await axios.post(`http://127.0.0.1:8000/rc/{filename}`,formData, {headers})
   }
   
   useEffect(()=> {

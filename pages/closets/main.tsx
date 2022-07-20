@@ -15,7 +15,7 @@ export type Props = {
 
 const headers = {
   "Content-Type" : "multipart/form-data",
-  Authorization: "JWT fefege...",
+  //Authorization: "JWT fefege...",
 }
 
 const MainPage: NextPage = () => {

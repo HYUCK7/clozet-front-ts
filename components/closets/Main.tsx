@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import style from '@/styles/Table.module.css'
 import { Props } from '@/pages/closets/main'
 
-const Main: React.FC<Props> = ({info, onCloth, sendImage}: Props) => {
+const Main: React.FC<Props> = ({info, onChange }: Props) => {
   
 
   return (
@@ -11,8 +11,8 @@ const Main: React.FC<Props> = ({info, onCloth, sendImage}: Props) => {
       {info.nickname}님의 옷을 보여주세요!
     </h1>
     <div className="input-group p-5">
-      <input onChange={onCloth} type="file" className="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"/>
-      <button onSubmit={sendImage} className="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">
+      <input onChange={onChange} type="file" className="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"/>
+      <button className="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">
         <h5>등록</h5>
       </button>
     </div>

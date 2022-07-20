@@ -1,4 +1,4 @@
-import { fetchArticleAPI } from '@/apis/articleApi'
+import { Props } from '@/pages/boards/allBoardList'
 import React, { MouseEventHandler, useEffect, useRef, useState } from 'react'
 import css from "styled-jsx/css"
 import HeartButton from '../common/HeartButton'
@@ -13,7 +13,7 @@ const headers = {
 export interface Article {
   articleId? : string,
   nickname? : string,
-  title?: string,
+  title?: string ,
   writtenDate? : string,
   open? : string,
   content?: string,
@@ -24,22 +24,15 @@ export interface Article {
   token? : string
 }
 
-const AllBoardList: React.FC = () => {
-  
-  const [articleList, setArticleList] = useState<Array<Article>>([])
-  
-  useEffect (() => { fetchArticleAPI().then(data => {
-    setArticleList(data)
-    console.log(data)
-  } ) }, [])
-
+const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit} : Props) => {
   return (
+    <form onSubmit={onSubmit}>
     <div className='container'>
     <div>
       <h1 className='text-center'># Clozet 사람들</h1>
     </div>
     <br/>
-    {articleList.map((article: Article) => 
+    {list.map((article: Article) => 
     <div className="row mb-2">
     <div className="col-12">
       <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -62,14 +55,23 @@ const AllBoardList: React.FC = () => {
           <img src={article.picture}></img>
         </div>
         <div className='p-4'>
-          <p>좋아요 수 : </p>
+          <p>좋아요 수 345384</p>
           <HeartButton/>
+        </div>
+        <div className='p-4'>
+        <div className="input-group mb-3">
+          <input onChange={onChange} name='comment' type="text" className="form-control" placeholder="댓글을 입력해 소통해보세요."  aria-describedby="button-addon2"/>
+          <button className="btn btn-outline-secondary" type="submit" id="button-addon2">
+            <h5>입력</h5>
+          </button>
+        </div>
         </div>
       </div>
       </div>
       </div>
       )}
     </div>
+    </form>
   )
 }
 

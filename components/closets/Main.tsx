@@ -1,43 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from '@/styles/Table.module.css'
+import { Props } from '@/pages/closets/main'
 
-type Props = {
-    userName: string
-    name: string
-}
+const Main: React.FC<Props> = ({info, onCloth, sendImage}: Props) => {
+  
 
-const Main = (props: Props) => {
   return (
     <div>
-    <h1 className={style.h1}>{props.name}님의 옷장</h1>
-    <label className={style.button}><input type="submit" value="옷 추가" /></label>
-    <table className={style.table}>
-        <tbody>
-    <tr>
-    <td>
-    <img style={{width:180}} src="http://image.mujikorea.net/goods/00/05/92/48/4548076706939_N_N_400.jpg" alt="logo"/>
-    <label><input type="submit" value="아우터" /></label>
-    </td>
-
-    <td>
-    <img style={{width:180}} src="http://image.mujikorea.net/goods/00/05/92/48/4548076706939_N_N_400.jpg" alt="logo"/>
-    <label><input type="submit" value="상의" /></label>
-    </td>
-
-    <td>
-    <img style={{width:180}} src="http://image.mujikorea.net/goods/00/05/92/48/4548076706939_N_N_400.jpg" alt="logo"/>
-    <label><input type="submit" value="하의" /></label>
-    </td>
-
-    <td>
-    <img style={{width:180}} src="http://image.mujikorea.net/goods/00/05/92/48/4548076706939_N_N_400.jpg" alt="logo"/>
-    <label><input type="submit" value="신발" /></label>
-    </td>
-    </tr>
-      </tbody>
-    </table>
+    <h1 className={style.h1}>
+      {info.nickname}님의 옷을 보여주세요!
+    </h1>
+    <div className="input-group p-5">
+      <input onChange={onCloth} type="file" className="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload"/>
+      <button onSubmit={sendImage} className="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">
+        <h5>등록</h5>
+      </button>
+    </div>
     </div>
   )
 }
-
 export default Main

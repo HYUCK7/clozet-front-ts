@@ -70,8 +70,8 @@ const Home: React.FC = () => {
     <div className="carousel-item active" data-bs-interval="3000">
       <img src="colorful.jpg" height = {630} className="d-block w-100" />
       <div className = "carousel-caption text-start d-none d-md-block">
-      <h2>First slide label</h2>
-        <p>Some representative placeholder content for the first slide.</p>
+      <h2>의류 추천 서비스, Clozet 입니다.</h2>
+        <p>When they go low, We go high</p>
       </div>
     </div>
     
@@ -79,14 +79,14 @@ const Home: React.FC = () => {
       <img src="stores.jpg" height = {630}  className="d-block w-100"/>
       <div className = "carousel-caption text-end d-none d-md-block">
       <h1>오늘도 어떤 옷을 입을 지 고민이신가요?</h1>
-        <p>100만 건의 의류 데이터를 통해 최적의 분석 데이터로 추천해드릴게요</p>
+        <p>의류 데이터를 통해 최적의 분석 데이터로 가진 옷으로 코디를 추천해드릴게요</p>
       </div>
     </div>
     <div className="carousel-item" data-bs-interval="3000">
       <img src="shirts2.jpg" height = {630} className="d-block w-100"/>
       <div className = "carousel-caption d-none d-md-block">
       <h1>Design Your Mind , Enjoy Your Life</h1>
-        <p>Some representative placeholder content for the first slide.</p>
+        <p>매일 출근길에, 여자친구와의 데이트에서 스트레스 받지마세요.</p>
       </div>
     </div>
   </div>
@@ -94,8 +94,8 @@ const Home: React.FC = () => {
 <div className='contents'>
   <section className='wrapper'>
       <article className='product0'>
-        <p>Use Closet
-        클로젯을 이용하세요 제발 좀</p>
+        <h2>Use Closet
+        클로젯을 이용하세요 제발 좀</h2>
         
         <p><a className="btn btn-secondary" href="/clothes/addCloth">내 Closet 만들러가기 &raquo;</a></p>
         <img src='dowalk.png'/>
@@ -110,15 +110,14 @@ const Home: React.FC = () => {
       </article>
 
       <article className='product2'>
-        <p>Use Closet
-        클로젯을 사용하세요 제발 좀</p>
-        <p><a className="btn btn-secondary" href="/clothes/addCloth">내 Closet 만들러가기 &raquo;</a></p>
+        <h2>클로젯의 의류 추천을 여러 사람과 공유하세요.</h2>
+        <p><a className="btn btn-secondary" href="/boards/allBoardList">Clozet People 보러 가기 &raquo;</a></p>
        
         <img src='dothink.png'/>
       </article>
 
       <article className='product5'>
-        <p>클로젯에 회원가입 하러 가볼까요?</p>
+        <p>Clozet에 회원가입 하러 가볼까요?</p>
         <p><a className="btn btn-secondary" href="/clothes/addCloth">Clozet 회원가입</a></p>
         <img src='dosplint.png'/>
       </article>

@@ -15,17 +15,6 @@ export const writeArticleApi = async (
         }
     }
 
-export const fetchArticleAPI = async () => {
-    try{
-        console.log(`API 진입`)
-        const response : AxiosResponse = await axios.get(`${SERVER}/articles/findAllArticle`, {headers})
-        console.log(`서버 응답 + ${JSON.stringify(response.data)}`)
-        return response.data
-    } catch(err) {
-        return err;
-    }
-}
-
 export const fetchMyBoardApi = async(
     payload : JSON
 ) => {
@@ -80,6 +69,17 @@ export const removeBoardApi = async(
         const response = await axios.delete(`${SERVER}/articles/deleteArticle`, {data : removeForData})
     } catch (err) {
         return(err);
+    }
+}
+
+export const writeCommentApi = async(
+    writeComment : Article
+) => {
+    try{
+        console.log(`>>> + ${JSON.stringify(writeComment)}`)
+        const response = await axios.post(`${SERVER}/articles/join`, writeComment, {headers})
+    } catch (err){
+        return(err)
     }
 }
 

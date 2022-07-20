@@ -69,11 +69,25 @@ const ArticleSlice = createSlice({
             console.log(`게시글 삭제하기 - 리듀서`)
             state.status = 'loading'
             state.data = action.payload
+        },
+        writeComment: (state, action: PayloadAction<Article>) => {
+            console.log(`댓글 등록`)
+            state.status ='loading'
+            state.data = action.payload
+        },
+        commentSuccess: (state, action: PayloadAction<Article>) => {
+            console.log(`댓글 등록 성공`)
+            state.status = 'successed'
+            state.data = action.payload
+        },
+        commentFailure: (state, action: PayloadAction) => {
+            console.log(`댓글 등록 실패`)
+            state.status = 'failed'
         }
     }
 })
 
-export const { writeBoard, writeBoardSuccess, writeBoardFailure, fetchBoards, fetchBoardSuccess, removeBoard, fetchMyBoard } = ArticleSlice.actions;
+export const { writeBoard, writeBoardSuccess, writeBoardFailure, fetchBoards, fetchBoardSuccess, removeBoard, fetchMyBoard, writeComment } = ArticleSlice.actions;
 const {reducer, actions} = ArticleSlice
 export const ArticleActions = actions
 export default reducer;

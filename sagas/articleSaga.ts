@@ -1,4 +1,4 @@
-import { fetchAllQnaApi, fetchMyBoardApi, fetchMyQnaApi, removeBoardApi, writeArticleApi, writeQnaApi } from "@/apis/articleApi";
+import { fetchAllQnaApi, fetchMyBoardApi, fetchMyQnaApi, removeBoardApi, writeArticleApi, writeCommentApi, writeQnaApi } from "@/apis/articleApi";
 import { ArticleActions, writeBoardFailure, writeBoardSuccess } from "@/modules/boards";
 import { qnaActions, writeQnaFailure, writeQnaSuccess } from "@/modules/boards/qna";
 import { Article } from "@/pages/boards/addBoard";
@@ -70,6 +70,12 @@ function* removeBoardSaga(action: {payload: Article}) {
     } catch (error) {}
 }
 
+function* wrtieCommentSaga(action: {payload: Article}) {
+    try {
+        console.log(`SAGA + ${JSON.stringify(action.payload)}`)
+        yield call(writeCommentApi, action.payload)
+    } catch (error) {}
+}
 // main saga
 export function* watchWriteArticle(){
     yield takeLatest(ArticleActions.writeBoard, writeArticleSaga)
@@ -82,4 +88,7 @@ export function* watchFetchMyArticleSaga(){
 }
 export function* watchRemoveBoard(){
     yield takeLatest(ArticleActions.removeBoard, removeBoardSaga)
+}
+export function* watchWriteComment() {
+    yield takeEvery(ArticleActions.writeComment, wrtieCommentSaga)
 }

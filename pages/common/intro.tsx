@@ -18,7 +18,6 @@ const intro = ({articleCount, userCount} : Props) => {
   console.log(articleCount, userCount)
   const dataFormat = [{ '연도': '2022', '유저': userCount, '유저들 게시물': articleCount, '등록된 옷': 0}]
   
-  
   return (
     <>
       <h1>Clozet 회사 소개입니다.</h1>

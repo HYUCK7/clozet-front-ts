@@ -51,26 +51,17 @@ export function Nav() {
     
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">    
         { item !== null ? 
-    <><li className="nav-item dropdown">
+    <>                         <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <strong>Closet</strong>
                                 </a>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a className="dropdown-item" href="/closets/main">MAIN</a></li>
-                                    <li><a className="dropdown-item" href="/closets/top">TOP</a></li>
-                                    <li><a className="dropdown-item" href="/closets/bottom">BOTTOM</a></li>
-                                    <li><a className="dropdown-item" href="/closets/best">BEST</a></li>
+                                    <li><a className="dropdown-item" href="/closets/main">옷 추가하기</a></li>
+                                    <li><a className="dropdown-item" href="/closets/top">상의</a></li>
+                                    <li><a className="dropdown-item" href="/closets/bottom">하의</a></li>
                                 </ul>
-                            </li><li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <strong>MyWeek</strong>
-                                    </a>
-                                    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a className="dropdown-item" href="/closets/thisWeek">This Week</a></li>
-                                        <li><a className="dropdown-item" href="/closets/lastWeek">Last Week</a></li>
-                                        <li><a className="dropdown-item" href="/clothes/optionRecommand">Special</a></li>
-                                    </ul>
-                                </li><li className="nav-item dropdown">
+                            </li>
+                                <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <strong>People</strong>
                                     </a>

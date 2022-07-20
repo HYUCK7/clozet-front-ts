@@ -8,7 +8,7 @@ import axios from 'axios'
 export type Props = {
   info: User
   onChange : (e: any) => void
-  //sendImage : () => void
+  onSubmit : (e: any) => void
 }
 
 const MainPage: NextPage = () => {
@@ -36,7 +36,7 @@ const MainPage: NextPage = () => {
     })
   } ,[])
   return (
-    <Main info = {info} onChange = {onLoadFile}/>
+    <Main info = {info} onChange = {onLoadFile} onSubmit = {onSubmitFile}/>
   )
 }
 export default MainPage

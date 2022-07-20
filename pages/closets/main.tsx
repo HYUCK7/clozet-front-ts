@@ -33,7 +33,7 @@ const MainPage: NextPage = () => {
     const formData = new FormData()
     formData.append('uploadImage', images[0])
     console.log('>>' + formData)
-    const res = await axios.post(`http://127.0.0.1:8000/rc/filename`,formData, {headers})
+    const res = await axios.post(`http://127.0.0.1:8000/rc`, formData, {headers})
   }
   
   useEffect(()=> {

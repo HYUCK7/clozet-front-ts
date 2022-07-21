@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import AllBoardList from '@/components/boards/AllBoardList'
 import { useAppDispatch,  } from '@/hooks'
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
@@ -32,19 +32,23 @@ const headers = {
 }
 
 const AllBoardListPage: NextPage<Props> = ({list} : Props) => {
-  const [comment, setComment] = useState<Article>({comment: '', title: ''})
+  const [comment, setComment] = useState<Article>({comment: '', articleId: 0})
+  const InputRef = useRef()
   const dispatch = useAppDispatch()
   
   const onComment = (e : React.FormEvent<HTMLInputElement>) => {
     e.preventDefault()
     const {name, value} = e.currentTarget
     setComment({...comment, [name] :value})
-    console.log(comment)
+    
   }
   const onCommentSubmit = (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     dispatch(writeComment(comment))
+    
   }
+ 
+  console.log('>>' + JSON.stringify(comment))
   return (
     <AllBoardList list = {list} onChange = {onComment} onSubmit = {onCommentSubmit}/>
   )

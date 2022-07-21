@@ -24,7 +24,7 @@ export interface Article {
   token? : string
 }
 
-const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit} : Props) => {
+const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit } : Props) => {
   return (
     <form onSubmit={onSubmit}>
     <div className='container'>
@@ -33,6 +33,7 @@ const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit} : Props) => {
     </div>
     <br/>
     {list.map((article: Article) => 
+    
     <div className="row mb-2">
     <div className="col-12">
       <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -41,6 +42,7 @@ const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit} : Props) => {
           <strong className="d-inline-block mb-2 text-primary">
             <h5>{article?.nickname}</h5>
           </strong>
+          <input type = 'hidden' name = 'articleId' value = {article.articleId}/>
           <h3 className="mb-0">
             {article?.title}
           </h3>
@@ -61,7 +63,7 @@ const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit} : Props) => {
         <div className='p-4'>
         <div className="input-group mb-3">
           <input onChange={onChange} name='comment' type="text" className="form-control" placeholder="댓글을 입력해 소통해보세요."  aria-describedby="button-addon2"/>
-          <button className="btn btn-outline-secondary" type="submit" id="button-addon2">
+          <button className="btn btn-outline-secondary" type= "submit"  value = {article.articleId}  id="button-addon2">
             <h5>입력</h5>
           </button>
         </div>

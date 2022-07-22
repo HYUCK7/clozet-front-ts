@@ -1,6 +1,6 @@
 //기본적인 document의 형태
-import Footer from "@/components/Footer";
-import { Nav } from "@/components/Nav";
+import Footer from "@/components/common/Footer";
+import { Nav } from "@/components/common/Nav";
 import Document, {Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps} from "next/document";
 
 class MyDocument extends Document {

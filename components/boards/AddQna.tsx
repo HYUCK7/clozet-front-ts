@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, useRef } from 'react'
+import React from 'react'
 
 type Props = {
   handleChange : (e : React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLTextAreaElement>) => void;

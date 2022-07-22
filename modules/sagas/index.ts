@@ -14,9 +14,8 @@ import {
   watchFetchMyArticleSaga,
   watchWriteQna,
   watchWriteComment,
-  //watchFetchMyQnaSaga,
   watchRemoveBoard
-} from './articleSaga'
+} from './boardSaga'
 
 // rootSaga를 만들어줘서 store에 추가해주 어야 합니다.
 export default function* rootSaga() {
@@ -31,9 +30,7 @@ export default function* rootSaga() {
     fork(watchCheckId),
     fork(watchFetchMyArticleSaga),
     fork(watchWriteQna),
-    //fork(watchFetchMyQnaSaga),
     fork(watchRemoveBoard),
-    //fork(watchFetchArticle),
     fork(watchWriteComment)
   ]);
 }

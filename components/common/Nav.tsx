@@ -27,10 +27,10 @@ a.navItem: {
 }
 `
     
-export function Nav() {
+export default function Nav() {
     
     const [item, setItem] = useState(null)
-    const [googleItem, setGoogleItem] = useState(null)
+    //const [googleItem, setGoogleItem] = useState(null)
     useEffect (()=> {
         let item : any = localStorage.getItem('loginSuccessUser');
         setItem(item)
@@ -69,7 +69,6 @@ export function Nav() {
                                         <li><a className="dropdown-item" href="/boards/addBoard">UPLOAD</a></li>
                                         <li><a className="dropdown-item" href="/boards/myBoardList">MY UPLOAD</a></li>
                                         <li><a className="dropdown-item" href="/boards/allBoardList">Clozet People</a></li>
-                                        <li><a className="dropdown-item" href="/boards/trend">Trend</a></li>
                                     </ul>
                                 </li></> : null}
                             </ul> 

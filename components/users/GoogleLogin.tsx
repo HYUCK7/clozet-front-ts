@@ -1,4 +1,3 @@
-
 import { useScript } from "@/hooks";
 import { RefObject, useRef, useState } from "react";
 
@@ -9,8 +8,7 @@ export default function GoogleLogin({
 }) 
   
 {  
-  
-  useScript('https://accounts.google.com/gsi/client',() => {
+useScript('https://accounts.google.com/gsi/client',() => {
         
     window.google.accounts.id.initialize({
       client_id: process.env.NEXT_PUBLIC_CLIENT_ID,

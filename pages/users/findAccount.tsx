@@ -1,34 +1,23 @@
 import FindAccount from '@/components/users/FindAccount'
 import { useAppDispatch } from '@/hooks'
-import store, { AppState, useAppSelector } from '@/modules/store'
-import { findUserPwRequest } from '@/modules/users/findPw'
-import { findUserNameRequest, ResultFindUserName } from '@/modules/users/findUserName'
+import { AppState, useAppSelector } from '@/modules/store'
+import { findUserPwRequest } from '@/modules/slices/userSlice'
+import { findUserNameRequest } from '@/modules/slices/userSlice'
 import { NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
-
-export type UserFindIdInput = {
-  name: string,
-  email: string
-}
-
-export type UserFindPwInput = {
-  username: string,
-  email : string,
-}
+import { UserFindIdInput, UserFindPwInput } from '@/modules/types'
 
 const findAccountPage: NextPage = () => {
   const [findUserName, setFindUserName] = useState<UserFindIdInput>
   ({name: '', email :''});
-  const [findPw, setFindPw] = useState<UserFindPwInput>({
-    username: '', email: ''
-  })
-  //const [usernameResult, setUsernameResult] = useState<Array<ResultFindUserName>>([])
+  const [findPw, setFindPw] = useState<UserFindPwInput>
+  ({username: '', email: ''})
   const [usernameResult, setUsernameResult] = useState<string>('')
   const dispatch = useAppDispatch()
-  const {data} = useAppSelector((state: AppState) => state.rootReducer.findUserName)
-  const {status} = useAppSelector((state: AppState) => state.rootReducer.findUserName)
+
+  const {data} = useAppSelector((state: AppState) => state.rootReducer.user)
+  const {status} = useAppSelector((state: AppState) => state.rootReducer.user)
   console.log(data, status)
-  //useEffect(()=>{setUsernameResult(data)},[data])
 
   useEffect(()=>{setUsernameResult(JSON.stringify(data))},[data])
   const onChangeFindId = (e: React.FormEvent<HTMLInputElement>) => {
@@ -53,6 +42,7 @@ const findAccountPage: NextPage = () => {
     e.preventDefault()
     console.log(`비밀번호 찾기 회원 정보 ${JSON.stringify(findPw)}`)
     dispatch(findUserPwRequest(findPw))
+
   }
   return (
     <FindAccount findId = {usernameResult} handleFindId={onChangeFindId} submitFindId={onSubmitFindId}

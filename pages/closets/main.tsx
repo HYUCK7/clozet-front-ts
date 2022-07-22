@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Main from '@/components/closets/Main'
 import { NextPage } from 'next'
-import { loadUserApi } from '@/apis/userApi'
+import { loadUserApi } from '@/modules/apis/user'
 import { User } from '@/modules/users/join'
 import axios from 'axios'
 

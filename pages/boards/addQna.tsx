@@ -1,15 +1,15 @@
-import { loadUserApi } from '@/apis/userApi'
+import { loadUserApi } from '@/modules/apis/user'
 import AddQna from '@/components/boards/AddQna'
 import { useAppDispatch } from '@/hooks'
-import { writeQna } from '@/modules/boards/qna'
+import { writeQna } from '@/modules/slices/boardSlice'
 import React, { useEffect, useState } from 'react'
-import { Article } from './addBoard'
+import { Article } from '@/modules/types'
 
 export default function AddQnaPage() {
   const date = new Date();
   const parseDate = date.toDateString()
   const [question, setQuestion] = useState<Article>(
-    {title: '', open: '', content: '', token: '', nickname: '', writtenDate: ''}
+    {articleId : 0, title: '', open: '', content: '', token: '', nickname: '', writtenDate: ''}
   )
   const dispatch = useAppDispatch()
  
@@ -18,7 +18,8 @@ export default function AddQnaPage() {
   const token = localStorage.getItem('loginSuccessUser')
   loadUserApi({token}).then(data => {
     const nickname = data.nickname
-  setQuestion({token: token,
+  setQuestion({
+                token: token,
                 open: 'true',
                 nickname: nickname,
                 writtenDate: parseDate})
@@ -29,7 +30,6 @@ export default function AddQnaPage() {
     const {name, value} = e.currentTarget
     setQuestion({...question, [name]: value})
   }
-  console.log(question)
   const checkChange = ( e: React.ChangeEvent<HTMLInputElement> ) => {
     e.target.checked ? setQuestion({...question, open: 'false'}) : setQuestion({...question, open: 'true'})
   }

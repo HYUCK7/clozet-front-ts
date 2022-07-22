@@ -1,8 +1,5 @@
-import { loadUserApi } from '@/apis/userApi'
-import { Token } from '@/modules/users/loadUser'
-import { Article } from '@/pages/boards/addBoard'
-import React, { useEffect, useState } from 'react'
-import { User } from '../users/Mypage'
+import { Article } from '@/modules/types'
+import React from 'react'
 
 type Props = {
   info: Article

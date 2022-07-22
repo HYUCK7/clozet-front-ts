@@ -5,10 +5,9 @@ import React from 'react'
 
 
 const LogoutPage: NextPage = () => {
-  //const dispatch = useAppDispatch()
   const logoutSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     localStorage.removeItem("loginSuccessUser")
-    //dispatch(logoutRequest())
+    window.location.href = '/'
   }
   return (
     <Logout props = {logoutSubmit}/>

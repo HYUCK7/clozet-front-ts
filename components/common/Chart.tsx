@@ -1,7 +1,4 @@
-import { autocompleteClasses } from '@mui/material'
-import axios from 'axios'
-import { GetServerSideProps } from 'next'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Chart from 'react-google-charts'
 
 

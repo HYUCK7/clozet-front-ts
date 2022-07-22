@@ -1,83 +1,78 @@
-import { Article } from "@/pages/boards/addBoard";
+
+import { Article, User } from "@/modules/types";
 import axios, { AxiosResponse } from "axios";
-const SERVER = 'http://127.0.0.1:8080'
+const SERVER = process.env.NEXT_PUBLIC_SERVER
 const headers = {
     "Content-Type" : "application/json",
     Authorization: "JWT fefege...",
 }
-export const writeArticleApi = async (
+export const writeArticle = async (
     writeData: Article) => {
         try {
-            console.log(`API 진입 + ${JSON.stringify(writeData)}`)
             await axios.post(`${SERVER}/articles/join`, writeData, {headers})            
         } catch (err) {
             return err;
         }
     }
 
-export const fetchMyBoardApi = async(
-    payload : JSON
+export const findMyBoards = async(
+    payload : User
 ) => {
+    console.log('>>1' + JSON.stringify(payload))
     try{
-        console.log('api 진입')
         const response: AxiosResponse = await axios.post(`${SERVER}/articles/findByTokenToArticle`, payload, {headers})
-        console.log(`서버 응답 + ${JSON.stringify(response.data)}`)
+        console.log('>>3'+JSON.stringify(response))
         return response.data
     } catch(err) {
         return err;
     }
 }
 
-export const writeQnaApi = async(
+export const writeQna = async(
     writeData : Article
 ) => {
     try{
-        console.log(`API 진입 + ${JSON.stringify(writeData)}`)
         const response: AxiosResponse = await axios.post(`${SERVER}/articles/joinQna`, writeData, {headers})
-        console.log(`서버 응답 + ${JSON.stringify(response.data)}`)
         return response.data
     } catch(err) {
         return(err);
     }
 }
 
-export const fetchAllQnaApi = async (
+export const fetchQna = async (
     openState: string) => {
         try{
-            console.log(openState)
             const response: AxiosResponse = await axios.post(`${SERVER}/articles/findByQnaDateASC`, {open: openState}, {headers})
             return response.data
         } catch(err){
             return(err);
         }
 }
-export const fetchMyQnaApi = async(
+export const findMyQna = async(
     fetchForData : Article
 ) => {
     try {
         const response: AxiosResponse = await axios.post(`${SERVER}/articles/findMyQna`, fetchForData, {headers})
-        console.log(`넘어온데이터: ${JSON.stringify(response)}`)
         return response.data
     } catch (err){
         return(err);
     }
 }
-export const removeBoardApi = async(
+export const removeBoard = async(
     removeForData : Article
 ) => {
     try{
-        const response = await axios.delete(`${SERVER}/articles/deleteArticle`, {data : removeForData})
+        await axios.delete(`${SERVER}/articles/deleteArticle`, {data : removeForData})
     } catch (err) {
         return(err);
     }
 }
 
-export const writeCommentApi = async(
+export const writeComment = async(
     writeComment : Article
 ) => {
     try{
-        console.log(`>>> + ${JSON.stringify(writeComment)}`)
-        const response = await axios.post(`${SERVER}/articles/join`, writeComment, {headers})
+        await axios.post(`${SERVER}/articles/join`, writeComment, {headers})
     } catch (err){
         return(err)
     }

@@ -1,40 +1,27 @@
-import Mypage, { User } from '@/components/users/Mypage'
+import Mypage from '@/components/users/Mypage'
 import { useAppDispatch } from '@/hooks'
-import { removeRequest } from '@/modules/users/remove'
-import { updateRequest } from '@/modules/users/update'
-import { StringIterator } from 'lodash'
+import { removeRequest, updateRequest } from '@/modules/slices/userSlice'
+import { User } from '@/modules/types'
 import { NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-
-export interface UpdateInfo {
-  username? : string,
-  password? : string,
-  email? : string,
-  name? : string,
-  nickname?: string,
-  phone?: string
-  token?: any 
-}
 
 export interface deleteInfo{
   token: any
 }
 
 const MypagePage : NextPage = () => {
-  const [info, setInfo] = useState<UpdateInfo>({
+  const [info, setInfo] = useState<User>({
     username: '', 
     name: '', 
     email: '', 
     phone: '',  
     nickname:'', 
-    token :null
+    token : ''
   })
 
   useEffect(() => {
     const token : string | null = localStorage.getItem('loginSuccessUser')
     if ( token !== null) {
-      //setToken({token})
       setInfo({token : token})
     } else {
       throw('error')}
@@ -56,8 +43,6 @@ const MypagePage : NextPage = () => {
 
   const onDeleteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    //localStorage.removeItem('loginSuccessUser')
-    //window.location.href = ('/')
     console.log(`토큰 전송 : ${JSON.stringify(info.token)}`)
     dispatch(removeRequest(info.token))
   }

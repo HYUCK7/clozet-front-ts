@@ -1,13 +1,11 @@
-import store, { AppState, useAppSelector } from '@/modules/store';
-import { ResultFindUserName } from '@/modules/users/findUserName';
-import React, { useEffect } from 'react'
+import React from 'react'
 
 type Props = {
   handleFindId : (e : React.FormEvent<HTMLInputElement>) => void;
   handleFindPw : (e : React.FormEvent<HTMLInputElement>) => void;
   submitFindId : (e : React.FormEvent<HTMLFormElement>) => void;
   submitFindPw : (e : React.FormEvent<HTMLFormElement>) => void;
-  findId: any
+  findId: string
 }
 
 const FindAccount: React.FC<Props> = ({findId, handleFindId, handleFindPw, submitFindId, submitFindPw} : Props) => {
@@ -24,12 +22,14 @@ const FindAccount: React.FC<Props> = ({findId, handleFindId, handleFindPw, submi
               <div className = 'd-grid gap-2'>
                 
       <div className="form-floating ">
-        <input onChange = {handleFindId} name = "name" type="name" className="form-control" id="inputName" placeholder='Name'/>
-        <label htmlFor="floatingInput"><h5>가입하신 이름</h5></label>
+        <input onChange = {handleFindId} name = "name" type="name" className="form-control" id="inputName"/>
+        <label htmlFor="floatingInput">
+          <h5>가입하신 이름</h5>
+          </label>
       </div>
 
       <div className="form-floating">
-        <input onChange = {handleFindId} name = "email" type="email" className="form-control" id="inputEmail" placeholder='E-mail'/>
+        <input onChange = {handleFindId} name = "email" type="email" className="form-control" id="inputEmail"/>
         <label htmlFor="floatingInput"><h5>가입한 E-mail</h5></label>
       </div>
       <button className="w-100 btn btn-lg btn-outline-secondary" type="submit">
@@ -47,12 +47,12 @@ const FindAccount: React.FC<Props> = ({findId, handleFindId, handleFindPw, submi
           <div className = 'd-grid gap-2'>
 
       <div className="form-floating">
-        <input onChange = {handleFindPw} name = "username" type="name" className="form-control" id="inputName" placeholder='Name'/>
+        <input onChange = {handleFindPw} name = "username" type="name" className="form-control" id="inputName"/>
         <label htmlFor="floatingInput"><h5>내 아이디</h5></label>
       </div>
 
       <div className="form-floating">
-        <input onChange = {handleFindPw} name = "email" type="email" className="form-control" id="inputEmail" placeholder='E-mail'/>
+        <input onChange = {handleFindPw} name = "email" type="email" className="form-control" id="inputEmail" />
         <label htmlFor="floatingInput"><h5>가입한 E-mail</h5></label>
       </div>
       

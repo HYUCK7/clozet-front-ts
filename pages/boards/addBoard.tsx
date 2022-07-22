@@ -2,37 +2,17 @@ import React, { useEffect, useState } from 'react'
 import AddBoard from '@/components/boards/AddBoard'
 import { useAppDispatch } from '@/hooks'
 import { NextPage } from 'next'
-import { writeBoard } from '@/modules/boards'
-import { loadUserApi } from '@/apis/userApi'
-
-// 게시판 DB 스키마 동일.
-export interface Article {  
-  userId?: number
-  nickname? : string,
-  articleId?: number ,
-  title?: string,
-  content?: string,
-  picture?: FileList | null,
-  height?: string,
-  weight?: string,
-  writtenDate?: string
-  open? : string,
-  comment? : string,
-  qna? : string
-  pictureName?: string,
-  size? : number
-  token?: string | null
-}
+import { writeBoard } from '@/modules/slices/boardSlice'
+import { loadUserApi } from '@/modules/apis/user'
+import { Article } from '@/modules/types'
 
 const AddBoardPage: NextPage = () =>  {
   const date = new Date();
   const writtenDate = date.toDateString()
-  const [write, setWrite] = useState<Article>({ userId : 0, title:'', content: '',
-  picture: null, height : '', weight: '', writtenDate: '', pictureName: ''
+  const [write, setWrite] = useState<Article>({ articleId: 0, userId : 0, title:'', content: '',
+  picture: '', height : '', weight: '', writtenDate: '', pictureName: ''
 })
-
   const dispatch = useAppDispatch()
-  //setWrite(write => {...write, writtenDate: writtenDate})
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault()
     const {name, value} = e.currentTarget
@@ -49,15 +29,13 @@ const AddBoardPage: NextPage = () =>  {
   useEffect(()=> {    
     const token = localStorage.getItem('loginSuccessUser')
     loadUserApi({token}).then(data =>{
-      //const userId = data.userId
       const nickname = data.nickname
       console.log(`유저정보 + ${JSON.stringify(data)}`)
       setWrite({
         writtenDate: writtenDate,
         nickname: nickname,
       })
-    }
-    )
+    })
   }, [])
   
   

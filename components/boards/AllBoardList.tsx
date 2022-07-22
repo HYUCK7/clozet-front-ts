@@ -1,30 +1,9 @@
 import { Props } from '@/pages/boards/allBoardList'
-import React, { MouseEventHandler, useEffect, useRef, useState } from 'react'
-import css from "styled-jsx/css"
+import { Article } from '@/modules/types'
+import React from 'react'
 import HeartButton from '../common/HeartButton'
 
-
-const SERVER = 'http://127.0.0.1:8080'
-const headers = {
-    "Content-Type" : "application/json",
-    Authorization: "JWT fefege...",
-}
-
-export interface Article {
-  articleId? : string,
-  nickname? : string,
-  title?: string ,
-  writtenDate? : string,
-  open? : string,
-  content?: string,
-  picture? : any,
-  height? : string,
-  weight? : string,
-  comment? : string
-  token? : string
-}
-
-const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit } : Props) => {
+const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit, loadArticleId } : Props) => {
   return (
     <form onSubmit={onSubmit}>
     <div className='container'>
@@ -54,18 +33,18 @@ const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit } : Props) => {
           
         </div>
         <div className="col-auto d-none d-lg-block">
-          <img src={article.picture}></img>
-        </div>
-        <div className='p-4'>
-          <p>좋아요 수 345384</p>
-          <HeartButton/>
+          <img src={article?.picture}></img>
         </div>
         <div className='p-4'>
         <div className="input-group mb-3">
           <input onChange={onChange} name='comment' type="text" className="form-control" placeholder="댓글을 입력해 소통해보세요."  aria-describedby="button-addon2"/>
-          <button className="btn btn-outline-secondary" type= "submit"  value = {article.articleId}  id="button-addon2">
+          <button onClick={()=>{loadArticleId(article.articleId)}} className="btn btn-outline-secondary" type= "submit" id="button-addon2">
             <h5>입력</h5>
           </button>
+          
+        <div>
+          {'댓글 받아올 곳'}
+        </div>
         </div>
         </div>
       </div>

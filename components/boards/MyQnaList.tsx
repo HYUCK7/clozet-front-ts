@@ -1,17 +1,13 @@
-import { fetchMyQnaApi } from '@/apis/articleApi'
-import { useAppDispatch } from '@/hooks'
-import { AppState, useAppSelector } from '@/modules/store'
-import { Article } from '@/pages/boards/addBoard'
+import { findMyQna } from '@/modules/apis/article'
+import { Article } from '@/modules/types'
 import React, { useEffect, useState } from 'react'
 
 const MyQnaList:React.FC = () => {
-  const [send, setSend] = useState<Article>({token: '', open: ''})
   const [myQna, setMyQna] = useState<Array<Article>>([])
   
   useEffect(()=> {
     const token = localStorage.getItem('loginSuccessUser')
-    console.log(send)
-    fetchMyQnaApi({token: token, open: 'true'}).then(data => {
+    findMyQna({articleId : 0, token: token, open: 'true'}).then(data => {
     setMyQna(data)
     })
   }, []) 

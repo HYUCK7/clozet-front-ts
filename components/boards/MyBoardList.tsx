@@ -1,10 +1,5 @@
-import { loadUserApi } from '@/apis/userApi'
-import { useAppDispatch } from '@/hooks'
-import { fetchMyBoard } from '@/modules/boards'
-import { AppState, useAppSelector } from '@/modules/store'
-import React, { useEffect, useState } from 'react'
-import { Article } from './AllBoardList'
-import css from "styled-jsx/css"
+import { Article } from '@/modules/types'
+import React from 'react'
 
 type Props = {
   info: any
@@ -24,7 +19,7 @@ return (<div>
      
     <div className='col-12'>
       <div className=" card mb-3 m-4">
-        <img src={x.picture} className="card-img-top" alt="" /><div className="card-body m-3">
+        <img src={x.picture} className="card-img-top" alt="articlePicture" /><div className="card-body m-3">
         <h5 className="card-title">{x.title}</h5>
         <p className="card-text">{x.content}</p>
         <p className="card-text">{x.height}, {x.weight}</p>

@@ -1,21 +1,15 @@
-import { Article } from "@/pages/boards/addBoard";
+import { Article, ArticleState } from "@/modules/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface ArticleState{
-    data: Article,
-    status: 'successed' | 'loading' | 'failed' 
-    error: null
-}
 const initialState: ArticleState = {
-    data: {userId : 0, title:'', content: '',
+    data: {userId : 0, title:'', content: '', open : '', 
     picture: null, height : '', weight: '', writtenDate: '', pictureName: ''} ,
     status: 'loading',
     error: null
-}
+} //initialState : [] as BoardState[]
 
 const ArticleSlice = createSlice({
 	name: 'articleSlice',
-    //initialState : [] as BoardState[],
     initialState,
     reducers: {
         writeBoard: (state, action: PayloadAction<Article>) => {
@@ -24,7 +18,6 @@ const ArticleSlice = createSlice({
             state.data = action.payload
             state.status = 'loading'
             console.log(`게시글 작성 성공 - 리듀서 ${JSON.stringify( state.data )}`)
-            //state.push({data: action.payload, status: 'loading', error: null})
         },
         writeBoardSuccess: (state, action: PayloadAction) => {
             state.status = 'successed'
@@ -33,13 +26,26 @@ const ArticleSlice = createSlice({
             alert(`게시글 작성 실패`)
             state.status = 'failed'
         },
+        writeQna: (state, action: PayloadAction<Article>) => {
+            console.log(`QnA 글 쓰기 작성`)
+            state.data = action.payload
+            state.status = 'loading'
+            console.log(`진행 : QnA 쓴 글 ${JSON.stringify( state.data )}`)
+        },
+        writeQnaSuccess : (state, action: PayloadAction) => {
+            console.log(`QNA 작성 성공`)
+            state.status = 'successed'
+        },
+        writeQnaFailure : (state, action : PayloadAction) => {
+            console.log(`QNA 작성 실패`)
+            state.status = `failed`
+        },
         fetchBoards : (state) => {
             console.log(`게시글 불러오기 - 리듀서`)
             state.status = 'loading'
         },
         fetchBoardSuccess: (state, {payload}) => {
-            //const fetchArticle = state.data.concat(payload)
-            //state.data = fetchArticle
+            
             state.data = payload
             state.status = "successed"
             console.log(`게시글 불러오기 성공 - 리듀서 ${JSON.stringify( state.data )}`)
@@ -87,7 +93,7 @@ const ArticleSlice = createSlice({
     }
 })
 
-export const { writeBoard, writeBoardSuccess, writeBoardFailure, fetchBoards, fetchBoardSuccess, removeBoard, fetchMyBoard, writeComment } = ArticleSlice.actions;
+export const { writeBoard, writeBoardSuccess, writeBoardFailure, writeQna, writeQnaSuccess, writeQnaFailure, fetchBoards, fetchBoardSuccess, removeBoard, fetchMyBoard, writeComment } = ArticleSlice.actions;
 const {reducer, actions} = ArticleSlice
 export const ArticleActions = actions
 export default reducer;

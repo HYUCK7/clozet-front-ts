@@ -1,32 +1,11 @@
-import { loadUserApi } from '@/apis/userApi'
-import axios, { AxiosResponse } from 'axios'
-import Link from 'next/link'
+import { loadUserApi } from '@/modules/apis/user'
+import { User } from '@/modules/types'
 import React, { useEffect, useState } from 'react'
-
-const headers = {
-  "Content-Type" : "application/json",
-  Authorization: "JWT fefege...",
-}
 
 type Props ={
   handleChange : (e : React.FormEvent<HTMLInputElement> ) => void;
   handleSubmit : (e : React.FormEvent<HTMLFormElement>) => void;
   handleClick : (e : React.MouseEvent< HTMLButtonElement> ) => void;
-}
-
-export interface User {
-  userId?: number,
-  username?: string,    
-  password?: string,
-  name?: string,
-  birth?: string,
-  nickname?: string,
-  email?: string,
-  phone?: string,
-  token?: string,
-  articles?: []
-  clothes?: []
-  roles?: any
 }
 
 const Mypage: React.FC<Props> = ({handleChange, handleSubmit, handleClick} : Props) => {

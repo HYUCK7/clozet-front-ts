@@ -1,33 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import MyBoardList from '@/components/boards/MyBoardList'
-import { loadUserApi } from '@/apis/userApi'
 import { useAppDispatch } from '@/hooks'
-import { ArticleActions, fetchMyBoard, removeBoard } from '@/modules/boards'
-import { AppState, useAppSelector } from '@/modules/store'
-import { Article } from './addBoard'
+import { fetchMyBoard, removeBoard } from '@/modules/slices/boardSlice'
+import { Article } from '@/modules/types'
+import { findMyBoards } from '@/modules/apis/article'
 
 export default function MyBoardListPage() {
-
-  const data = useAppSelector((state: AppState) => state.rootReducer.article)
-  console.log(`셀렉터 데이터 ` + JSON.stringify(data))
-
   const [ info, setInfo ] = useState<Array<Article>>([])
   const dispatch = useAppDispatch()
   
   useEffect(()=> {    
     const token = localStorage.getItem('loginSuccessUser')
-    loadUserApi({token}).then(data =>{
-      const userId: {} ={userId : data.userId} 
-      dispatch(fetchMyBoard(userId))
-      console.log(data.articles)
-      //setDelList({token: token})
-      setInfo(data.articles)
+    findMyBoards({token}).then(data => {
+      console.log('>>' + token)
+      console.log('>>2' + data)
+      setInfo(data)
     })
   }, [])
-  
-console.log(` infor값: ${JSON.stringify(info)}`)
-
-  //const onDeleteChange = (e : React.)
+    
+console.log(` info값: ${JSON.stringify(info)}`)
 
   const onDeleteClick = (articleNo: any) => {
     const token = localStorage.getItem('loginSuccessUser')

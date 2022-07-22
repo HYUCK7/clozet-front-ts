@@ -1,14 +1,11 @@
-import { fetchAllQnaApi } from '@/apis/articleApi'
-import { useAppDispatch } from '@/hooks'
+import { fetchQna } from '@/modules/apis/article'
+import { Article } from '@/modules/types'
 import React, { useEffect, useState } from 'react'
-import { Article } from './AllBoardList'
-
-type Props = {}
 
 const AllQnaList: React.FC = () => {
   const [qnaList, setQnaList] = useState<Array<Article>>([])
 
-  useEffect(() => { fetchAllQnaApi('true').then(data =>{
+  useEffect(() => { fetchQna('true').then(data =>{
     setQnaList(data)
     console.log(data)
   } ) } , [])
@@ -58,7 +55,3 @@ const AllQnaList: React.FC = () => {
 
 
 export default AllQnaList
-
-function fetchAllQna(arg0: { open: string }): any {
-  throw new Error('Function not implemented.')
-}

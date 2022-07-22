@@ -3,9 +3,10 @@ import Login from '@/components/users/Login'
 import { NextPage } from 'next'
 import GoogleLogin from '@/components/users/GoogleLogin'
 import { useAppDispatch } from '@/hooks'
-import { loginRequest, LoginState, LoginUser, UserLoginInput } from '@/modules/users/login'
+import { loginRequest  } from '@/modules/slices/userSlice'
 import {  AppState, useAppSelector,  } from '@/modules/store'
 import LoginTestPage from './loginTest'
+import { UserLoginInput } from '@/modules/types'
 /* global google */
 
 const LoginPage: NextPage = () => {
@@ -23,15 +24,10 @@ const LoginPage: NextPage = () => {
     console.log(`1.로그인 정보 ${JSON.stringify(loginUser)}`)
     console.log(`2. 로그인 버튼 클릭 및 액션 요청 ${JSON.stringify(loginUser)}`)
     dispatch(loginRequest(loginUser))
-    //console.log(' 모듈에 저장된 로그인 상태: '+JSON.stringify(loginedUser))
-    
-    const handleCredentialResponse = async(response: any) => {
-      const { credential } = response;
-      console.log("ENCODED JWT ID TOKEN" + response.credential)
-    }
-
   }
-  const {isLoggined, loginedUser} = useAppSelector((state : AppState) => state.rootReducer.login)
+
+  const {isLoggined, loginedUser} = useAppSelector((state : AppState) => state.rootReducer.user)
+
   return (
     <>
     <Login handleChange = {onChange} handleSubmit = {onSubmit}/>

@@ -1,26 +1,15 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react'
+import React, {useRef, useState} from 'react'
 import { useAppDispatch } from '@/hooks'
-import { useDispatch } from 'react-redux'
-import {  User, userActions } from '@/modules/users/join'
-import { checkIdRequest } from '@/modules/users/check'
-
-export interface UsernameType{
-  username: string
-}
-
-export interface CompareType {
-  checkIdValue: string,
-  checkPwValue: string
-}
+import { userActions } from '@/modules/slices/userSlice'
+import { User, Validate } from '@/modules/types'
 
 const Join: React.FC = () => {
-
   // 회원가입 타입
   const [user, setUser] =useState<User>({
     username:'', password:'', email:'', name:'', phone:'', birth:'', nickname:''
 })
-const [username, setUsername] = useState<UsernameType>({username: ''}) // 아이디 중복확인
-const [check, setCheck] = useState<CompareType>({checkIdValue: '', checkPwValue: ''})
+const [username, setUsername] = useState<User>({username: ''}) // 아이디 중복확인
+const [check, setCheck] = useState<Validate>({checkIdValue: '', checkPwValue: ''})
 const [usernameVal, setUsernameVal] = useState(false)
 const [nameVal, setNameVal] = useState(false)
 const [passwordval, setPasswordVal] = useState(false)
@@ -29,7 +18,7 @@ const [passwordSame, setPasswordSame] = useState(false)
 
 const dispatch = useAppDispatch();
 
-const usernameRef  = useRef<HTMLInputElement>(null) //getById
+const usernameRef  = useRef<HTMLInputElement>(null)
 const nameRef  = useRef<HTMLInputElement>(null)
 const passwordRef = useRef<HTMLInputElement>(null)
 const emailRef = useRef<HTMLInputElement>(null)
@@ -39,7 +28,6 @@ const nameRegex =  /^[가-힣]{2,10}$/
 const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^*+=-]).{7,25}$/
 const emailRegex = /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
 
-//inputSet, 유효성 검사
 const handleChange = (e: { preventDefault: () => void; target: { name: string; value: string } }) =>{
     e.preventDefault()
     const {name, value} = e.target;
@@ -62,10 +50,8 @@ const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
   e.preventDefault()
   console.log(`1. 버튼 클릭 및 액션 디스패치 +${JSON.stringify(user)}`)
   dispatch(userActions.joinRequest(user))
-   // 리퀘스트 객체를 생성해라 요청 시 객체이름은 request, 또는 response
-  console.log(JSON.stringify(user))       // 타입이 {} JSON
+  console.log(JSON.stringify(user))
   window.location.href = ('/')
-  
 }
 const idCheckChange = (e : React.FormEvent<HTMLInputElement>) => {
   e.preventDefault()
@@ -75,7 +61,7 @@ const idCheckChange = (e : React.FormEvent<HTMLInputElement>) => {
 const idCheck = (e : React.MouseEvent<HTMLButtonElement>) => {
   e.preventDefault()
   console.log(`중복 체크 아이디 : ${JSON.stringify(username)}`)
-  dispatch(checkIdRequest(username))
+  dispatch(userActions.checkIdRequest(username))
 }
 const pwCheckChange = (e : { preventDefault:() => void; target: {name: string ; value: string}}) => {
   e.preventDefault()
@@ -83,9 +69,7 @@ const pwCheckChange = (e : { preventDefault:() => void; target: {name: string ; 
   setCheck({...check, [name] : value })
 }
 console.log(`0. 회원가입 입력 : ${JSON.stringify(user)}`)
-//debugger;
     return(
-      
     <form onSubmit = { handleSubmit } >
         <h4 className="h4 mb-3 fw-normal">Clozet의 회원이 되어주세요!</h4>
     <div className = 'd-grid gap-2'>
@@ -155,6 +139,3 @@ console.log(`0. 회원가입 입력 : ${JSON.stringify(user)}`)
     )
 }
 export default Join
-
-//Warning: validateDOMNesting(...): <form> cannot appear as a descendant of <form>
-// form tag 중복 시 - hydration

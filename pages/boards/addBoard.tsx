@@ -34,11 +34,9 @@ const AddBoardPage: NextPage = () =>  {
 
   const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault() 
-    console.log('>>토큰 넣기' + JSON.stringify(write))
     dispatch(writeBoard(write))
   }
 
-  
   return (
     <AddBoard info = {write} onChange={onChange} onSubmit = {onSubmit}/>
   )

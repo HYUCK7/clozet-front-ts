@@ -20,7 +20,7 @@ export const findMyBoards = async(
 ) => {
     console.log('>>1' + JSON.stringify(payload))
     try{
-        const response: AxiosResponse = await axios.post(`${SERVER}/articles/findByTokenToArticle`, payload, {headers})
+        const response: AxiosResponse = await axios.post(`${SERVER}/articles/myList`, payload, {headers})
         console.log('>>3'+JSON.stringify(response))
         return response.data
     } catch(err) {
@@ -32,7 +32,7 @@ export const writeQna = async(
     writeData : Article
 ) => {
     try{
-        const response: AxiosResponse = await axios.post(`${SERVER}/articles/joinQna`, writeData, {headers})
+        const response: AxiosResponse = await axios.post(`${SERVER}/articles/write/qna`, writeData, {headers})
         return response.data
     } catch(err) {
         return(err);
@@ -42,7 +42,7 @@ export const writeQna = async(
 export const fetchQna = async (
     openState: string) => {
         try{
-            const response: AxiosResponse = await axios.post(`${SERVER}/articles/findByQnaDateASC`, {open: openState}, {headers})
+            const response: AxiosResponse = await axios.post(`${SERVER}/articles/list/qna`, {open: openState}, {headers})
             return response.data
         } catch(err){
             return(err);
@@ -52,7 +52,7 @@ export const findMyQna = async(
     fetchForData : Article
 ) => {
     try {
-        const response: AxiosResponse = await axios.post(`${SERVER}/articles/findMyQna`, fetchForData, {headers})
+        const response: AxiosResponse = await axios.post(`${SERVER}/articles/myList/qna`, fetchForData, {headers})
         return response.data
     } catch (err){
         return(err);
@@ -62,7 +62,7 @@ export const removeBoard = async(
     removeForData : Article
 ) => {
     try{
-        await axios.delete(`${SERVER}/articles/deleteArticle`, {data : removeForData})
+        await axios.delete(`${SERVER}/articles/delete`, {data : removeForData})
     } catch (err) {
         return(err);
     }

@@ -42,7 +42,7 @@ const AllBoardListPage: NextPage<Props> = ({list} : Props) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/articles/findAllArticle`,{headers})
+  const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/articles/list`,{headers})
   const list = await response.data
   return {props: {list}
   }

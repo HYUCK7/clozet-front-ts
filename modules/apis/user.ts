@@ -52,7 +52,7 @@ export const userJoinApi = async (
             try{
                 alert(`Find ID API TRY + ${JSON.stringify(findUserNameData)}`)
                 const response: AxiosResponse<any, ResultFindUserName[]> =
-                await axios.post(`${SERVER}/users/findUsername`, findUserNameData, { headers })
+                await axios.post(`${SERVER}/users/username`, findUserNameData, { headers })
                 alert(`서버 응답 + ${JSON.stringify(response.data)}`) 
                 return response.data
             }catch(err){
@@ -65,7 +65,7 @@ export const userJoinApi = async (
             try{
                 alert(`Find PASSWORD API TRY`)
                 const response: AxiosResponse<any, ResultFindPw[]> =
-                await axios.post(`${SERVER}/users/findPw`, findUserPwData, { headers })
+                await axios.post(`${SERVER}/users/password`, findUserPwData, { headers })
                 alert(`서버 응답 + ${JSON.stringify(response.data)}`) 
                 return response.data
             }catch(err){
@@ -106,7 +106,7 @@ export const userJoinApi = async (
     export const checkIdApi = async(PayloadAction: User) => {
         try{
             console.log(`API + ${JSON.stringify(PayloadAction)}`)
-            const response = await axios.post(`${SERVER}/users/existsByUsername`, PayloadAction)
+            const response = await axios.post(`${SERVER}/users/exists`, PayloadAction)
             console.log(response)
             const checkResult = response.data === true ? alert('중복되는 아이디입니다.') : alert('사용 가능한 아이디입니다.')
             return checkResult

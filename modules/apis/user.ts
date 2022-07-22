@@ -98,7 +98,8 @@ export const userJoinApi = async (
     export const removeUserApi = async(token : User) => {
         try{
             console.log (`토큰 보낼게 윤섭 + ${JSON.stringify(token)}` )
-            const response = await axios.delete(`${SERVER}/users/delete`, { data: token })
+            
+            const response = await axios.delete(`${SERVER}/users/delete`, { data: {token: token }})
             console.log(`서버에서 넘어옴 ${JSON.stringify(response)}`)
         } catch (err) { return err;}
     }

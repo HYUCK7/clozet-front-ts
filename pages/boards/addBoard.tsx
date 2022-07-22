@@ -13,16 +13,15 @@ const AddBoardPage: NextPage = () =>  {
   picture: '', height : '', weight: '', writtenDate: '', pictureName: ''
 })
   const dispatch = useAppDispatch()
+
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault()
     const {name, value} = e.currentTarget
     setWrite({...write, [name]: value})
-    
-    console.log(`데이터 : ${JSON.stringify( write )}`)
   }
+
   const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    alert(`page useState에 입력된 게시판 저장 ${JSON.stringify(write)}`)
     dispatch(writeBoard(write))
   }
   
@@ -30,7 +29,6 @@ const AddBoardPage: NextPage = () =>  {
     const token = localStorage.getItem('loginSuccessUser')
     loadUserApi({token}).then(data =>{
       const nickname = data.nickname
-      console.log(`유저정보 + ${JSON.stringify(data)}`)
       setWrite({
         writtenDate: writtenDate,
         nickname: nickname,
@@ -38,8 +36,6 @@ const AddBoardPage: NextPage = () =>  {
     })
   }, [])
   
-  
-  console.log(write)
   return (
     <AddBoard info = {write} onChange={onChange} onSubmit = {onSubmit}/>
   )

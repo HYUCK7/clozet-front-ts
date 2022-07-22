@@ -13,12 +13,11 @@ export default function AddQnaPage() {
   )
   const dispatch = useAppDispatch()
  
-
  useEffect(()=> {
   const token = localStorage.getItem('loginSuccessUser')
   loadUserApi({token}).then(data => {
     const nickname = data.nickname
-  setQuestion({
+                setQuestion({
                 token: token,
                 open: 'true',
                 nickname: nickname,

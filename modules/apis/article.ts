@@ -9,7 +9,7 @@ const headers = {
 export const writeArticle = async (
     writeData: Article) => {
         try {
-            await axios.post(`${SERVER}/articles/join`, writeData, {headers})            
+            await axios.post(`${SERVER}/articles/write`, writeData, {headers})            
         } catch (err) {
             return err;
         }

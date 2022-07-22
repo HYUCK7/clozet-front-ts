@@ -17,7 +17,7 @@ export default function AddQnaPage() {
   const token = localStorage.getItem('loginSuccessUser')
   loadUserApi({token}).then(data => {
     const nickname = data.nickname
-                setQuestion({
+  setQuestion({
                 token: token,
                 open: 'true',
                 nickname: nickname,

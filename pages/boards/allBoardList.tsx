@@ -10,7 +10,7 @@ export interface Props {
   list : InferGetServerSidePropsType<typeof getServerSideProps>
   onChange: (e: React.FormEvent<HTMLInputElement>) => void;
   onSubmit: (e : React.FormEvent<HTMLFormElement> ) => void
-  loadArticleId: (articleId: number | undefined) => void
+  loadArticletitle: (title: string | undefined) => void
 }
 
 const headers = {
@@ -19,13 +19,13 @@ const headers = {
 }
 
 const AllBoardListPage: NextPage<Props> = ({list} : Props) => {
-  const [comment, setComment] = useState<Article>({comment: '', articleId: 0})
+  const [comment, setComment] = useState<Article>({comment: '', title: ''})
   const dispatch = useAppDispatch()
 
-  const loadArticleId = (articleId : number | undefined) => {
-    setComment({...comment, articleId: articleId})
+  const loadArticletitle = (title : string | undefined) => {
+    setComment({...comment, title: title})
   }
-  
+
   const onComment = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault
     const {name, value} = e.currentTarget
@@ -37,7 +37,7 @@ const AllBoardListPage: NextPage<Props> = ({list} : Props) => {
   }
   
   return (
-    <AllBoardList loadArticleId = {loadArticleId} list = {list} onChange = {onComment} onSubmit = {onCommentSubmit}/>
+    <AllBoardList loadArticletitle = {loadArticletitle} list = {list} onChange = {onComment} onSubmit = {onCommentSubmit}/>
   )
 }
 

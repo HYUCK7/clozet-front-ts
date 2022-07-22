@@ -3,7 +3,7 @@ import { Article } from '@/modules/types'
 import React from 'react'
 import HeartButton from '../common/HeartButton'
 
-const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit, loadArticleId } : Props) => {
+const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit, loadArticletitle } : Props) => {
   return (
     <form onSubmit={onSubmit}>
     <div className='container'>
@@ -38,7 +38,7 @@ const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit, loadArticleId 
         <div className='p-4'>
         <div className="input-group mb-3">
           <input onChange={onChange} name='comment' type="text" className="form-control" placeholder="댓글을 입력해 소통해보세요."  aria-describedby="button-addon2"/>
-          <button onClick={()=>{loadArticleId(article.articleId)}} className="btn btn-outline-secondary" type= "submit" id="button-addon2">
+          <button onClick={()=>{loadArticletitle(article.title)}} className="btn btn-outline-secondary" type= "submit" id="button-addon2">
             <h5>입력</h5>
           </button>
           

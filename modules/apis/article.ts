@@ -72,6 +72,7 @@ export const writeComment = async(
     writeComment : Article
 ) => {
     try{
+        console.log('>>')
         await axios.post(`${SERVER}/articles/write`, writeComment, {headers})
     } catch (err){
         return(err)

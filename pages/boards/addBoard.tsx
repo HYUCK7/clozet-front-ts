@@ -19,6 +19,7 @@ const AddBoardPage: NextPage = () =>  {
     loadUserApi({token}).then(data =>{
       const nickname = data.nickname
       setWrite({
+        token : data.token,
         writtenDate: writtenDate,
         nickname: nickname,
       })
@@ -33,11 +34,11 @@ const AddBoardPage: NextPage = () =>  {
 
   const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault() 
-    setWrite({...write, token: localStorage.getItem('loginSuccessUser')})
+    console.log('>>토큰 넣기' + JSON.stringify(write))
     dispatch(writeBoard(write))
   }
 
-  console.log('>>' + JSON.stringify(write))
+  
   return (
     <AddBoard info = {write} onChange={onChange} onSubmit = {onSubmit}/>
   )

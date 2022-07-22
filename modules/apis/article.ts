@@ -72,7 +72,7 @@ export const writeComment = async(
     writeComment : Article
 ) => {
     try{
-        await axios.post(`${SERVER}/articles/join`, writeComment, {headers})
+        await axios.post(`${SERVER}/articles/write`, writeComment, {headers})
     } catch (err){
         return(err)
     }

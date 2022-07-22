@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: ArticleState = {
     data: {userId : 0, title:'', content: '', open : '', 
-    picture: null, height : '', weight: '', writtenDate: '', pictureName: ''} ,
+    picture: null, height : '', weight: '', writtenDate: '', pictureName: '', token: ''} ,
     status: 'loading',
     error: null
 } //initialState : [] as BoardState[]

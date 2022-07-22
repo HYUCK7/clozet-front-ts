@@ -3,7 +3,7 @@ import { Article } from '@/modules/types'
 import React from 'react'
 import HeartButton from '../common/HeartButton'
 
-const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit, loadArticletitle } : Props) => {
+const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit, loadArticletitle, readComment } : Props) => {
   return (
     <form onSubmit={onSubmit}>
     <div className='container'>
@@ -41,10 +41,11 @@ const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit, loadArticletit
           <button onClick={()=>{loadArticletitle(article.title)}} className="btn btn-outline-secondary" type= "submit" id="button-addon2">
             <h5>입력</h5>
           </button>
-          
-        <div>
-          {'댓글 받아올 곳'}
-        </div>
+          <div>
+           <button onClick={()=>{readComment(article.title)}} type="button" className="btn btn-outline-dark">
+            <h5>댓글보기</h5>
+           </button>
+          </div>
         </div>
         </div>
       </div>

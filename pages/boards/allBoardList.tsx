@@ -1,16 +1,18 @@
-import React, {useRef, useState } from 'react'
+import React, {useEffect, useRef, useState } from 'react'
 import AllBoardList from '@/components/boards/AllBoardList'
 import { useAppDispatch } from '@/hooks'
 import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
 import { writeComment } from '@/modules/slices/boardSlice'
 import axios from 'axios'
 import { Article } from '@/modules/types'
+import { findComment } from '@/modules/apis/article'
 
 export interface Props {
   list : InferGetServerSidePropsType<typeof getServerSideProps>
   onChange: (e: React.FormEvent<HTMLInputElement>) => void;
   onSubmit: (e : React.FormEvent<HTMLFormElement> ) => void
   loadArticletitle: (title: string | undefined) => void
+  readComment : (title: string | undefined) => void
 }
 
 const headers = {
@@ -35,9 +37,14 @@ const AllBoardListPage: NextPage<Props> = ({list} : Props) => {
     e.preventDefault()
     dispatch(writeComment(comment))
   }
+  const readComment = (title : string | undefined) => {
+    const res = findComment(title)
+    console.log('>>' + title)
+    console.log(res)
+  }
   
   return (
-    <AllBoardList loadArticletitle = {loadArticletitle} list = {list} onChange = {onComment} onSubmit = {onCommentSubmit}/>
+    <AllBoardList readComment = {readComment} loadArticletitle = {loadArticletitle} list = {list} onChange = {onComment} onSubmit = {onCommentSubmit}/>
   )
 }
 
@@ -48,4 +55,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 }
 
+
 export default AllBoardListPage
+

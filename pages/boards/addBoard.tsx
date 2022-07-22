@@ -10,20 +10,9 @@ const AddBoardPage: NextPage = () =>  {
   const date = new Date();
   const writtenDate = date.toDateString()
   const [write, setWrite] = useState<Article>({ articleId: 0, userId : 0, title:'', content: '',
-  picture: '', height : '', weight: '', writtenDate: '', pictureName: ''
+  picture: '', height : '', weight: '', writtenDate: '', pictureName: '', token: ''
 })
   const dispatch = useAppDispatch()
-
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-    e.preventDefault()
-    const {name, value} = e.currentTarget
-    setWrite({...write, [name]: value})
-  }
-
-  const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    dispatch(writeBoard(write))
-  }
   
   useEffect(()=> {    
     const token = localStorage.getItem('loginSuccessUser')
@@ -35,7 +24,20 @@ const AddBoardPage: NextPage = () =>  {
       })
     })
   }, [])
-  
+
+  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    const {name, value} = e.currentTarget
+    setWrite({...write, [name]: value})
+  }
+
+  const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault() 
+    setWrite({...write, token: localStorage.getItem('loginSuccessUser')})
+    dispatch(writeBoard(write))
+  }
+
+  console.log('>>' + JSON.stringify(write))
   return (
     <AddBoard info = {write} onChange={onChange} onSubmit = {onSubmit}/>
   )

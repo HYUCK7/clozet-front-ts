@@ -1,5 +1,6 @@
 import { Article } from '@/modules/types'
 import React from 'react'
+import Image from 'next/image'
 
 type Props = {
   info: any
@@ -17,9 +18,10 @@ return (<div>
      
     {info.map((x: Article) =>
      
-    <div className='col-12'>
+    <div className='col-12' key={x.articleId}>
       <div className=" card mb-3 m-4">
-        <img src={x.picture} className="card-img-top" alt="articlePicture" /><div className="card-body m-3">
+        <Image src={x.picture} className="card-img-top" alt="articlePicture" />
+        <div className="card-body m-3">
         <h5 className="card-title">{x.title}</h5>
         <p className="card-text">{x.content}</p>
         <p className="card-text">{x.height}, {x.weight}</p>

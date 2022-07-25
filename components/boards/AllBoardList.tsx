@@ -2,6 +2,7 @@ import { Props } from '@/pages/boards/allBoardList'
 import { Article } from '@/modules/types'
 import React from 'react'
 import HeartButton from '../common/HeartButton'
+import Image from 'next/image'
 
 const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit, loadArticletitle, readComment } : Props) => {
   return (
@@ -13,11 +14,11 @@ const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit, loadArticletit
     <br/>
     {list.map((article: Article) => 
     
-    <div className="row mb-2">
+    <div className="row mb-2" key={article.articleId}>
     <div className="col-12">
       <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div className="col p-4 d-flex flex-column position-static">
-
+          <input type='hidden' key={article.articleId}/>
           <strong className="d-inline-block mb-2 text-primary">
             <h5>{article?.nickname}</h5>
           </strong>
@@ -33,7 +34,7 @@ const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit, loadArticletit
           
         </div>
         <div className="col-auto d-none d-lg-block">
-          <img src={article?.picture}></img>
+          <Image src={article?.picture}/>
         </div>
         <div className='p-4'>
         <div className="input-group mb-3">

@@ -20,12 +20,12 @@ const MypagePage : NextPage = () => {
   })
 
   useEffect(() => {
-    const token : string | null = localStorage.getItem('loginSuccessUser')
+    const token : string | null = localStorage.getItem("loginSuccessUser")
     if ( token !== null) {
       setInfo({token : token})
     } else {
       throw('error')}
-    },['loginSuccessUser'])
+    },[localStorage])
 
   const dispatch = useAppDispatch()
 

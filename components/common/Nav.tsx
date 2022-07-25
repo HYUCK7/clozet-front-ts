@@ -52,23 +52,23 @@ export default function Nav() {
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">    
         { item !== null ? 
     <>                         <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <Link className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <strong>Closet</strong>
-                                </a>
+                                </Link>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a className="dropdown-item" href="/closets/main">옷 추가하기</a></li>
-                                    <li><a className="dropdown-item" href="/closets/top">상의</a></li>
-                                    <li><a className="dropdown-item" href="/closets/bottom">하의</a></li>
+                                    <li><Link className="dropdown-item" href="/closets/main">옷 추가하기</Link></li>
+                                    <li><Link className="dropdown-item" href="/closets/top">상의</Link></li>
+                                    <li><Link className="dropdown-item" href="/closets/bottom">하의</Link></li>
                                 </ul>
                             </li>
                                 <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <Link className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <strong>People</strong>
-                                    </a>
+                                    </Link>
                                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a className="dropdown-item" href="/boards/addBoard">UPLOAD</a></li>
-                                        <li><a className="dropdown-item" href="/boards/myBoardList">MY UPLOAD</a></li>
-                                        <li><a className="dropdown-item" href="/boards/allBoardList">Clozet People</a></li>
+                                        <li><Link className="dropdown-item" href="/boards/addBoard">UPLOAD</Link></li>
+                                        <li><Link className="dropdown-item" href="/boards/myBoardList">MY UPLOAD</Link></li>
+                                        <li><Link className="dropdown-item" href="/boards/allBoardList">Clozet People</Link></li>
                                     </ul>
                                 </li></> : null}
                             </ul> 

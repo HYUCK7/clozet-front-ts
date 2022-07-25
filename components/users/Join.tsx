@@ -98,7 +98,7 @@ const pwCheckChange = (e : { preventDefault:() => void; target: {name: string ; 
         <label htmlFor="floatingPassword"><h5>Password를 확인해주세요</h5></label>
       </div>
       {check.checkPwValue === '' ? null :  
-      <>{ check.checkPwValue === user.password ? <p>'일치'</p> || setPasswordSame(true) : <p className='fw-bold text-danger'> 일치하지 않아요 </p> || setPasswordSame(false)} </> }
+      <>{ check.checkPwValue === user.password ? <p>`일치`</p> || setPasswordSame(true) : <p className='fw-bold text-danger'> `일치하지 않아요` </p> || setPasswordSame(false)} </> }
       <div className="form-floating">
         <input onChange = {handleChange} type="text" className="form-control" id="birth" name = "birth" placeholder="생년월일" />
         <label htmlFor="floatingBirth"><h5>birth</h5></label>

@@ -1,6 +1,7 @@
 import { useScript } from "@/hooks";
 import { RefObject, useRef, useState } from "react";
 
+declare const google : any
 
 export default function GoogleLogin({
 
@@ -10,11 +11,11 @@ export default function GoogleLogin({
 {  
 useScript('https://accounts.google.com/gsi/client',() => {
         
-    window.google.accounts.id.initialize({
+    google.accounts.id.initialize({
       client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
       callback: handleCredentialResponse
   })
-    window.google.accounts.id.renderButton(
+    google.accounts.id.renderButton(
       document.getElementById('buttonDiv') as HTMLButtonElement,
       {
         theme: "outline", size: "large",

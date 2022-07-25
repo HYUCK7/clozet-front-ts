@@ -7,7 +7,7 @@ import { NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
 import { UserFindIdInput, UserFindPwInput } from '@/modules/types'
 
-const findAccountPage: NextPage = () => {
+const FindAccountPage: NextPage = () => {
   const [findUserName, setFindUserName] = useState<UserFindIdInput>
   ({name: '', email :''});
   const [findPw, setFindPw] = useState<UserFindPwInput>
@@ -49,4 +49,4 @@ const findAccountPage: NextPage = () => {
     handleFindPw={onChangeFindPw} submitFindPw={onSubmitFindPw}/>
   )
 }
-export default findAccountPage
+export default FindAccountPage

@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Closet, ClosetState } from "../types";
-import clothSlice from "./clothesSlice";
 
 const initialState: ClosetState = {
 	data: {picture: undefined, cloth: {item: '', color: ''}},

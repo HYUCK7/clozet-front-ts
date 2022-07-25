@@ -24,7 +24,7 @@ const AddBoardPage: NextPage = () =>  {
         nickname: nickname,
       })
     })
-  }, [])
+  }, [writtenDate])
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault()

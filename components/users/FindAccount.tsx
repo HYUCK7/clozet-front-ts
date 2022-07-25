@@ -59,8 +59,8 @@ const FindAccount: React.FC<Props> = ({findId, handleFindId, handleFindPw, submi
       <button  className="w-100 btn btn-lg btn-outline-secondary" type="submit">
         <h4>다음</h4>
         </button>
-      <p><small>* 가입하신 이메일로 
-        '임시 비밀번호'를 전송합니다.</small></p>
+      <p><small>`* 가입하신 이메일로 
+        `임시 비밀번호`를 전송합니다.`</small></p>
               </div>
               </form>
             </div>

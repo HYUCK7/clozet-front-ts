@@ -22,7 +22,7 @@ export default function AddQnaPage() {
                 open: 'true',
                 nickname: nickname,
                 writtenDate: parseDate})
-  })}, [])
+  })}, [parseDate])
 
   const onChange = (e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLTextAreaElement>) => {
     e.preventDefault()

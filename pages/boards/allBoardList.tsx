@@ -5,7 +5,7 @@ import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
 import { writeComment } from '@/modules/slices/boardSlice'
 import axios from 'axios'
 import { Article } from '@/modules/types'
-import { findComment } from '@/modules/apis/article'
+//import { findComment } from '@/modules/apis/article'
 
 export interface Props {
   list : InferGetServerSidePropsType<typeof getServerSideProps>
@@ -18,10 +18,12 @@ export interface Props {
 const headers = {
   "Content-Type" : "application/json",
   Authorization: "JWT fefege...",
+
 }
 
 const AllBoardListPage: NextPage<Props> = ({list} : Props) => {
   const [comment, setComment] = useState<Article>({comment: '', title: ''})
+  const [commentList, setCommentList] = useState<Article> ({title: '', token:''})
   const dispatch = useAppDispatch()
 
   const loadArticletitle = (title : string | undefined) => {
@@ -37,9 +39,12 @@ const AllBoardListPage: NextPage<Props> = ({list} : Props) => {
     e.preventDefault()
     dispatch(writeComment(comment))
   }
-  const readComment = (title : string | undefined) => {
-    const res = findComment(title)
-    console.log('>>' + title)
+  const readComment = async (title : string | undefined) => {
+    const token = localStorage.getItem('loginSuccessUser')
+    setCommentList({...commentList, token : token, title: title})
+    console.log('>>' + JSON.stringify(commentList))
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/list/comment`, commentList, {headers})
+    console.log('>>' + title, token)
     console.log(res)
   }
   

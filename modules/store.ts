@@ -4,6 +4,7 @@ import logger from 'redux-logger'
 import { HYDRATE } from 'next-redux-wrapper';
 import userReducer from './slices/userSlice'
 import articleReducer from './slices/boardSlice';
+import closetReducer from './slices/closetSlice'
 
 
 import rootSaga from '@/modules/sagas';
@@ -21,6 +22,7 @@ const sagaMiddleware = createSagaMiddleware()
 const combinedReducer = combineReducers({
         user : userReducer,
         article: articleReducer,
+        cloth: closetReducer
 })
 const rootReducer = (
 	state: ReturnType<typeof combinedReducer>,

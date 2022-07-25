@@ -7,7 +7,7 @@ const MyQnaList:React.FC = () => {
   
   useEffect(()=> {
     const token = localStorage.getItem('loginSuccessUser')
-    findMyQna({articleId : 0, token: token, open: 'true'}).then(data => {
+    findMyQna({token: token, open: 'true'}).then(data => {
     setMyQna(data)
     })
   }, []) 

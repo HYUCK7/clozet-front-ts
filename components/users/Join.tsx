@@ -68,7 +68,6 @@ const pwCheckChange = (e : { preventDefault:() => void; target: {name: string ; 
   const {name , value} = e.target;
   setCheck({...check, [name] : value })
 }
-console.log(`0. 회원가입 입력 : ${JSON.stringify(user)}`)
     return(
     <form onSubmit = { handleSubmit } >
         <h4 className="h4 mb-3 fw-normal">Clozet의 회원이 되어주세요!</h4>

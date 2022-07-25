@@ -1,27 +1,31 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Closet, ClosetState } from "../types";
+import clothSlice from "./clothesSlice";
 
-const closetSliceType = "slice/closet";
-
-export interface IClosetState {
-	value: number;
-}
-
-const initialState: IClosetState = {
-	value: 0
+const initialState: ClosetState = {
+	data: {picture: undefined, cloth: {item: '', color: ''}},
+    status: "loading"
 }
 
 const closetSlice = createSlice({
 	initialState,
-    name: closetSliceType,
+    name: 'closetSlice',
     reducers: {
-    	increase: (state) => {
-        	state.value += 1;
+        addCloth : (state, action: PayloadAction<Closet>) =>{
+            state.data = action.payload
+            state.status = 'loading'
         },
-        increaseByAmount: (state, action: PayloadAction<number>) => {
-        	state.value += action.payload;
+        addSuccess : (state, action: PayloadAction<Closet>) => {
+            state.data = action.payload
+            state.status = 'successed'
+        },
+        addFailure: (state, action) => {
+            state.status = 'failed'
         }
     }
 })
 
-export const { increase, increaseByAmount } = closetSlice.actions;
-export default closetSlice;
+export const { addCloth, addSuccess, addFailure} = closetSlice.actions;
+const {reducer, actions } = closetSlice
+export const ClosetActions = actions
+export default reducer;

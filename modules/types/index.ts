@@ -89,3 +89,21 @@ export interface ArticleState{
   status: 'successed' | 'loading' | 'failed' 
   error: null
 }
+
+export interface Cloth {
+  item : string
+  color: string
+}
+
+export interface Closet{
+  picture: any
+  cloth: Cloth
+}
+
+export interface ClosetState {
+  data: {
+    picture: any
+    cloth? : Cloth
+  }
+  status: 'successed' | 'loading' | 'failed' 
+}

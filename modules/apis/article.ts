@@ -78,20 +78,17 @@ export const writeComment = async(
         return(err)
     }
 }
-
+/** 
 export const findComment = async (
-    title: string | undefined
+    commentList: Article
 ) => {
     try {
-        console.log('>>' + JSON.stringify({title:title}))
-        const response = await axios.post(`${SERVER}/list/comment`, {title:title}, {headers})
+        console.log('>>' + JSON.stringify(commentList))
+        const response = await axios.post(`${SERVER}/list/comment`, commentList, {headers})
         console.log('>>' + JSON.stringify(response.data))
         return response.data
     } catch(err) {
         return (err)
     }
 }
-
-
-
-
+*/

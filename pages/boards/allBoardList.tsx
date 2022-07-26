@@ -1,14 +1,14 @@
 import React, {useEffect, useRef, useState } from 'react'
 import AllBoardList from '@/components/boards/AllBoardList'
 import { useAppDispatch } from '@/hooks'
-import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
+import { GetServerSideProps, GetStaticProps, InferGetServerSidePropsType, InferGetStaticPropsType, NextPage } from 'next'
 import { writeComment } from '@/modules/slices/boardSlice'
 import axios from 'axios'
 import { Article } from '@/modules/types'
 //import { findComment } from '@/modules/apis/article'
 
 export interface Props {
-  list : InferGetServerSidePropsType<typeof getServerSideProps>
+  list : InferGetStaticPropsType<typeof getStaticProps>
   onChange: (e: React.FormEvent<HTMLInputElement>) => void;
   onSubmit: (e : React.FormEvent<HTMLFormElement> ) => void
   loadArticletitle: (title: string | undefined) => void
@@ -42,10 +42,7 @@ const AllBoardListPage: NextPage<Props> = ({list} : Props) => {
   const readComment = async (title : string | undefined) => {
     const token = localStorage.getItem('loginSuccessUser')
     setCommentList({...commentList, token : token, title: title})
-    console.log('>>' + JSON.stringify(commentList))
     const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/list/comment`, commentList, {headers})
-    console.log('>>' + title, token)
-    console.log(res)
   }
   
   return (
@@ -53,7 +50,7 @@ const AllBoardListPage: NextPage<Props> = ({list} : Props) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getStaticProps : GetStaticProps = async (ctx) => {
   const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/articles/list`,{headers})
   const list = await response.data
   return {props: {list}

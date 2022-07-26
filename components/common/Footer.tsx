@@ -1,60 +1,33 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
+import Link from 'next/link'
 
-const Copyright: React.FC = () => {
-    return (
-      <Typography variant="body2" color="text.secondary" align="center">
-        {'Copyright © '}
-        <Link color="#009688">
-          Clozet WebSite
-        </Link>{' '}
-        {new Date().getFullYear()}
-      </Typography>
-    );
-}
-
-const QA: React.FC = () => {
+export default function Footer () {
   return(
-  <Typography variant='body2' color = "text.secondary" align = "center">
-  <Link color = "#009688"href = "/boards/addQna" align-right={100}>
-    문의하기       
-    </Link>
-    &nbsp; &nbsp;
-  <Link color = "#009688"href = "/boards/allQnaList">
-    전체 문의내역 
-  </Link>
-  &nbsp; &nbsp;
-  <Link color = "#009688"href = "/boards/myQnaList">
-    나의 문의내역 
-  </Link>
-  &nbsp;&nbsp;
-  </Typography>
+    <div className='b-example-divider'>
+    <div className="container">
+  <footer className="py-3 my-4">
+    <ul className="nav justify-content-center border-bottom pb-3 mb-3">
+      <li className="nav-item">
+        <Link href="/">
+          <a className="nav-link px-2 text-muted">Home</a>
+        </Link></li>
+      <li className="nav-item">
+        <Link href="/boards/addQna">
+          <a className="nav-link px-2 text-muted">QNA</a>
+        </Link></li>
+      <li className="nav-item">
+        <Link href="/boards/myQnaList">
+          <a className="nav-link px-2 text-muted">내 QNA 보기</a>
+        </Link></li>
+      <li className="nav-item">
+        <Link href="/boards/allQnaList">
+          <a  className="nav-link px-2 text-muted">모든 QNA 보기</a></Link>
+        </li>
+    </ul>
+    <p className="text-center text-muted">&copy; 2022 Clozet, Inc</p>
+  </footer>
+</div>
+      </div>
+      
   )
 }
-  
-  
-const Footer: React.FC = () => {
-    return (
-      <Box component="footer" sx={{ bgcolor: 'background.paper', py: 6 }}>
-        <Container maxWidth="lg">
-          <Typography variant="h6" align="center" gutterBottom>
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            align="center"
-            color="text.secondary"
-            component="p"
-          >
-          </Typography>
-          <Copyright />
-          <QA />
-        </Container>
-      </Box>
-
-      
-    );
-  }
-export default Footer

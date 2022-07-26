@@ -1,8 +1,14 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   
 }
 
-module.exports = nextConfig
+module.exports = 
+{nextConfig,
+  images: {
+    loader : 'akamai',
+    path: 'http://www.clozet.co.kr',
+  }
+}

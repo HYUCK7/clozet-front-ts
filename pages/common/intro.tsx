@@ -1,7 +1,7 @@
 import DataChart from '@/components/common/Chart'
 import KakaoMap from '@/components/common/KakaoMap'
 import axios from 'axios'
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { GetServerSideProps, GetStaticProps, InferGetServerSidePropsType, InferGetStaticPropsType } from 'next'
 import React from 'react'
 
 const headers = {
@@ -10,8 +10,8 @@ const headers = {
 }
 
 type Props = {
-  articleCount: InferGetServerSidePropsType<typeof getServerSideProps>
-  userCount: InferGetServerSidePropsType<typeof getServerSideProps>
+  articleCount: InferGetStaticPropsType<typeof getStaticProps>
+  userCount: InferGetStaticPropsType<typeof getStaticProps>
 }
 
 const intro = ({articleCount, userCount} : Props) => {
@@ -27,9 +27,9 @@ const intro = ({articleCount, userCount} : Props) => {
   )
 }
 
-export const getServerSideProps : GetServerSideProps = async (ctx) => {
-  const article = await axios.get(`http://127.0.0.1:8080/articles/count`, {headers})
-  const user = await axios.get(`http://127.0.0.1:8080/users/count`, {headers})
+export const getStaticProps : GetStaticProps = async (ctx) => {
+  const article = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/articles/count`, {headers})
+  const user = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/users/count`, {headers})
   const articleCount = await article.data
   const userCount = await user.data
 

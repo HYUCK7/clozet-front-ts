@@ -38,10 +38,11 @@ const MainPage: NextPage = () => {
     picture.append('uploadImage', images[0])
     const res = await axios.post(`http://127.0.0.1:8000/rc`, picture, {headers})
     const cloth = res.data
-    setSort({picture: picture, cloth: cloth})
-
+    picture.append("data", new Blob([JSON.stringify(cloth)], {type: "application/json"}))
+    console.log('>>' + picture) // 확인해 바야댐.
+    //const sort = await axios.post(``)
     if(cloth !== null) {
-      dispatch(addCloth(sort))
+      dispatch(addCloth(sort)) //picture
     } else {
       alert('사진을 다시 등록 해주세요.')
     }

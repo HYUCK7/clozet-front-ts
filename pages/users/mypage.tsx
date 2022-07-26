@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react'
 export interface deleteInfo{
   token: any
 }
-
+const date = Date()
 const MypagePage : NextPage = () => {
   const [info, setInfo] = useState<User>({
     username: '', 
@@ -25,7 +25,7 @@ const MypagePage : NextPage = () => {
       setInfo({token : token})
     } else {
       throw('error')}
-    },[localStorage])
+    },[date])
 
   const dispatch = useAppDispatch()
 
@@ -37,7 +37,6 @@ const MypagePage : NextPage = () => {
   
   const onInfoSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(`업데이트 버튼 클릭 ${JSON.stringify(info)}`)
     dispatch(updateRequest(info))
   }
 
@@ -47,7 +46,6 @@ const MypagePage : NextPage = () => {
     dispatch(removeRequest(info.token))
   }
 
-   console.log(`info ${JSON.stringify(info)}`)
   return (
     <Mypage handleChange = {onInfoChange} handleSubmit = {onInfoSubmit} handleClick = {onDeleteClick}
     /> // 삭제 토큰 보내기 테스트

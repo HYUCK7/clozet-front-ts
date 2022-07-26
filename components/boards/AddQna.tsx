@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import React from 'react'
 
 type Props = {
@@ -14,7 +13,7 @@ const AddQna = ({handleChange, handleSubmit, checkChange, nickname}: Props) => {
   return (
     <div className = 'container'>
       <div className="py-5 text-center">
-        <Image className="d-block mx-auto mb-4" src="/clozet-black.svg" alt="" width="150" height=""/>
+        <img className="d-block mx-auto mb-4" src="/clozet-black.svg" alt="" width="150" height=""/>
         <h2>{ nickname }님 !</h2>
         <h2>clozet 이용 불편사항을 말해주세요 !</h2>
         <p className="lead">저희 웹 이용 불편사항, 문의사항을 신속하게 처리해드리겠습니다.</p>

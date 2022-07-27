@@ -27,7 +27,7 @@ a.navItem: {
 `
     
 export default function Nav() {
-    
+    const PATH = process.env.NEXT_PUBLIC_WEBPATH
     const [item, setItem] = useState(null)
     useEffect (()=> {
         let item : any = localStorage.getItem('loginSuccessUser');
@@ -54,9 +54,9 @@ export default function Nav() {
                                     <strong>Closet</strong>
                                 </a>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><Link href="/closets/main"><a className="dropdown-item">옷 추가하기</a></Link></li>
-                                    <li><Link href="/closets/top"><a className="dropdown-item" >상의</a></Link></li>
-                                    <li><Link href="/closets/bottom"><a className="dropdown-item" >하의</a></Link></li>
+                                    <li><Link href={`${PATH}/closets/main`}><a className="dropdown-item">옷 추가하기</a></Link></li>
+                                    <li><Link href={`${PATH}/closets/top`}><a className="dropdown-item" >상의</a></Link></li>
+                                    <li><Link href={`${PATH}/closets/bottom`}><a className="dropdown-item" >하의</a></Link></li>
                                 </ul>
                             </li>
                                 <li className="nav-item dropdown">
@@ -64,24 +64,24 @@ export default function Nav() {
                                         <strong>People</strong>
                                     </a>
                                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><Link href="/boards/addBoard"><a className="dropdown-item" >UPLOAD</a></Link></li>
-                                        <li><Link href="/boards/myBoardList"><a className="dropdown-item">MY UPLOAD</a></Link></li>
-                                        <li><Link href="/boards/allBoardList"><a className="dropdown-item" >Clozet People</a></Link></li>
+                                        <li><Link href={`${PATH}/boards/addBoard`}><a className="dropdown-item" >UPLOAD</a></Link></li>
+                                        <li><Link href={`${PATH}/boards/myBoardList`}><a className="dropdown-item">MY UPLOAD</a></Link></li>
+                                        <li><Link href={`${PATH}/boards/allBoardList`}><a className="dropdown-item" >Clozet People</a></Link></li>
                                     </ul>
                                 </li></> : <h4>로그인 후 이용해주세요 !</h4>}
                             </ul> 
-                        <Link href='/common/intro'>
+                        <Link href={`${PATH}/common/intro`}>
                             <a className='line mx-5' style={{color : 'inherit', textDecoration: 'none'}}>
                                 회사 소개
                             </a>
                         </Link>
                 {item === null ?
-                    <Link href='/users/findAccount' >
+                    <Link href={`${PATH}/users/findAccount`}>
                         <a className = 'line mx-5' style={{color : 'inherit', textDecoration : 'none'}}>
                             계정 찾기
                         </a>
                     </Link>
-                :   <Link href='/users/mypage' >
+                :   <Link href={`${PATH}/users/mypage`} >
                         <a className='line mx-5' style={{color : 'inherit', textDecoration : 'none'}}>
                             Profile
                         </a>

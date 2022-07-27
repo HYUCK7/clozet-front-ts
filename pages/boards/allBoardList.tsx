@@ -8,7 +8,7 @@ import { Article } from '@/modules/types'
 //import { findComment } from '@/modules/apis/article'
 
 export interface Props {
-  list : InferGetStaticPropsType<typeof getStaticProps>
+  list : Article
   onChange: (e: React.FormEvent<HTMLInputElement>) => void;
   onSubmit: (e : React.FormEvent<HTMLFormElement> ) => void
   loadArticletitle: (title: string | undefined) => void
@@ -56,6 +56,7 @@ export const getStaticProps : GetStaticProps = async (ctx) => {
   return {props: {list}
   }
 }
+
 
 
 export default AllBoardListPage

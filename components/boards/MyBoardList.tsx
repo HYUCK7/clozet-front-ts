@@ -7,7 +7,7 @@ type Props = {
   onDeleteClick: any
 }
 
-const MyBoardList = ({info , onDeleteClick} : Props) => {
+const MyBoardList:React.FC<Props> = ({info , onDeleteClick} : Props) => {
 console.log(`info값 :${JSON.stringify(info)}`)
 
 return (<div> 
@@ -20,7 +20,6 @@ return (<div>
      
     <div className='col-12' key={x.articleId}>
       <div className=" card mb-3 m-4">
-        <Image src={x.picture} className="card-img-top" alt="articlePicture" />
         <div className="card-body m-3">
         <h5 className="card-title">{x.title}</h5>
         <p className="card-text">{x.content}</p>

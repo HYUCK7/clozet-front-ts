@@ -1,4 +1,5 @@
-export interface Article {  
+export interface Article {
+    [x: string]: any  
     userId?: number
     nickname? : string,
     articleId?: number ,

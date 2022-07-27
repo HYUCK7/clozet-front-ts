@@ -4,16 +4,15 @@ import { useAppDispatch } from '@/hooks'
 import { fetchMyBoard, removeBoard } from '@/modules/slices/boardSlice'
 import { Article } from '@/modules/types'
 import { findMyBoards } from '@/modules/apis/article'
+import { NextPage } from 'next'
 
-export default function MyBoardListPage() {
+const MyBoardListPage:NextPage =() => {
   const [ info, setInfo ] = useState<Array<Article>>([])
   const dispatch = useAppDispatch()
   
   useEffect(()=> {    
     const token = localStorage.getItem('loginSuccessUser')
     findMyBoards({token}).then(data => {
-      console.log('>>' + token)
-      console.log('>>2' + data)
       setInfo(data)
     })
   }, [])
@@ -30,3 +29,4 @@ console.log(` info값: ${JSON.stringify(info)}`)
     <MyBoardList info = {info} onDeleteClick = {onDeleteClick}/>
   )
 }
+export default MyBoardListPage

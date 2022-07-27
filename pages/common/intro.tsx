@@ -26,7 +26,7 @@ const intro = ({articleCount, userCount} : Props) => {
     </>
   )
 }
-
+/** */
 export const getStaticProps : GetStaticProps = async (ctx) => {
   const article = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/articles/count`, {headers})
   const user = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/users/count`, {headers})

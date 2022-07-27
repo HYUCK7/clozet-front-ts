@@ -2,6 +2,7 @@ import * as React from 'react';
 import Link from 'next/link'
 
 export default function Footer () {
+  const PATH = process.env.NEXT_PUBLIC_WEBPATH
   return(
     <div className='b-example-divider'>
     <div className="container">
@@ -12,15 +13,15 @@ export default function Footer () {
           <a className="nav-link px-2 text-muted">Home</a>
         </Link></li>
       <li className="nav-item">
-        <Link href="/boards/addQna">
+        <Link href={`${PATH}/boards/addQna`}>
           <a className="nav-link px-2 text-muted">QNA</a>
         </Link></li>
       <li className="nav-item">
-        <Link href="/boards/myQnaList">
+        <Link href={`${PATH}/boards/myQnaList`}>
           <a className="nav-link px-2 text-muted">내 QNA 보기</a>
         </Link></li>
       <li className="nav-item">
-        <Link href="/boards/allQnaList">
+        <Link href={`${PATH}/boards/allQnaList`}>
           <a  className="nav-link px-2 text-muted">모든 QNA 보기</a></Link>
         </li>
     </ul>

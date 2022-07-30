@@ -7,23 +7,18 @@ import LoginPage from '@/pages/users/login';
 import LogoutPage from '@/pages/users/logout';
 
 const styled = css`
-a.line:after{
-    display:block;
-    content: '';
-    border-bottom: solid 1px black;  
-    transform: scaleX(0);  
-    transition: transform 250ms ease-in-out;
-    padding : 
-}
-a:hover:after {
-    transform: scaleX(100%);
-}
-a.fromRight:after{ transform-origin:100% 50%; }
-a.fromLeft:after{  transform-origin:  0% 50%; }
 
-a.navItem: {
-    font-size: 20rem;
+  .hoverColor h5{
+    display : block;
+    color : rgb(37, 37, 37);
+    
+    padding : 10px 5px;
 }
+.hoverColor h5:hover{
+    transform: scale(1.05);
+    transition-duration: 0.5s;
+}
+
 `
     
 export default function Nav() {
@@ -70,20 +65,21 @@ export default function Nav() {
                                     </ul>
                                 </li></> : <h4>로그인 후 이용해주세요 !</h4>}
                             </ul> 
+                        
                         <Link href={`${PATH}/common/intro`}>
-                            <a className='line mx-5' style={{color : 'inherit', textDecoration: 'none'}}>
-                                회사 소개
+                            <a className='hoverColor mx-5' style={{color : 'inherit', textDecoration: 'none'}}>
+                                <h5 >회사 소개</h5>
                             </a>
                         </Link>
                 {item === null ?
                     <Link href={`${PATH}/users/findAccount`}>
-                        <a className = 'line mx-5' style={{color : 'inherit', textDecoration : 'none'}}>
-                            계정 찾기
+                        <a className='hoverColor mx-5' style={{color : 'inherit', textDecoration : 'none'}}>
+                            <h5>계정 찾기</h5>
                         </a>
                     </Link>
                 :   <Link href={`${PATH}/users/mypage`} >
-                        <a className='line mx-5' style={{color : 'inherit', textDecoration : 'none'}}>
-                            Profile
+                        <a className='hoverColor mx-5' style={{color : 'inherit', textDecoration : 'none'}}>
+                            <h5>Profile</h5>
                         </a>
                     </Link>
                 }

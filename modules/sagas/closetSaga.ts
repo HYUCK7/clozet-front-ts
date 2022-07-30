@@ -6,6 +6,7 @@ import { ClosetActions } from "../slices/closetSlice";
 import { Closet } from "../types";
 
 function* addClothSaga ( action : {payload : Closet}) {
+    console.log('>>')
     const {addSuccess, addFailure} = ClosetActions
     const param = action.payload
     try{

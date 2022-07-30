@@ -11,13 +11,15 @@ class MyDocument extends Document {
         return(
             <Html>
                 <Head/>
-                <title>Closet</title>
+                <title>Clozet</title>
                 <meta charSet="utf-8"></meta>
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin = 'anonymous'/>
                 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet"/>
+                <link rel ="shortcut icon" href="/backImage.ico"></link>
                 <script src="https://accounts.google.com/gsi/client" async defer></script>
-                
+                <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></link>
+                <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" async></script>
                 <meta
               name="viewport"
               content="width=device-width, user-scalable=no,

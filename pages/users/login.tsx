@@ -21,8 +21,6 @@ const LoginPage: NextPage = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(`1.로그인 정보 ${JSON.stringify(loginUser)}`)
-    console.log(`2. 로그인 버튼 클릭 및 액션 요청 ${JSON.stringify(loginUser)}`)
     dispatch(loginRequest(loginUser))
   }
 

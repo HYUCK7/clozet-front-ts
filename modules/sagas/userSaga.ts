@@ -23,6 +23,8 @@ export interface UserLoginInput {
     password: string
 }
 
+const PATH = process.env.NEXT_PUBLIC_WEBPATH
+
 //Get Saga
 function* join (user: UserJoinType ) {
     try{
@@ -41,7 +43,7 @@ function* login(action : {payload: UserLoginInput}) {
     try{
         const response: LoginUser = yield call(userLoginApi, param)
         yield put(loginSuccess(response))
-        window.location.href = ('/');
+        window.location.href = `${PATH}`;
     }
     catch(error){
          yield put(loginFailure(error))

@@ -1,9 +1,16 @@
 import { Props } from '@/pages/boards/allBoardList'
 import { Article } from '@/modules/types'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { findAllBoards } from '@/modules/apis/article'
 
 const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit, loadArticletitle, readComment } : Props) => {
+  const [boardList, setBoardList] = useState<Array<Article>>([])
+  
+  useEffect(() => {
+    findAllBoards().then(data => {setBoardList(data)})
+  }, [])
+
   return (
     <form onSubmit={onSubmit}>
     <div className='container'>
@@ -11,7 +18,7 @@ const AllBoardList: React.FC<Props> = ({list, onChange, onSubmit, loadArticletit
       <h1 className='text-center'># Clozet 사람들</h1>
     </div>
     <br/>
-    {list.map((article: Article) => 
+    {boardList.map((article: Article) => 
     
     <div className="row mb-2" key={article.articleId}>
     <div className="col-12">

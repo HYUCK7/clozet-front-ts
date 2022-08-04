@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-amplify/cli": "^9.1.0",
+    "@aws-amplify/ui-react": "^3.2.1",
     "@chatscope/chat-ui-kit-react": "^1.8.3",
     "@ckeditor/ckeditor5-build-classic": "^34.1.0",
     "@ckeditor/ckeditor5-react": "^5.0.2",
@@ -44,6 +46,7 @@
     "auth0-lock": "^11.33.0",
     "autoprefixer": "^10.4.7",
     "autosuggest-highlight": "^3.2.1",
+    "aws-amplify": "^4.3.29",
     "axios": "^0.27.2",
     "axios-mock-adapter": "^1.20.0",
     "bootstrap": "^5.1.3",

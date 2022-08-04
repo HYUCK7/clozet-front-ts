@@ -5,6 +5,7 @@ import { GetServerSideProps, GetStaticProps, InferGetServerSidePropsType, InferG
 import { writeComment } from '@/modules/slices/boardSlice'
 import axios from 'axios'
 import { Article } from '@/modules/types'
+import { findAllBoards } from '@/modules/apis/article'
 //import { findComment } from '@/modules/apis/article'
 
 export interface Props {
@@ -18,7 +19,6 @@ export interface Props {
 const headers = {
   "Content-Type" : "application/json",
   Authorization: "JWT fefege...",
-
 }
 
 const AllBoardListPage: NextPage<Props> = ({list} : Props) => {
@@ -39,22 +39,15 @@ const AllBoardListPage: NextPage<Props> = ({list} : Props) => {
     e.preventDefault()
     dispatch(writeComment(comment))
   }
+  
   const readComment = async (title : string | undefined) => {
     const token = localStorage.getItem('loginSuccessUser')
-    setCommentList({...commentList, token : token, title: title})
     const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/list/comment`, commentList, {headers})
   }
   
   return (
     <AllBoardList readComment = {readComment} loadArticletitle = {loadArticletitle} list = {list} onChange = {onComment} onSubmit = {onCommentSubmit}/>
   )
-}
-
-export const getStaticProps : GetStaticProps = async (ctx) => {
-  const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/articles/list`,{headers})
-  const list = await response.data
-  return {props: {list}
-  }
 }
 
 

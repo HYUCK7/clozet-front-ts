@@ -4,8 +4,6 @@ import { NextPage } from 'next'
 import GoogleLogin from '@/components/users/GoogleLogin'
 import { Navigate } from 'react-router-dom'
 
-/* global google */
-
 const LoginTestPage: NextPage = () => {
   const handleCredentialResponse = async(response: any) => {
     const { credential } = response;

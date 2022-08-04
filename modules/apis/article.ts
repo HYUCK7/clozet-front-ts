@@ -1,6 +1,7 @@
 
 import { Article, User } from "@/modules/types";
 import axios, { AxiosResponse } from "axios";
+import { responseSymbol } from "next/dist/server/web/spec-compliant/fetch-event";
 const SERVER = process.env.NEXT_PUBLIC_SERVER
 const headers = {
     "Content-Type" : "application/json",
@@ -18,14 +19,21 @@ export const writeArticle = async (
 export const findMyBoards = async(
     payload : User
 ) => {
-    console.log('>>1' + JSON.stringify(payload))
     try{
         const response: AxiosResponse = await axios.post(`${SERVER}/articles/myList`, payload, {headers})
-        console.log('>>3'+JSON.stringify(response))
         return response.data
     } catch(err) {
         return err;
     }
+}
+
+export const findAllBoards = async () => {
+    try{
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/articles/list`,{headers})
+    return response.data
+} catch(err) {
+    return err;
+}
 }
 
 export const writeQna = async(

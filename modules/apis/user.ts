@@ -96,9 +96,10 @@ export const userJoinApi = async (
     }
 
     export const removeUserApi = async(token : User) => {
+        const PATH = process.env.NEXT_PUBLIC_WEBPATH
         try{
             const response = await axios.delete(`${SERVER}/users/delete`, { data: {token: token }})
-            window.location.href = ('/')
+            window.location.href = `${PATH}`
         } catch (err) { return err;}
     }
 

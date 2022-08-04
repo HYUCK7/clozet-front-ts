@@ -1,4 +1,4 @@
-name: fix2
+name: Deploy to Production
 
 on:
   push:

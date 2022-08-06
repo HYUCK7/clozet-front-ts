@@ -28,7 +28,6 @@ const PATH = process.env.NEXT_PUBLIC_WEBPATH
 //Get Saga
 function* join (user: UserJoinType ) {
     try{
-        console.log(' 3.  saga내부 join 성공  '+ JSON.stringify(user))
         const response: any = userJoinApi(user.payload)
         yield put(joinSuccess(response.payload))
         
@@ -54,7 +53,6 @@ function* findUserName(action : {payload: UserFindIdInput}){
     const { findUserNameSuccess, findUserNameFailure } = userActions
     const param = action.payload
     try {
-        console.log (' 아이디 찾기 요청 ' + JSON.stringify(param))
         const response: User = yield call(findUserNameApi, param)
         yield put(findUserNameSuccess(response))
     }
@@ -79,7 +77,6 @@ function* findUserPw(action : {payload: UserFindPwInput}){
 function* remove(action : PayloadAction<{token : ''}>){
     const {removeSuccess, removeFailure} = userActions
     try{
-        console.log(`삭제 saga + ${JSON.stringify(action.payload)}`)
         yield call(removeUserApi, action.payload)
         yield put (removeSuccess())
     } catch (error) {
@@ -90,7 +87,6 @@ function* remove(action : PayloadAction<{token : ''}>){
 function* update(action: {payload: User}) {
     const param = action.payload
     try{
-        console.log(`Update Saga + ${JSON.stringify(param)}`)
         const response: User = yield call (updateUserApi, param) 
         yield put (updateSuccess(response))
     } catch (error) {
@@ -99,7 +95,6 @@ function* update(action: {payload: User}) {
 }
 
 function* checkId(action : {payload : any}){
-    console.log(`check saga 실행 + ${JSON.stringify(action.payload)}`)
     try{
         yield call(checkIdApi, action.payload)
         

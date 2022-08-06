@@ -48,7 +48,6 @@ const handleChange = (e: { preventDefault: () => void; target: { name: string; v
 }
 const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
   e.preventDefault()
-  console.log(`1. 버튼 클릭 및 액션 디스패치 +${JSON.stringify(user)}`)
   dispatch(userActions.joinRequest(user))
   console.log(JSON.stringify(user))
   window.location.href = ('/')
@@ -60,7 +59,6 @@ const idCheckChange = (e : React.FormEvent<HTMLInputElement>) => {
 }
 const idCheck = (e : React.MouseEvent<HTMLButtonElement>) => {
   e.preventDefault()
-  console.log(`중복 체크 아이디 : ${JSON.stringify(username)}`)
   dispatch(userActions.checkIdRequest(username))
 }
 const pwCheckChange = (e : { preventDefault:() => void; target: {name: string ; value: string}}) => {

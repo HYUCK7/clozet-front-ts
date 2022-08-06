@@ -42,7 +42,6 @@ const MypagePage : NextPage = () => {
 
   const onDeleteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    console.log(`토큰 전송 : ${JSON.stringify(info.token)}`)
     dispatch(removeRequest(info.token))
   }
 

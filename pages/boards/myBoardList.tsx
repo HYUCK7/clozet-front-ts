@@ -21,7 +21,6 @@ console.log(` info값: ${JSON.stringify(info)}`)
 
   const onDeleteClick = (articleNo: any) => {
     const token = localStorage.getItem('loginSuccessUser')
-    console.log(`삭제하기 위함 : ${JSON.stringify({articleId: articleNo, token: token })}`)
     dispatch(removeBoard({articleId: articleNo, token: token }))
     window.location.href = ('/boards/myBoardList')
   }

@@ -15,7 +15,6 @@ const Mypage: React.FC<Props> = ({handleChange, handleSubmit, handleClick} : Pro
     const token = localStorage.getItem('loginSuccessUser')
     loadUserApi({token}).then(data => {
     setUserInfo([data])
-    console.log('MyPage 데이터 불러오기 성공')
   })}, [])
     
   return (<div>

@@ -17,7 +17,6 @@ const FindAccountPage: NextPage = () => {
 
   const {data} = useAppSelector((state: AppState) => state.rootReducer.user)
   const {status} = useAppSelector((state: AppState) => state.rootReducer.user)
-  console.log(data, status)
 
   useEffect(()=>{setUsernameResult(JSON.stringify(data))},[data])
   const onChangeFindId = (e: React.FormEvent<HTMLInputElement>) => {
@@ -28,7 +27,6 @@ const FindAccountPage: NextPage = () => {
 
   const onSubmitFindId = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(`회원 정보 ${JSON.stringify(findUserName)}`)
     dispatch(findUserNameRequest(findUserName))
   }
 
@@ -40,7 +38,6 @@ const FindAccountPage: NextPage = () => {
 
   const onSubmitFindPw = (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(`비밀번호 찾기 회원 정보 ${JSON.stringify(findPw)}`)
     dispatch(findUserPwRequest(findPw))
 
   }

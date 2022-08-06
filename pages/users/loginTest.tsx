@@ -7,7 +7,6 @@ import { Navigate } from 'react-router-dom'
 const LoginTestPage: NextPage = () => {
   const handleCredentialResponse = async(response: any) => {
     const { credential } = response;
-    console.log("ENCODED JWT ID TOKEN" + response.credential)
   }
   return (
     <>

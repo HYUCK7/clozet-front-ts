@@ -19,10 +19,8 @@ export const userJoinApi = async (
         phone: string
     }) => {
         try{
-            console.log(typeof({payload}))
             const response : AxiosResponse<any, User> =
             await axios.post(`${SERVER}/users/join`, payload, { headers })
-            console.log(response.data)
             if(response.data.message == "SUCCESS") { alert('회원가입 성공') }
             return response.data
         }catch(err){
@@ -75,10 +73,7 @@ export const userJoinApi = async (
     export const loadUserApi = async(
         token: User) => {
             try {
-                console.log(`LOGIN CHECK ${token}`)
-                console.log(JSON.stringify(token))
                 const response: AxiosResponse = await axios.post(`${SERVER}/users/token`, token , {headers})
-                console.log (`서버 응답1 + ${JSON.stringify(response.data)}`)
                 return response.data
             } catch (err) {
                 return err;
@@ -88,7 +83,6 @@ export const userJoinApi = async (
         updateData: User
     ) => {
         try{
-            console.log(`API 진입 + ${JSON.stringify(updateData)}`)
             await axios.patch(`${SERVER}/users/update`, updateData, {headers})
         } catch(err){
             return err;
@@ -105,9 +99,7 @@ export const userJoinApi = async (
 
     export const checkIdApi = async(PayloadAction: User) => {
         try{
-            console.log(`API + ${JSON.stringify(PayloadAction)}`)
             const response = await axios.post(`${SERVER}/users/exists`, PayloadAction)
-            console.log(response)
             const checkResult = response.data === true ? alert('중복되는 아이디입니다.') : alert('사용 가능한 아이디입니다.')
             return checkResult
         } catch (err) {

@@ -80,23 +80,17 @@ export const writeComment = async(
     writeComment : Article
 ) => {
     try{
-        console.log('>>')
         await axios.post(`${SERVER}/articles/write`, writeComment, {headers})
     } catch (err){
         return(err)
     }
 }
-/** 
-export const findComment = async (
-    commentList: Article
-) => {
-    try {
-        console.log('>>' + JSON.stringify(commentList))
-        const response = await axios.post(`${SERVER}/list/comment`, commentList, {headers})
-        console.log('>>' + JSON.stringify(response.data))
+
+export const articleCount = async() => {
+    try{
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/articles/count`, {headers})
         return response.data
-    } catch(err) {
-        return (err)
+    }catch (err) {
+        return(err)
     }
 }
-*/
